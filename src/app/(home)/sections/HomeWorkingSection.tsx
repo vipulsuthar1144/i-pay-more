@@ -28,8 +28,8 @@ export default function HomeWorkingSection() {
   ];
   return (
     <section className="bg-blue-50 py-14 ">
-      <div className="container m-auto space-y-5 p-5">
-        <p className="text-2xl font-semibold font-heading text-gray-900 ">How IPM Works</p>
+      <div className="container m-auto space-y-5">
+        <p className="text-3xl font-semibold font-heading ">How IPM Works</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {workingData.map((item, index) => (
             <div key={item.title} className="bg-white p-6 rounded-lg shadow-md relative overflow-hidden">

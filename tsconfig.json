@@ -24,7 +24,7 @@
       "@components/*": ["src/components/*"],
       "@schemas/*": ["src/schemas/*"],
       "@data/*": ["src/data/*"],
-      "@utils/*": ["src/utils/*"],
+      "@lib/*": ["src/lib/*"],
       "@/*": ["./src/*"]
     }
   },

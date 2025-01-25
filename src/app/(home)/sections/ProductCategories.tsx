@@ -27,7 +27,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
       : ProductCategoryList;
     return (
       <section ref={ref} className="container m-auto space-y-5">
-        <h2 className="text-2xl font-semibold text-gray-900 font-heading">Our Services</h2>
+        <h2 className="text-3xl font-semibold font-heading">Our Services</h2>
         {/* {subtitle && <p className="text-lg font-medium text-gray-900 font-heading">{subtitle}</p>} */}
         <div className=" grid grid-cols-2 gap-4 lg:grid-cols-6">
           {filterList?.map((item, index) => (
