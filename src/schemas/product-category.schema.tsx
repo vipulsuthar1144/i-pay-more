@@ -1,6 +1,7 @@
 import { StaticImageData } from "next/image";
 
-export type TService = "sell" | "repair" | "buy";
+export type TService = "SELL" | "REPAIR" | "BUY";
+export type TDevice = "IPHONES" | "IPADS" | "MACBOOKS";
 
 export interface IProductCategorySchema {
   model: string;

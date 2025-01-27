@@ -35,7 +35,7 @@ const Breadcrumb: React.FC = () => {
               {/* Separator Icon */}
               <ChevronRight className="mx-2 text-gray-500" size={16} />
               {isLast ? (
-                <span className="text-gray-500">{formatSegment(value)}</span>
+                <span className="text-gray-900">{formatSegment(value)}</span>
               ) : (
                 <Link href={href} className="text-gray-500 hover:underline hover:text-black">
                   {formatSegment(value)}

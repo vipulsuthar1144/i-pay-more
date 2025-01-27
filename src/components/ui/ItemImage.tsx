@@ -15,7 +15,7 @@ const ItemImage = React.memo(({ src, alt, className }: { src: string; alt?: stri
   //     img.onerror = () => setImageSrc("/placeholder.png"); // Handle error
   //   }, [src]);
   return (
-    <div className="relative w-[150px] h-[150px] flex items-center justify-center">
+    <div className="relative w-full h-full flex items-center justify-center rounded-full">
       {/* Show loader when loading */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">

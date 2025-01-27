@@ -1,17 +1,37 @@
 "use client";
+import useQueryParams from "@/config/hooks/useQueryParams";
 import Breadcrumb from "@components/sections/BreadCrumb";
+import Button from "@components/ui/Button";
 import ItemImage from "@components/ui/ItemImage";
 import { dataIPadsList } from "@data/iPadsData";
 import { dataIPhoneList } from "@data/iPhonsData";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const page = () => {
   const { iphoneID } = useParams();
-
+  const router = useRouter();
+  const { setParams } = useQueryParams();
+  const [selectedStorage, setSelectedStorage] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const productDetails = dataIPhoneList.find((data) => data.slug === decodeURIComponent(iphoneID as string));
   // console.log(iPadDetails, ipadID, dataIPadsList);
+
+  const handleSetParams = () => {
+    // Example of setting query parameters
+    const params = setParams({
+      pid: productDetails?.id,
+      pslg: productDetails?.slug,
+      pmn: productDetails?.model,
+      pclr: selectedColor ?? undefined,
+      pstg: selectedStorage ?? undefined,
+      ppcsr: undefined,
+      pimg: productDetails?.image,
+      st: "SELL",
+      dt: "IPHONES",
+    });
+    router.push(`/sell/calculate${params}`);
+  };
 
   if (!productDetails) {
     return (
@@ -20,9 +40,6 @@ const page = () => {
       </section>
     );
   }
-
-  const [selectedStorage, setSelectedStorage] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   return (
     <div className=" container m-auto  py-10 space-y-5 ">
@@ -74,13 +91,7 @@ const page = () => {
           </div>
 
           {/* Action Button */}
-          <button
-            disabled={!selectedColor || !selectedStorage}
-            className="bg-black disabled:cursor-not-allowed disabled:opacity-50 text-white py-2 px-6 rounded-md flex items-center justify-center shadow-md hover:bg-gray-800 transition duration-300"
-          >
-            Continue
-            <span className="ml-2">→</span>
-          </button>
+          <Button disabled={!selectedColor || !selectedStorage} onClick={handleSetParams} label="Continue" />
         </div>
       </div>
       {/* </div> */}
