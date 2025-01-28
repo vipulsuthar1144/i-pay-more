@@ -12,7 +12,7 @@ import { dataFaqsList } from "@data/faqsData";
 
 export default function Sell() {
   return (
-    <div className="space-y-10">
+    <div className="container m-auto pt-10 space-y-10">
       {/* <section className="relative h-[500px] container m-auto flex items-center rounded-xl overflow-hidden p-5">
         <div className="absolute inset-0">
           <Image src={imgSellHeroSection} alt="Sell Products" className="w-full h-full object-fill" />{" "}

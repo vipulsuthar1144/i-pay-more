@@ -25,16 +25,16 @@ const HomeHeroSection = ({ onActionButtonClick }: { onActionButtonClick: VoidFun
             Sell
           </Link>
 
-          {/* Repair Button */}
-          <Link href={"/sell"} className={btnStyle}>
-            <Wrench />
-            Repair
-          </Link>
-
           {/* Buy Button */}
           <Link href={"/buy"} className={btnStyle}>
             <ShoppingBasket />
             Buy
+          </Link>
+
+          {/* Repair Button */}
+          <Link href={"/repair"} className={btnStyle}>
+            <Wrench />
+            Repair
           </Link>
         </div>
       </div>

@@ -5,5 +5,15 @@ import iconIPads from "@assets/images/product-category/ipads.webp";
 import iconIPhones from "@assets/images/product-category/iphones.webp";
 import iconIWatch from "@assets/images/product-category/iwatches.webp";
 import imgDefaultPhone from "@assets/images/product-category/defult-img.png";
+import imgDefaultCategory from "@assets/images/product-category/default-category.png";
 
-export { iconIAccessories, imgDefaultPhone, iconIAirpods, iconIMacs, iconIPads, iconIPhones, iconIWatch };
+export {
+  iconIAccessories,
+  imgDefaultCategory,
+  imgDefaultPhone,
+  iconIAirpods,
+  iconIMacs,
+  iconIPads,
+  iconIPhones,
+  iconIWatch,
+};

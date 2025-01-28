@@ -1,0 +1,111 @@
+"use client";
+
+import Breadcrumb from "@components/sections/BreadCrumb";
+import ProductCard from "@components/sections/ProductCard";
+import { dataIPhoneList } from "@data/iPhonsData";
+import { PRODUCT_TYPES } from "@lib/constants";
+import { SearchIcon } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import _ from "lodash";
+import { dataMacbookList } from "@data/mackbooksData";
+import { dataIPadsList } from "@data/iPadsData";
+
+const page = () => {
+  const navigate = useRouter();
+  const { productType } = useParams();
+
+  // States for search query and filtered data
+  const [searchQuery, setSearchQuery] = useState("");
+  const [title, setTitle] = useState("Sell Your Device");
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof productType === "string" && !PRODUCT_TYPES.includes(productType.toUpperCase())) {
+      navigate.replace("/");
+      return;
+    } else {
+      switch (productType?.toString().toUpperCase()) {
+        case "MACBOOKS":
+          setFilteredData(dataMacbookList);
+          setData(dataMacbookList);
+          setTitle("Repair Your Macbook");
+          break;
+        case "IPADS":
+          setFilteredData(dataIPadsList);
+          setData(dataIPadsList);
+          setTitle("Repair Your iPad");
+          break;
+        case "IPHONES":
+          setTitle("Repair iPhone");
+          setFilteredData(dataIPhoneList);
+          setData(dataIPhoneList);
+
+          break;
+        default:
+          navigate.replace("/");
+      }
+    }
+  }, [data.length]);
+
+  // Debounce logic
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      try {
+        // Filter models by search query
+        if (searchQuery !== "") {
+          const filtered = data?.filter((item) => item.model.toLowerCase().includes(searchQuery.toLowerCase()));
+          setFilteredData(filtered);
+          setError(null); // Clear error if filtering works
+        }
+      } catch (err) {
+        setError("Something went wrong while searching.");
+      }
+    }, 500); // 300ms debounce delay
+
+    return () => clearTimeout(delayDebounce); // Cleanup timeout
+  }, [searchQuery]);
+
+  const listenerGoToProductDetails = (navigateRoute: string) => {
+    navigate.push(`/sell/${productType?.toString().toLowerCase()}/${navigateRoute}`);
+  };
+
+  return (
+    <section className="container m-auto pt-10 space-y-5">
+      <h2 className="text-2xl font-semibold text-gray-900 font-heading">{title}</h2>
+      <Breadcrumb />
+      <div className="w-full flex justify-between items-center">
+        <p className="text-lg font-medium text-gray-900 font-heading">Select Model</p>
+        <div className="relative">
+          <SearchIcon className="absolute top-2.5 left-2.5 text-gray-700" size={20} />
+          <input
+            type="text"
+            placeholder="Search model"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+            className="w-[250px] pl-10 pr-4 py-2 border-[1px] border-[#d2d2d7] rounded-lg text-gray-700 focus:outline-none"
+          />
+        </div>
+      </div>
+      {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-7">
+        {filteredData.length > 0 ? (
+          filteredData.map((item: any, index: number) => (
+            <ProductCard
+              key={index}
+              title={item.model}
+              img={item.image}
+              onClick={() => listenerGoToProductDetails(item.slug)}
+            />
+          ))
+        ) : (
+          <p className="col-span-full text-center text-gray-700">No models found matching your search.</p>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default page;

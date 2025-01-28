@@ -17,7 +17,7 @@ export const ProductCategoryList: IProductCategorySchema[] = [
   {
     model: "Repair IPhone",
     image: iconIPhones,
-    link: "/sell/iphones",
+    link: "/repair/iphones",
     service: "REPAIR",
   },
   {
@@ -35,7 +35,7 @@ export const ProductCategoryList: IProductCategorySchema[] = [
   {
     model: "Repair IPad",
     image: iconIPads,
-    link: "/sell/ipads",
+    link: "/repair/ipads",
     service: "REPAIR",
   },
   {
@@ -53,7 +53,7 @@ export const ProductCategoryList: IProductCategorySchema[] = [
   {
     model: "Repair Mac",
     image: iconIMacs,
-    link: "/sell/macbooks",
+    link: "/repair/macbooks",
     service: "REPAIR",
   },
   {
@@ -71,7 +71,7 @@ export const ProductCategoryList: IProductCategorySchema[] = [
   {
     model: "Repair Watch",
     image: iconIWatch,
-    link: "/sell/laptop",
+    link: "/repair/laptop",
     service: "REPAIR",
   },
   {
@@ -89,7 +89,7 @@ export const ProductCategoryList: IProductCategorySchema[] = [
   {
     model: "Repair Speaker",
     image: iconIAirpods,
-    link: "/sell/laptop",
+    link: "/repair/laptop",
     service: "REPAIR",
   },
 ];

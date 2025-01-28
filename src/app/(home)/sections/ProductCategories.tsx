@@ -1,5 +1,6 @@
 "use client";
 
+import { CategoryAPI } from "@/services/category.service";
 import {
   iconIAccessories,
   iconIAirpods,
@@ -7,52 +8,64 @@ import {
   iconIPads,
   iconIPhones,
   iconIWatch,
+  imgDefaultCategory,
 } from "@assets/images/product-category";
+import AppLoader from "@components/AppLoader";
+import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
 import ItemImage from "@components/ui/ItemImage";
 import { ProductCategoryList } from "@data/productCategoryData";
-import { TService } from "@schemas/product-category.schema";
+import { ICategorySchema, TService } from "@schemas/product-category.schema";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService | null }>(
-  ({ serviceFilter = null }, ref) => {
+  ({ serviceFilter = "SELL" }, ref) => {
     const navigate = useRouter();
-    const listenerGoToProductList = (navigateRoute: string) => {
-      navigate.push(`${navigateRoute}`);
+    const [categoryData, setCategoryData] = useState<{
+      loading: boolean;
+      error: string | null;
+      categoryList: ICategorySchema[];
+    }>({
+      loading: false,
+      error: null,
+      categoryList: [],
+    });
+    const listenerGoToProductList = (navigateRoute?: number) => {
+      navigateRoute && navigate.push(`${serviceFilter?.toLowerCase()}/${navigateRoute}`);
     };
-    const filterList = serviceFilter
-      ? ProductCategoryList?.filter((item) => item.service == serviceFilter)
-      : ProductCategoryList;
+
+    useEffect(() => {
+      handleGetCategoriesAPI();
+    }, []);
+
+    const handleGetCategoriesAPI = async () => {
+      try {
+        setCategoryData({ loading: true, error: null, categoryList: [] });
+        const response = await CategoryAPI.get();
+        setCategoryData({ loading: false, error: null, categoryList: response?.categories ?? [] });
+      } catch (error: any) {
+        setCategoryData({ loading: false, error: error || "Something wents wrong", categoryList: [] });
+      }
+    };
+
+    if (categoryData?.error && categoryData?.loading) return <FallbackError type="something_went_wrong" />;
+    if (categoryData?.loading) return <AppLoader />;
     return (
       <section ref={ref} className="container m-auto space-y-5">
         <h2 className="text-3xl font-semibold font-heading">Select Your Category</h2>
         {/* {subtitle && <p className="text-lg font-medium text-gray-900 font-heading">{subtitle}</p>} */}
-        <div className="grid grid-cols-3 gap-4 lg:grid-cols-10">
-          {filterList?.map((item, index) => (
-            <div
-              onClick={() => {
-                listenerGoToProductList(item.link);
-              }}
-              key={index}
-              className="flex flex-col items-center space-y-4 card group"
-            >
-              {/* Image */}
-              <Image
-                width={100}
-                height={100}
-                loading="lazy"
-                draggable={false}
-                src={item.image}
-                alt={item.model || "Placeholder"}
-                className="bg-blue-50/10 object-contain min-w-full w-full h-full aspect-square p-5 rounded-full cursor-pointer border-[1px] border-[#d2d2d7] text-center flex flex-col items-center transition-transform duration-300 ease-in-out"
-              />
-
-              {/* Text */}
-              <p className="text-sm font-medium text-gray-700 group-hover:underline cursor-pointer">{item.model}</p>
-            </div>
+        {/* {categoryData?.loading && <AppLoader />} */}
+        <div className="grid grid-cols-3 gap-4 lg:grid-cols-8">
+          {categoryData?.categoryList?.map((item, index) => (
+            <ProductCard
+              key={item?.category_id}
+              title={item?.category_name ?? ""}
+              img={item?.image_path ?? imgDefaultCategory}
+              onClick={() => listenerGoToProductList(item.category_id)}
+            />
           ))}
         </div>
       </section>

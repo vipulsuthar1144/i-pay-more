@@ -13,21 +13,10 @@ import Link from "next/link";
 import _ from "lodash";
 import { ICalculateQueryParams } from "@schemas/calculate.schema";
 import { useRouter } from "next/navigation";
+import AboutStepFive from "./TellUsAboutCards/AboutStepFive";
+import { IProductProblems } from "@schemas/order.schema";
 
-export interface IProductProblems {
-  basic: {
-    callFunctionality: string;
-    screenOriginal: string;
-    touchScreen: string;
-    warranty: string;
-    esimSupport: string;
-    screenCondition: string;
-    gstBill: string;
-  };
-  defects: string[];
-  functional: string[];
-}
-
+const TOTAL_SELLING_STEPS = 5;
 export default function TellUsAbout() {
   const [nestedStep, setNestedStep] = useState(1);
   const router = useRouter();
@@ -35,21 +24,14 @@ export default function TellUsAbout() {
   const QueryParams = getParams();
 
   const [productProblems, setProductProblems] = useState<IProductProblems>({
-    basic: {
-      callFunctionality: "",
-      touchScreen: "",
-      screenOriginal: "",
-      warranty: "",
-      esimSupport: "",
-      screenCondition: "",
-      gstBill: "",
-    },
+    basic: [],
     defects: [],
     functional: [],
+    accessories: [],
   });
 
   const handleContinue = () => {
-    if (nestedStep < 4) {
+    if (nestedStep < TOTAL_SELLING_STEPS) {
       setNestedStep((prevStep) => prevStep + 1); // Move to the next nested step
     } else {
       //   setStepNum((prevStep: any) => prevStep + 1); // Move to the next main step
@@ -102,6 +84,16 @@ export default function TellUsAbout() {
             // setStepNum={setStepNum}
           />
         );
+      case 5:
+        return (
+          <AboutStepFive
+            setProductProblems={setProductProblems}
+            productProblems={productProblems}
+            handleContinue={handleContinue}
+            handleBack={handleBack}
+            // setStepNum={setStepNum}
+          />
+        );
       default:
         return null;
     }
@@ -112,14 +104,14 @@ export default function TellUsAbout() {
       { name: "Home", route: "/", icon: Home },
       { name: _.capitalize(QueryParams.st), route: `/${QueryParams.st?.toLowerCase()}` },
       {
-        name: _.capitalize(QueryParams.dt),
-        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.dt?.toLowerCase()}`,
+        name: _.capitalize(QueryParams.cid),
+        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.cid?.toLowerCase()}`,
       },
       {
         name: QueryParams.pmn,
-        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.dt?.toLowerCase()}/${QueryParams.pslg}`,
+        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.cid?.toLowerCase()}/${QueryParams.pslg}`,
       },
-      { name: "Tell more About Your Device", route: "/calculate" },
+      { name: "Device Info", route: "/calculate" },
     ];
     return (
       <>
@@ -161,7 +153,7 @@ export default function TellUsAbout() {
       <h2 className="text-2xl font-semibold text-gray-900 font-heading">Sell Old {QueryParams.pmn}</h2>
       {/* <Breadcrumb /> */}
       {renderBreadcrumb()}
-      <div className="w-full h-full flex flex-col sm:flex-row justify-between p-4">
+      <div className="w-full h-full flex flex-col sm:flex-row justify-between p-4 md:space-y-0 space-y-5">
         {getNestedContent()}
         <DeviceDetails productProblems={productProblems} />
       </div>

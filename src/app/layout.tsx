@@ -4,6 +4,12 @@ import "../styles/globals.css";
 import AppHeader from "@components/AppHeader";
 import AppFooter from "@components/AppFooter";
 import Breadcrumb from "@components/sections/BreadCrumb";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { store } from "@/store";
+import DialogLogin from "./(auth)/DialogLogin";
+import DialogSignup from "./(auth)/DialogSignup";
+import Providers from "./Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AppHeader />
-        <main className="min-h-[60vh]  p-5 pb-10  md:px-0">{children}</main>
-        <AppFooter />
+        <Providers>
+          <AppHeader />
+          <main className="min-h-[60vh] p-5 pb-10 md:px-0">{children}</main>
+          <AppFooter />
+        </Providers>
       </body>
     </html>
   );

@@ -5,9 +5,9 @@ export interface ICalculateQueryParams {
   pslg: string; // product slug
   pmn: string; // product name
   pclr: string; // product color
-  pstg: string; // product storage
+  pvid: string; // product storage
   ppcsr: string; // product processor
   pimg: string; // product image
   st: TService; // service type :: SELL,BUY,REPAIR
-  dt: TDevice; // device type :: IPHONES, IPADS, MACBOOKS
+  cid: string; // category id :: IPHONES, IPADS, MACBOOKS
 }
