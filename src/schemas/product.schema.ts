@@ -1,6 +1,7 @@
 export interface IProductSchema {
   product_id?: number;
   product_name?: string;
+  product_slug?: string;
   category_id?: number;
   colors?: IColorSchema[];
   screen_size?: string;
@@ -11,6 +12,7 @@ export interface IProductSchema {
 }
 
 export interface IColorSchema {
+  color_id?: number;
   color_name?: string;
   color_html_code?: string;
 }

@@ -1,27 +1,31 @@
-import { imgDefaultCategory, imgDefaultPhone } from "@assets/images/product-category";
+import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useState } from "react";
-import _ from "lodash";
+import { imgDefaultCategory } from "@assets/images/product-category"; // Ensure this import path is correct
 
-const ItemImage = React.memo(
-  ({ src, alt, className }: { src: string | StaticImageData; alt?: string; className?: string }) => {
-    const [imageSrc, setImageSrc] = useState(src);
-    const [loading, setLoading] = useState(true);
-    const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${loading ? "opacity-0" : "opacity-100"} ${className}`;
-    //   useEffect(() => {
-    //     // Create an image element to check if the image is cached or needs to load
-    //     const img = document.createElement("img");
-    //     img.src = src;
+interface IItemImage extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src"> {
+  src: string | StaticImageData; // Override 'src' to accept StaticImageData
+  alt?: string; // Optional alt text
+  className?: string; // Optional additional CSS classes
+  errorImg?: StaticImageData; // Optional fallback image on error
+  width?: number; // Ensure width is explicitly a number
+  height?: number; // Ensure height is explicitly a number
+}
 
-    //     img.onload = () => setLoading(false); // Image successfully loaded
-    //     img.onerror = () => setImageSrc("/placeholder.png"); // Handle error
-    //   }, [src]);
+const ItemImage: React.FC<IItemImage> = React.memo(
+  ({ src, alt = "Placeholder", className = "", errorImg = imgDefaultCategory, ...props }) => {
+    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? src : errorImg);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${
+      loading ? "opacity-0" : "opacity-100"
+    } ${className}`;
+
     return (
       <div className="relative w-full h-full flex items-center justify-center rounded-full">
         {/* Show loader when loading */}
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
-            <div className="w-8 h-8 border-4 border-t-transparent border-blue-400 rounded-full animate-spin"></div>
+          <div className="absolute inset-0 flex items-center justify-center rounded-md">
+            <div className="w-8 h-8 border-4 border-t-transparent border-black rounded-full animate-spin"></div>
           </div>
         )}
 
@@ -32,10 +36,11 @@ const ItemImage = React.memo(
           loading="lazy"
           draggable={false}
           src={imageSrc}
-          alt={alt || "Placeholder"}
+          alt={alt}
           className={imgClass}
-          onError={() => setImageSrc(imgDefaultCategory as any)} // Fallback to placeholder image
+          onError={() => setImageSrc(errorImg)} // Fallback to placeholder image
           onLoadingComplete={() => setLoading(false)} // Hide loader when loaded
+          {...props}
         />
       </div>
     );

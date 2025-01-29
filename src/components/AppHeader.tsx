@@ -1,18 +1,17 @@
 "use client";
 
-import DialogLogin from "@/app/(auth)/DialogLogin";
-import DialogSignup from "@/app/(auth)/DialogSignup";
+import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
 import { useAppDispatch } from "@/store";
 import { toggleLoginDialogState } from "@/store/slices/auth.slice";
 import { appLogo } from "@assets/images/home";
-import toastUtils from "@lib/toast";
-import { Apple, Cross, CrossIcon, SearchIcon, X } from "lucide-react";
+import { LocalStorageKeys } from "@lib/constants";
+import { SearchIcon, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const [accessToken, __] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
 
   const handleLogin = () => {
     dispatch(toggleLoginDialogState());
@@ -48,6 +47,8 @@ const Header = () => {
           >
             Login
           </Link> */}
+            {/* <Profile /> */}
+
             <button
               onClick={handleLogin}
               className="bg-black text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-gray-800 transition duration-300"

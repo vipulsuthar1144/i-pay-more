@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { imgDoubleQuates } from "@assets/images/home";
-import ItemImage from "./ItemImage";
+import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
   items,

@@ -11,6 +11,8 @@ import { dataIPadsList } from "@data/iPadsData";
 import { dataIPhoneList } from "@data/iPhonsData";
 import { dataMacbookList } from "@data/mackbooksData";
 import { PRODUCT_TYPES } from "@lib/constants";
+import { extractIDfromString } from "@lib/utils";
+import { isValidUrl } from "@lib/validation";
 import { IProductSchema } from "@schemas/product.schema";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -19,8 +21,17 @@ const page = () => {
   const { categoryID, productID } = useParams();
   const router = useRouter();
   const { setParams } = useQueryParams();
-  const [selectedStorage, setSelectedStorage] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedData, setSelectedData] = useState<{
+    color: string;
+    colorID: number | null;
+    varientID: number | null;
+    varient: string;
+  }>({
+    color: "",
+    varientID: null,
+    colorID: null,
+    varient: "",
+  });
   const [productData, setProductData] = useState<{
     loading: boolean;
     error: string | null;
@@ -38,9 +49,11 @@ const page = () => {
 
   const handleGetProductsAPI = async () => {
     try {
-      if (productID) {
+      const pID = extractIDfromString(productID?.toString());
+      if (pID) {
         setProductData({ loading: true, error: null, productDetails: null });
-        const response = await ProductAPI.getByID(+productID as number);
+        const response = await ProductAPI.getByID(+pID as number);
+        console.log(response);
         setProductData({ loading: false, error: null, productDetails: response });
       }
     } catch (error: any) {
@@ -74,10 +87,12 @@ const page = () => {
     // Example of setting query parameters
     const params = setParams({
       pid: productDetails?.product_id?.toString(),
-      pslg: productDetails?.product_id?.toString(),
+      pslg: productDetails?.product_slug?.toString(),
       pmn: productDetails?.product_name,
-      pclr: selectedColor ?? undefined,
-      pvid: selectedStorage ?? undefined,
+      pclrid: selectedData.colorID?.toString() ?? undefined,
+      pclr: selectedData.color ?? undefined,
+      pvid: selectedData.varientID?.toString() ?? undefined,
+      pv: selectedData.varient ?? undefined,
       ppcsr: undefined,
       pimg: productDetails?.product_images,
       st: "SELL",
@@ -100,7 +115,11 @@ const page = () => {
         {/* <div className=" items-center justify-center flex md:flex-col"> */}
         <div className="flex w-full max-w-[25%] flex-row sm:m-auto md:m-0 items-center justify-center">
           <ItemImage
-            src={imgDefaultCategory}
+            src={
+              isValidUrl(productDetails?.product_images) && productDetails?.product_images
+                ? productDetails?.product_images
+                : ""
+            }
             alt="Product"
             className="w-40 h-40 max-w-44  mx-auto md:mx-0 mb-4 md:mb-0"
           />
@@ -116,14 +135,24 @@ const page = () => {
             {productDetails?.Variants?.map((variant) => (
               <button
                 key={variant?.variant_id}
-                onClick={() => variant.variant_id && setSelectedStorage(variant?.variant_id.toString())}
+                onClick={() => {
+                  variant.variant_id &&
+                    setSelectedData((pre) => ({
+                      ...pre,
+                      varientID: variant?.variant_id ?? null,
+                      varient: `${variant.memory && variant.memory} ${variant.storage && variant.storage} ${variant.processor?.processor_name && variant.processor?.processor_name}`,
+                    }));
+                }}
                 className={`px-4 py-2 border-[1px] rounded-md text-sm font-medium transition-all duration-200 ease-in-out ${
-                  selectedStorage === variant?.variant_id?.toString()
+                  selectedData.varientID === variant?.variant_id
                     ? "border-black text-black scale-110"
                     : "border-gray-400 text-gray-400"
                 }`}
               >
-                {`${variant.storage} / ${variant.storage} (${variant?.processor?.processor_name})`}
+                {/* {`${variant.storage} / ${variant.storage} (${variant?.processor?.processor_name})`} */}
+                {variant.memory && <span>{`${variant.memory} / `}</span>}
+                {variant.storage && <span>{variant.storage}</span>}
+                {variant.processor?.processor_name && <span>{` (${variant.processor?.processor_name}) `}</span>}
               </button>
             ))}
           </div>
@@ -133,9 +162,18 @@ const page = () => {
             {productDetails?.colors?.map((color, index: number) => (
               <button
                 key={index}
-                onClick={() => color.color_html_code && setSelectedColor(color.color_html_code)}
+                onClick={() => {
+                  console.log(color);
+
+                  color.color_id &&
+                    setSelectedData((pre) => ({
+                      ...pre,
+                      color: color?.color_html_code ?? "",
+                      colorID: color?.color_id ?? null,
+                    }));
+                }}
                 className={`w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out ${
-                  selectedColor === color.color_html_code ? "border-black scale-110" : "border-gray-300"
+                  selectedData.colorID == color.color_id ? "border-black scale-110" : "border-gray-300"
                 } `}
                 style={{ backgroundColor: color.color_html_code }}
               ></button>
@@ -144,7 +182,7 @@ const page = () => {
 
           {/* Action Button */}
           <Button
-            disabled={!selectedColor && !selectedStorage}
+            disabled={!selectedData.colorID || !selectedData.varientID}
             haveRightArrow
             onClick={handleSetParams}
             label="Continue"

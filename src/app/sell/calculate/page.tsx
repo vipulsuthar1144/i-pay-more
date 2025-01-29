@@ -1,28 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
-import DeviceDetails from "./DeviceDetails";
-import AboutStepOne from "./TellUsAboutCards/AboutStepOne";
-import AboutStepFour from "./TellUsAboutCards/AboutStepFour";
-import AboutStepTwo from "./TellUsAboutCards/AboutStepTwo";
-import AboutStepThird from "./TellUsAboutCards/AboutStepThird";
-import BreadCrumb from "@components/sections/BreadCrumb";
 import useQueryParams from "@/config/hooks/useQueryParams";
+import { SaleLeadsAPI } from "@/services/order.service";
+import { IAddressSchema, IProductProblems } from "@schemas/order.schema";
+import _ from "lodash";
 import { ChevronRight, Home, HomeIcon } from "lucide-react";
 import Link from "next/link";
-import _ from "lodash";
-import { ICalculateQueryParams } from "@schemas/calculate.schema";
 import { useRouter } from "next/navigation";
-import AboutStepFive from "./TellUsAboutCards/AboutStepFive";
-import { IProductProblems } from "@schemas/order.schema";
+import { useState } from "react";
+import DeviceDetails from "./sections/DeviceDetails";
+import OrderPlacedDialog from "./sections/DialogSumitted";
+import AddressForm from "./sections/steps/AddressForm";
+import Step1 from "./sections/steps/Step1";
+import Step2 from "./sections/steps/Step2";
+import Step3 from "./sections/steps/Step3";
+import Step4 from "./sections/steps/Step4";
+import StepsContainer from "./sections/steps/StepsContainer";
+import { removeNumberFromString } from "@lib/utils";
+import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
+import { LocalStorageKeys } from "@lib/constants";
+import { useAppDispatch } from "@/store";
+import { toggleLoginDialogState } from "@/store/slices/auth.slice";
+import { IUserSchema } from "@schemas/base.shema";
+import { AddressAPI } from "@/services/address.service";
 
 const TOTAL_SELLING_STEPS = 5;
 export default function TellUsAbout() {
-  const [nestedStep, setNestedStep] = useState(1);
-  const router = useRouter();
   const { getParams } = useQueryParams();
+  const [USER_DATA, __] = useLocalStorage<IUserSchema | null>(LocalStorageKeys.USER_DATA, null);
   const QueryParams = getParams();
-
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const [currentStep, setCurrentStep] = useState(1);
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
+  const [isCreateSellLeadsLoading, setIsCreateSellLeadsLoading] = useState(false);
   const [productProblems, setProductProblems] = useState<IProductProblems>({
     basic: [],
     defects: [],
@@ -31,68 +42,120 @@ export default function TellUsAbout() {
   });
 
   const handleContinue = () => {
-    if (nestedStep < TOTAL_SELLING_STEPS) {
-      setNestedStep((prevStep) => prevStep + 1); // Move to the next nested step
+    if (currentStep == TOTAL_SELLING_STEPS) {
+      document.getElementById("address-submit-btn")?.click();
+    } else if (currentStep == TOTAL_SELLING_STEPS - 1) {
+      const accessToken = localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN)
+        ? JSON.parse(localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN) ?? "")
+        : null;
+      if (accessToken) {
+        setCurrentStep((prevStep) => prevStep + 1);
+      } else {
+        dispatch(toggleLoginDialogState());
+      }
     } else {
-      //   setStepNum((prevStep: any) => prevStep + 1); // Move to the next main step
+      currentStep < TOTAL_SELLING_STEPS && setCurrentStep((prevStep) => prevStep + 1);
     }
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
 
   const handleBack = () => {
-    if (nestedStep > 1) {
-      setNestedStep((prevStep) => prevStep - 1); // Move to the previous nested step
+    if (currentStep > 1) {
+      setCurrentStep((prevStep) => prevStep - 1); // Move to the previous nested step
     }
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
 
-  const getNestedContent = () => {
-    switch (nestedStep) {
+  const handleCreateSaleLeadsAPI = async (address: IAddressSchema) => {
+    try {
+      setIsCreateSellLeadsLoading(true);
+      await AddressAPI.update(address);
+      await SaleLeadsAPI.create({
+        name: address.name,
+        mobile: address.phone_no,
+        email: "random@user.com",
+        city: address.city,
+        state: address.state,
+        color_id: Number(QueryParams.pclrid),
+        address_id: Number(USER_DATA?.address?.id),
+        product_id: Number(QueryParams.pid), // Example ID
+        variant_id: Number(QueryParams.pvid), // Example ID
+        lead_details: {
+          address: address,
+          questions: productProblems,
+        },
+      });
+      setOpenSuccessDialog(true);
+    } catch (error) {
+      // toastUtils.error("Failed to create sale leads. Please try again later.");
+      console.error(error);
+    } finally {
+      setIsCreateSellLeadsLoading(false);
+    }
+  };
+
+  const renderSteps = () => {
+    switch (currentStep) {
       case 1:
         return (
-          <AboutStepOne
-            setProductProblems={setProductProblems}
-            productProblems={productProblems}
+          <StepsContainer
+            handleBack={handleBack}
             handleContinue={handleContinue}
-          />
+            title="Tell Us More About Your Device"
+            subTitle="The better condition your device is in, the more we will pay you."
+            currentStep={currentStep}
+          >
+            <Step1 setProductProblems={setProductProblems} productProblems={productProblems} />
+          </StepsContainer>
         );
       case 2:
         return (
-          <AboutStepTwo
-            setProductProblems={setProductProblems}
-            productProblems={productProblems}
-            handleContinue={handleContinue}
+          <StepsContainer
             handleBack={handleBack}
-          />
+            handleContinue={handleContinue}
+            title="Select screen/body defects that are applicable!"
+            subTitle="Please provide correct details"
+            currentStep={currentStep}
+          >
+            <Step2 setProductProblems={setProductProblems} productProblems={productProblems} />
+          </StepsContainer>
         );
       case 3:
         return (
-          <AboutStepThird
-            setProductProblems={setProductProblems}
-            productProblems={productProblems}
-            handleContinue={handleContinue}
+          <StepsContainer
             handleBack={handleBack}
-          />
+            handleContinue={handleContinue}
+            title="Functional or Physical Problems"
+            subTitle="Please choose appropriate condition to get accurate quote"
+            currentStep={currentStep}
+          >
+            <Step3 setProductProblems={setProductProblems} productProblems={productProblems} />
+          </StepsContainer>
         );
       case 4:
         return (
-          <AboutStepFour
-            setProductProblems={setProductProblems}
-            productProblems={productProblems}
-            handleContinue={handleContinue}
+          <StepsContainer
             handleBack={handleBack}
-            // setStepNum={setStepNum}
-          />
+            handleContinue={handleContinue}
+            title="Do you have the following?"
+            subTitle="Please select accessories which are available"
+            currentStep={currentStep}
+          >
+            <Step4 setProductProblems={setProductProblems} productProblems={productProblems} />
+          </StepsContainer>
         );
       case 5:
         return (
-          <AboutStepFive
-            setProductProblems={setProductProblems}
-            productProblems={productProblems}
-            handleContinue={handleContinue}
+          <StepsContainer
             handleBack={handleBack}
-            // setStepNum={setStepNum}
-          />
+            handleContinue={handleContinue}
+            title="You Are Almost Done"
+            subTitle="Fill Your Address Details"
+            currentStep={currentStep}
+            isLoading={isCreateSellLeadsLoading}
+          >
+            <AddressForm onSubmit={handleCreateSaleLeadsAPI} />
+          </StepsContainer>
         );
       default:
         return null;
@@ -100,16 +163,17 @@ export default function TellUsAbout() {
   };
 
   const renderBreadcrumb = () => {
+    const categoryName = _.capitalize(removeNumberFromString(QueryParams.cid).replace(/-/g, " "));
     const BreadcrumbList = [
       { name: "Home", route: "/", icon: Home },
       { name: _.capitalize(QueryParams.st), route: `/${QueryParams.st?.toLowerCase()}` },
       {
-        name: _.capitalize(QueryParams.cid),
+        name: categoryName,
         route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.cid?.toLowerCase()}`,
       },
       {
         name: QueryParams.pmn,
-        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.cid?.toLowerCase()}/${QueryParams.pslg}`,
+        route: `/${QueryParams.st?.toLowerCase()}/${QueryParams.cid?.toLowerCase()}/${QueryParams.pslg}-${QueryParams.pid}`,
       },
       { name: "Device Info", route: "/calculate" },
     ];
@@ -150,11 +214,17 @@ export default function TellUsAbout() {
 
   return (
     <div className=" container m-auto py-10 space-y-5  ">
+      <OrderPlacedDialog
+        isOpen={openSuccessDialog}
+        onClose={() => {
+          setOpenSuccessDialog(false);
+          router.replace("/");
+        }}
+      />
       <h2 className="text-2xl font-semibold text-gray-900 font-heading">Sell Old {QueryParams.pmn}</h2>
-      {/* <Breadcrumb /> */}
       {renderBreadcrumb()}
-      <div className="w-full h-full flex flex-col sm:flex-row justify-between p-4 md:space-y-0 space-y-5">
-        {getNestedContent()}
+      <div className="w-full h-full flex flex-col sm:flex-row justify-between md:space-y-0 space-y-5">
+        {renderSteps()}
         <DeviceDetails productProblems={productProblems} />
       </div>
     </div>

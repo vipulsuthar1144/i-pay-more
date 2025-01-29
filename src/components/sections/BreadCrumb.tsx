@@ -7,6 +7,7 @@ import { ChevronRight, Home } from "lucide-react";
 const formatSegment = (segment: string) => {
   return segment
     .replace(/-/g, " ") // Replace hyphens with spaces
+    .replace(/\d+/g, "")
     .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
 };
 

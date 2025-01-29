@@ -1,8 +1,14 @@
 "use client";
 
+import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
+import { AuthAPI } from "@/services/auth.service";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { toggleLoginDialogState, toggleSignupDialogState } from "@/store/slices/auth.slice";
 import Button from "@components/ui/Button";
+import InputField from "@components/ui/InputField";
+import { LocalStorageKeys } from "@lib/constants";
+import { isValidEmail, isValidPassword, isValidPhone } from "@lib/validation";
+import { IUserSchema } from "@schemas/base.shema";
 import { X } from "lucide-react";
 import { useState } from "react";
 
@@ -11,16 +17,11 @@ const DialogLogin = () => {
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState({ phone: "", password: "" });
+  const [_, setAccessToken] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
+  const [__, setUserData] = useLocalStorage<IUserSchema | null>(LocalStorageKeys.USER_DATA, null);
+  const [isLoading, setIsLoading] = useState(false);
   const { openLoginDialog } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-
-  const validatePhone = (value: string) => {
-    return /^\d{10}$/.test(value) ? "" : "Enter a valid 10-digit phone number";
-  };
-
-  const validatePassword = (value: string) => {
-    return value.length >= 6 ? "" : "Password must be at least 6 characters";
-  };
 
   const onSignupClick = () => {
     handleClose();
@@ -29,16 +30,41 @@ const DialogLogin = () => {
 
   const handleContinue = () => {
     setErrors({
-      phone: validatePhone(phone),
-      password: validatePassword(password),
+      // phone: isValidPhone(phone) ? "" : "Enter a valid 10-digit phone number",
+      phone: isValidEmail(phone) ? "" : "Enter a valid email address",
+      password: isValidPassword(password),
     });
 
-    if (!validatePhone(phone) && !validatePassword(password) && agree) {
-      console.log("Login/Signup Successful");
+    if (isValidEmail(phone) && isValidPassword(password) && agree) {
+      // if (!isValidPhone(phone) && !isValidPassword(password) && agree) {
+      // console.log("Login/Signup Successful");
+    }
+    handleLoginAPI();
+  };
+
+  const handleLoginAPI = async () => {
+    try {
+      setIsLoading(true);
+      const response = await AuthAPI.login({ email: phone, password });
+      if (response?.token) {
+        setAccessToken(response.token);
+        setUserData(response.user ?? null);
+        handleClose();
+      }
+    } catch (error: any) {
+      console.error(`${error}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleClose = () => {
+    setPhone("");
+    setPassword("");
+    setErrors({
+      phone: "",
+      password: "",
+    });
     dispatch(toggleLoginDialogState());
   };
 
@@ -64,31 +90,46 @@ const DialogLogin = () => {
           </button>
         </div>
         {/* Content */}
-        <div className="p-4">
-          <label className="block mb-2 text-gray-700">Phone Number</label>
-          <input
-            type="tel"
+        <div className="p-4 space-y-5">
+          {/* <InputField
+            label="Phone Number"
             name="phone"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-            placeholder="Enter your phone number"
+            placeholder="Enter a 10-digit phone number"
             value={phone}
+            error={errors.phone}
             onChange={(e) => setPhone(e.target.value)}
             maxLength={10}
             pattern="[0-9]*"
             onInput={(e) => (e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, ""))}
+          /> */}
+          <InputField
+            label="Email"
+            name="phone"
+            placeholder="Enter your email"
+            value={phone}
+            error={errors.phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+              setErrors({
+                phone: "",
+                password: "",
+              });
+            }}
           />
-          {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-
-          <label className="block mt-4 mb-2 text-gray-700">Password</label>
-          <input
-            type="password"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+          <InputField
+            label="Password"
+            name="password"
             placeholder="Enter your password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            error={errors.password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrors({
+                phone: "",
+                password: "",
+              });
+            }}
           />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
-
           {/* Terms & Conditions */}
           <div className="flex items-center mt-4">
             <input type="checkbox" className="w-4 h-4" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
@@ -108,6 +149,7 @@ const DialogLogin = () => {
           {/* Continue Button */}
           <Button
             onClick={handleContinue}
+            isLoading={isLoading}
             label="LOGIN"
             disabled={!phone || !password || !!errors.phone || !!errors.password || !agree}
             className="w-full min-w-full max-w-full mt-4"

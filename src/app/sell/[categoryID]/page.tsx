@@ -15,6 +15,7 @@ import { ProductAPI } from "@/services/product.service";
 import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
 import { imgDefaultCategory } from "@assets/images/product-category";
+import { extractIDfromString } from "@lib/utils";
 
 const page = () => {
   const navigate = useRouter();
@@ -42,9 +43,10 @@ const page = () => {
 
   const handleGetProductsAPI = async () => {
     try {
-      if (categoryID) {
+      const cID = extractIDfromString(categoryID?.toString());
+      if (cID) {
         setProductData({ loading: true, error: null, productList: [], filterList: [] });
-        const response = await ProductAPI.get(+categoryID as number);
+        const response = await ProductAPI.get(+cID as number);
         setProductData({ loading: false, error: null, productList: response ?? [], filterList: response ?? [] });
       }
     } catch (error: any) {
@@ -75,7 +77,7 @@ const page = () => {
     return () => clearTimeout(delayDebounce); // Cleanup timeout
   }, [searchQuery]);
 
-  const listenerGoToProductDetails = (navigateRoute?: number) => {
+  const listenerGoToProductDetails = (navigateRoute?: string) => {
     categoryID && navigateRoute && navigate.push(`/sell/${categoryID}/${navigateRoute}`);
   };
 
@@ -104,8 +106,8 @@ const page = () => {
             <ProductCard
               key={index}
               title={item.product_name ?? "Apple Device"}
-              img={imgDefaultCategory}
-              onClick={() => listenerGoToProductDetails(item.product_id)}
+              img={item.product_images ?? ""}
+              onClick={() => listenerGoToProductDetails(`${item.product_slug}-${item.product_id}`)}
             />
           ))}
         </div>

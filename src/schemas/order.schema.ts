@@ -12,6 +12,8 @@ export interface ISaleLeadSchema {
   email?: string;
   city?: string;
   state?: string;
+  color_id?: number;
+  address_id?: number;
   product_id?: number;
   variant_id?: number;
   lead_details?: ILeadDetailsSchema;
@@ -42,15 +44,31 @@ export interface IProductProblems {
   }[];
 }
 
+// export interface IAddressSchema {
+//   id?: number;
+//   user_id?: number;
+//   name?: string;
+//   phone_no?: string;
+//   pincode?: string;
+//   locality?: string;
+//   address?: string;
+//   city?: string;
+//   state?: string;
+//   landmark?: string;
+//   alternate_phone_no?: string;
+// }
+
 export interface IAddressSchema {
+  id?: number;
+  user_id?: number;
   name?: string;
-  mobile?: string;
+  phone_no?: string;
+  type?: string;
   pincode?: string;
   locality?: string;
   address?: string;
   city?: string;
   state?: string;
   landmark?: string;
-  alternatePhone?: string;
-  addressType?: string;
+  alternate_phone_no?: string;
 }

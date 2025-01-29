@@ -17,6 +17,7 @@ export interface ICategoryBaseSchema {
 
 export interface ICategorySchema {
   category_id?: number;
+  category_slug?: string;
   category_name?: string;
   image_path?: string;
 }

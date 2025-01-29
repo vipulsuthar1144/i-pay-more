@@ -13,7 +13,6 @@ import {
 import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
-import ItemImage from "@components/ui/ItemImage";
 import { ProductCategoryList } from "@data/productCategoryData";
 import { ICategorySchema, TService } from "@schemas/product-category.schema";
 import Image from "next/image";
@@ -33,7 +32,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
       error: null,
       categoryList: [],
     });
-    const listenerGoToProductList = (navigateRoute?: number) => {
+    const listenerGoToProductList = (navigateRoute?: string) => {
       navigateRoute && navigate.push(`${serviceFilter?.toLowerCase()}/${navigateRoute}`);
     };
 
@@ -63,8 +62,8 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
             <ProductCard
               key={item?.category_id}
               title={item?.category_name ?? ""}
-              img={item?.image_path ?? imgDefaultCategory}
-              onClick={() => listenerGoToProductList(item.category_id)}
+              img={item?.image_path ?? ""}
+              onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
             />
           ))}
         </div>
