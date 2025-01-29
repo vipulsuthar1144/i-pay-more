@@ -15,3 +15,12 @@ export const removeNumberFromString = (str?: string): string => {
   if (!str) return "";
   return str.replace(/\d+/g, ""); // Removes all digits
 };
+
+export const formatPrice = (amount: number, currency: string = "INR", locale: string = "en-IN"): string => {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};

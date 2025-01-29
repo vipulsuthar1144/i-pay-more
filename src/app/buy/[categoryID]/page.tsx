@@ -23,7 +23,7 @@ const page = () => {
 
   // States for search query and filtered data
   const [searchQuery, setSearchQuery] = useState("");
-  const [title, setTitle] = useState("Sell Your Apple Device");
+  const [title, setTitle] = useState("Buy Refurbished Apple Devices");
 
   const [productData, setProductData] = useState<{
     loading: boolean;
@@ -78,7 +78,7 @@ const page = () => {
   }, [searchQuery]);
 
   const listenerGoToProductDetails = (navigateRoute?: string) => {
-    categoryID && navigateRoute && navigate.push(`/sell/${categoryID}/${navigateRoute}`);
+    categoryID && navigateRoute && navigate.push(`/buy/${categoryID}/${navigateRoute}`);
   };
 
   if (productData?.error && !productData?.loading) return <FallbackError type="something_went_wrong" />;
