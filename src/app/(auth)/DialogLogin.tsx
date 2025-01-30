@@ -72,12 +72,11 @@ const DialogLogin = () => {
 
   return (
     <div
-      className={`fixed inset-0 h-screen flex items-center justify-center bg-black bg-opacity-50 z-50  ${
-        openLoginDialog ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-10"
-      }`}
+      className={`fixed inset-0 h-screen flex items-center justify-center bg-black bg-opacity-50 z-50 
+      `}
     >
       <div
-        className={`bg-white w-full max-w-md rounded-lg shadow-lg p-6 z-50 transition-all ease-in-out duration-500 transform ${
+        className={`bg-white w-full max-w-md m-5 rounded-lg shadow-lg p-6 z-50 transition-all ease-in-out duration-500 transform ${
           openLoginDialog ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-10"
         }`}
       >
@@ -90,7 +89,7 @@ const DialogLogin = () => {
           </button>
         </div>
         {/* Content */}
-        <div className="p-4 space-y-5">
+        <div className="pt-4 space-y-5">
           {/* <InputField
             label="Phone Number"
             name="phone"
@@ -131,8 +130,13 @@ const DialogLogin = () => {
             }}
           />
           {/* Terms & Conditions */}
-          <div className="flex items-center mt-4">
-            <input type="checkbox" className="w-4 h-4" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              className="w-4 h-4 accent-black caret-black"
+              checked={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+            />
             <label className="ml-2 text-sm text-gray-600">
               I agree to the{" "}
               <a href="#" className="text-black underline">
@@ -152,10 +156,10 @@ const DialogLogin = () => {
             isLoading={isLoading}
             label="LOGIN"
             disabled={!phone || !password || !!errors.phone || !!errors.password || !agree}
-            className="w-full min-w-full max-w-full mt-4"
+            className="w-full min-w-full max-w-full"
           />
 
-          <div className="flex items-center justify-center mt-4">
+          <div className="flex items-center justify-center">
             <label className="text-sm text-gray-600">
               Don't have an account?
               <span onClick={onSignupClick} className="text-black ml-2 underline cursor-pointer">

@@ -1,23 +1,22 @@
 "use client";
 
+import { root_container } from "@/app/Providers";
+import OrderPlacedDialog from "@/app/sell/calculate/sections/DialogOrderPlaced";
+import AddressForm from "@/app/sell/calculate/sections/steps/AddressForm";
+import StepsContainer from "@/app/sell/calculate/sections/steps/StepsContainer";
+import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
 import useQueryParams from "@/config/hooks/useQueryParams";
+import { AddressAPI } from "@/services/address.service";
 import { SaleLeadsAPI } from "@/services/order.service";
-import { IAddressSchema, IProductProblems } from "@schemas/order.schema";
+import { LocalStorageKeys } from "@lib/constants";
+import { removeNumberFromString } from "@lib/utils";
+import { IUserSchema } from "@schemas/base.shema";
+import { IAddressSchema } from "@schemas/order.schema";
 import _ from "lodash";
 import { ChevronRight, Home, HomeIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { removeNumberFromString } from "@lib/utils";
-import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
-import { LocalStorageKeys } from "@lib/constants";
-import { useAppDispatch } from "@/store";
-import { toggleLoginDialogState } from "@/store/slices/auth.slice";
-import { IUserSchema } from "@schemas/base.shema";
-import { AddressAPI } from "@/services/address.service";
-import StepsContainer from "@/app/sell/calculate/sections/steps/StepsContainer";
-import OrderPlacedDialog from "@/app/sell/calculate/sections/DialogSumitted";
-import AddressForm from "@/app/sell/calculate/sections/steps/AddressForm";
 
 export default function TellUsAbout() {
   const { getParams } = useQueryParams();
@@ -111,7 +110,7 @@ export default function TellUsAbout() {
   }
 
   return (
-    <div className=" container m-auto py-10 space-y-5  ">
+    <div className={`${root_container}  py-10   `}>
       <OrderPlacedDialog
         isOpen={openSuccessDialog}
         onClose={() => {

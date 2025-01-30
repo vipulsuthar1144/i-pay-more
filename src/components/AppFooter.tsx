@@ -1,5 +1,8 @@
+import { root_container } from "@/app/Providers";
 import { footerData } from "@/data/footerData";
+import { appLogo } from "@assets/images/home";
 import { Facebook } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const AppFooter = () => {
@@ -69,87 +72,96 @@ const AppFooter = () => {
   return (
     <>
       <footer className="bg-white px-4 py-10">
-        <div className="  container mx-auto grid grid-cols-2 gap-4 lg:grid-cols-6">
-          <div className="col-span-2 my-2">
-            <p>
-              <span className="text-xs uppercase tracking-wide text-gray-500"> Call us </span>
-              <a href="#" className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
-                9876543210
-              </a>
-            </p>
+        <div className={root_container}>
+          <div className={`grid grid-cols-2 gap-4 lg:grid-cols-6`}>
+            <div className="col-span-2 my-2">
+              <div className="flex items-center gap-5">
+                <Link href="/" className="flex items-center">
+                  {/* <Apple className="h-8 w-8 text-gray-900" /> */}
+                  <Image src={appLogo} alt={"App Logo"} width={70} height={70} />
+                  {/* <span className="ml-2 text-xl font-bold text-gray-900">IPM</span> */}
+                </Link>
+                <p>
+                  <span className="text-xs uppercase tracking-wide text-gray-500"> Call us </span>
+                  <a href="#" className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
+                    9876543210
+                  </a>
+                </p>
+              </div>
 
-            <ul className="mt-8 space-y-1 text-sm text-gray-700">
-              <li>Monday to Friday: 10am - 5pm</li>
-              <li>Weekend: 10am - 3pm</li>
-            </ul>
+              <ul className="mt-8 space-y-1 text-sm text-gray-700">
+                <li>Monday to Friday: 10am - 5pm</li>
+                <li>Weekend: 10am - 3pm</li>
+              </ul>
 
-            <ul className="mt-8 flex gap-6">
-              {socialMediaLinks.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.href}
-                    rel="noreferrer"
-                    target="_blank"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    <span className="sr-only">{item.label}</span>
-                    {item.icon}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="my-2">
-            <p className="font-bold text-gray-900">{footerData.services.title}</p>
-            <ul className="mt-4 space-y-4 text-sm">
-              {footerData.services.items.map((item, index) => (
-                <li key={index}>
-                  <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="my-2">
-            <p className="font-bold text-gray-900">{footerData.company.title}</p>
-            <ul className="mt-4 space-y-4 text-sm">
-              {footerData.company.items.map((item, index) => (
-                <li key={index}>
-                  <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="my-2">
-            <p className="font-bold text-gray-900">{footerData.sellDevice.title}</p>
-            <ul className="mt-4 space-y-4 text-sm">
-              {footerData.sellDevice.items.map((item, index) => (
-                <li key={index}>
-                  <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="my-2">
-            <p className="font-bold text-gray-900">{footerData.helpSupport.title}</p>
-            <ul className="mt-4 space-y-4 text-sm">
-              {footerData.helpSupport.items.map((item, index) => (
-                <li key={index}>
-                  <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <ul className="mt-8 flex gap-6">
+                {socialMediaLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      href={item.href}
+                      rel="noreferrer"
+                      target="_blank"
+                      className="text-gray-700 transition hover:opacity-75"
+                    >
+                      <span className="sr-only">{item.label}</span>
+                      {item.icon}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="my-2">
+              <p className="font-bold text-gray-900">{footerData.services.title}</p>
+              <ul className="mt-4 space-y-4 text-sm">
+                {footerData.services.items.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="my-2">
+              <p className="font-bold text-gray-900">{footerData.company.title}</p>
+              <ul className="mt-4 space-y-4 text-sm">
+                {footerData.company.items.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="my-2">
+              <p className="font-bold text-gray-900">{footerData.sellDevice.title}</p>
+              <ul className="mt-4 space-y-4 text-sm">
+                {footerData.sellDevice.items.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="my-2">
+              <p className="font-bold text-gray-900">{footerData.helpSupport.title}</p>
+              <ul className="mt-4 space-y-4 text-sm">
+                {footerData.helpSupport.items.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="h-1 bg-gray-200 my-10" />
-        <div className="  container mx-auto">
+        <div className={root_container}>
           <div className="sm:flex sm:items-center sm:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs">
               {footerData.moreInfo.items.map((item, index) => (

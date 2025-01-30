@@ -2,22 +2,28 @@
 
 import { imgHomeCoverImg, imgHomeHeroSection } from "@assets/images/home";
 import { HandCoins, ShoppingBasket, Wrench } from "lucide-react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-const HomeHeroSection = ({ onActionButtonClick }: { onActionButtonClick: VoidFunction }) => {
+const HomeHeroSection = ({
+  bgImg = imgHomeCoverImg,
+  onActionButtonClick,
+}: {
+  bgImg?: string | StaticImageData;
+  onActionButtonClick: VoidFunction;
+}) => {
   const btnStyle =
     " text-white hover:scale-105 border-2 border-white hover:bg-white hover:text-black py-2 px-5 rounded-lg shadow-lg text-md font-semibold transition  duration-75 flex items-center justify-center gap-2";
 
   return (
-    <section className="relative h-[500px] container m-auto flex items-center rounded-xl overflow-hidden p-5">
+    <section className="relative h-[150px] sm:h-[200px] md:h-[25rem] flex items-center rounded-xl overflow-hidden p-5">
       <div className="absolute inset-0">
-        <Image src={imgHomeCoverImg} alt="Apple products" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gray-900/60"></div>
+        <Image width={10000} height={10000} src={bgImg} alt="Apple products" className="w-full h-full object-fill" />
+        {/* <div className="absolute inset-0 bg-gray-900/20"></div> */}
       </div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Your Trusted Apple Device Marketplace</h1>
-        <p className="text-xl text-gray-200 mb-8">Buy, Sell, and Repair Apple devices with confidence</p>
+      <div className="relative hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Fast. Easy. Profitable.</h1>
+        <p className="text-xl text-gray-200 mb-8">Best Market Prices for Your Apple Gadgets - Sell Now!</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           {/* Sell Button */}
           <Link href={"/sell"} className={btnStyle}>

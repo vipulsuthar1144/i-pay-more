@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DeviceDetails from "./sections/DeviceDetails";
-import OrderPlacedDialog from "./sections/DialogSumitted";
+import OrderPlacedDialog from "./sections/DialogOrderPlaced";
 import AddressForm from "./sections/steps/AddressForm";
 import Step1 from "./sections/steps/Step1";
 import Step2 from "./sections/steps/Step2";
@@ -23,6 +23,7 @@ import { useAppDispatch } from "@/store";
 import { toggleLoginDialogState } from "@/store/slices/auth.slice";
 import { IUserSchema } from "@schemas/base.shema";
 import { AddressAPI } from "@/services/address.service";
+import { root_container } from "@/app/Providers";
 
 const TOTAL_SELLING_STEPS = 5;
 export default function TellUsAbout() {
@@ -39,6 +40,7 @@ export default function TellUsAbout() {
     defects: [],
     functional: [],
     accessories: [],
+    repair_services: [],
   });
 
   const handleContinue = () => {
@@ -213,7 +215,7 @@ export default function TellUsAbout() {
   }
 
   return (
-    <div className=" container m-auto py-10 space-y-5  ">
+    <div className={`${root_container} py-10`}>
       <OrderPlacedDialog
         isOpen={openSuccessDialog}
         onClose={() => {

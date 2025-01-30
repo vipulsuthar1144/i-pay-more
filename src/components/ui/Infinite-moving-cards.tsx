@@ -84,11 +84,11 @@ export const InfiniteMovingCards = ({
         >
           {items.map((item, idx) => (
             <li
-              className="w-[350px] max-w-full relative rounded-2xl border  border-gray-300 bg-white shadow-md px-6 py-6 md:w-[450px] flex flex-col items-start"
+              className="w-[350px] max-w-full relative rounded-2xl border-[1px]  border-gray-400 bg-white  px-6 py-6 md:w-[450px] flex flex-col items-start"
               key={item.name}
             >
               {/* Double-Quote Icon */}
-              <div className="text-teal-500 text-[100px] leading-none mb-2 absolute top-5 left-5">
+              <div className="text-primary text-[100px] leading-none mb-2 absolute top-5 left-5">
                 <span>“</span>
               </div>
               {/* <ItemImage src={imgDoubleQuates as any} alt="“" className=" max-w-16 mb-2" /> */}

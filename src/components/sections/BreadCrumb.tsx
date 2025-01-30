@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronRight, Home } from "lucide-react";
+import { root_container } from "@/app/Providers";
 
 // Utility function to format route names
 const formatSegment = (segment: string) => {
@@ -18,7 +19,7 @@ const Breadcrumb: React.FC = () => {
   const pathnames = pathname?.split("/").filter((x) => x) || [];
 
   return (
-    <nav aria-label="breadcrumb" className=" rounded-md">
+    <nav aria-label="breadcrumb" className={`${root_container}`}>
       <ol className="flex flex-wrap items-center text-sm">
         {/* Home Icon */}
         <li>

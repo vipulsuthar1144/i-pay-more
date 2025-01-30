@@ -1,4 +1,5 @@
 "use client";
+import { root_container } from "@/app/Providers";
 import useQueryParams from "@/config/hooks/useQueryParams";
 import { ProductAPI } from "@/services/product.service";
 import { imgDefaultCategory } from "@assets/images/product-category";
@@ -89,7 +90,7 @@ const page = () => {
   if (!productData.productDetails) return <FallbackError type="data_not_found" />;
 
   return (
-    <div className=" container m-auto  py-10 space-y-5 ">
+    <div className={` ${root_container}   py-10 space-y-5 `}>
       <h2 className="text-2xl font-semibold text-gray-900 font-heading">
         Buy Refurbished {productDetails?.product_name}
       </h2>

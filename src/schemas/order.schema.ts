@@ -42,6 +42,11 @@ export interface IProductProblems {
     question?: string;
     answer?: string;
   }[];
+
+  repair_services: {
+    question?: string;
+    answer?: string;
+  }[];
 }
 
 // export interface IAddressSchema {

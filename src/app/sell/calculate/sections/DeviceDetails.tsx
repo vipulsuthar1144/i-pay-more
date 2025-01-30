@@ -66,6 +66,15 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
           productProblems.accessories.length > 0 &&
           productProblems.accessories.map((accessories, index: number) => <li key={index}>{accessories.question}</li>)}
       </ul>
+
+      {productProblems.repair_services && productProblems.repair_services.length > 0 && (
+        <div className="text-xs font-semibold  text-gray-600 mb-2 mt-2">Repair Services</div>
+      )}
+      <ul className="list-disc ml-6 text-xs text-gray-600 space-y-2">
+        {productProblems.repair_services &&
+          productProblems.repair_services.length > 0 &&
+          productProblems.repair_services.map((issue, index: number) => <li key={index}>{issue.question}</li>)}
+      </ul>
     </div>
   );
 }

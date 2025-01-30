@@ -16,6 +16,7 @@ import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
 import { imgDefaultCategory } from "@assets/images/product-category";
 import { extractIDfromString } from "@lib/utils";
+import { root_container } from "@/app/Providers";
 
 const page = () => {
   const navigate = useRouter();
@@ -84,7 +85,7 @@ const page = () => {
   if (productData?.error && !productData?.loading) return <FallbackError type="something_went_wrong" />;
   if (productData?.loading) return <AppLoader />;
   return (
-    <section className="container m-auto pt-10 space-y-5">
+    <section className={`${root_container} py-10`}>
       <h2 className="text-2xl font-semibold text-gray-900 font-heading">{title}</h2>
       <Breadcrumb />
       <div className="w-full flex justify-between items-center">
@@ -101,7 +102,7 @@ const page = () => {
         </div>
       </div>
       {productData?.filterList?.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-7">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-8">
           {productData?.filterList?.map((item, index) => (
             <ProductCard
               key={index}

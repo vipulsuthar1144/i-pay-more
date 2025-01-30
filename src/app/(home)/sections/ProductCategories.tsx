@@ -1,5 +1,6 @@
 "use client";
 
+import { root_container } from "@/app/Providers";
 import { CategoryAPI } from "@/services/category.service";
 import {
   iconIAccessories,
@@ -50,22 +51,25 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
       }
     };
 
-    if (categoryData?.error && categoryData?.loading) return <FallbackError type="something_went_wrong" />;
+    if (categoryData?.error && !categoryData?.loading) return <FallbackError type="something_went_wrong" />;
     if (categoryData?.loading) return <AppLoader />;
+
     return (
-      <section ref={ref} className="container m-auto space-y-5">
-        <h2 className="text-3xl font-semibold font-heading">Select Your Category</h2>
+      <section ref={ref} className={root_container}>
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold font-heading">Select Your Category</h2>
         {/* {subtitle && <p className="text-lg font-medium text-gray-900 font-heading">{subtitle}</p>} */}
         {/* {categoryData?.loading && <AppLoader />} */}
-        <div className="grid grid-cols-3 gap-4 lg:grid-cols-8">
-          {categoryData?.categoryList?.map((item, index) => (
-            <ProductCard
-              key={item?.category_id}
-              title={item?.category_name ?? ""}
-              img={item?.image_path ?? ""}
-              onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
-            />
-          ))}
+        <div className="grid grid-cols-3 gap-4 md:grid-cols-7">
+          {categoryData?.categoryList
+            ?.filter((item) => (serviceFilter == "REPAIR" ? item.category_slug == "iphone" : item))
+            ?.map((item, index) => (
+              <ProductCard
+                key={item?.category_id}
+                title={item?.category_name ?? ""}
+                img={item?.image_path ?? ""}
+                onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
+              />
+            ))}
         </div>
       </section>
     );

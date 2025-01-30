@@ -36,7 +36,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <AppHeader />
-          <main className="min-h-[60vh] p-5 pb-10 md:px-0">{children}</main>
+          <main className="min-h-[60vh] p-5  md:px-10 lg:px-0">{children}</main>
           <AppFooter />
         </Providers>
       </body>

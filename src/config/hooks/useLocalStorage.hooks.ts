@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = localStorage.getItem(key);
+      const item = typeof window !== "undefined" ? localStorage.getItem(key) : null;
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       console.error("UseLocalStorage getValue :: " + key, error);
@@ -11,20 +11,38 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
     }
   });
 
+  // Sync with localStorage changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      try {
+        const item = typeof window !== "undefined" ? localStorage.getItem(key) : null;
+        setStoredValue(item ? JSON.parse(item) : initialValue);
+      } catch (error) {
+        console.error("UseLocalStorage sync error :: " + key, error);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, [key, initialValue]);
+
   const setValue = (value: T) => {
     try {
       setStoredValue(value);
       localStorage.setItem(key, JSON.stringify(value));
+      window.dispatchEvent(new Event("storage")); // 🔹 Trigger storage change event manually
     } catch (error) {
       console.error("UseLocalStorage setValue :: " + key, error);
     }
   };
 
-  const removeItem = (key: string) => {
+  const removeItem = () => {
     try {
       localStorage.removeItem(key);
+      setStoredValue(initialValue);
+      window.dispatchEvent(new Event("storage")); // 🔹 Trigger update
     } catch (error) {
-      console.error(`UseLocalStorage useRemoveItemLs error ${error}`);
+      console.error(`UseLocalStorage removeItem error :: ${key}`, error);
     }
   };
 
