@@ -9,6 +9,7 @@ import { LocalStorageKeys } from "@lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { root_container } from "@/app/Providers";
+import { AppNavBar } from "./AppNavBar";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -29,19 +30,26 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-40 px-5 md:px-0">
-      <div className={`${root_container}   px-5 sm:px-0 py-3 flex items-center justify-between`}>
+    <header className="bg-white shadow-md sticky top-0 left-0 z-40">
+      <div className={` container m-auto max-w-7xl  p-5 md:px-10 lg:px-0 py-3 flex items-center justify-between`}>
         <div>
           <Link href="/">
             <Image src={appLogo} alt={"App Logo"} width={50} height={50} />
           </Link>
         </div>
 
+        <AppNavBar />
+
         <div className="flex items-center space-x-4">
+          {/* <input
+            type={"text"}
+            placeholder={"Search Apple devices..."}
+            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary border-gray-300`}
+          /> */}
           {isClient && (
             <button
               onClick={handleLoginLogout}
-              className="bg-black text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-gray-800 transition duration-300"
+              className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
             >
               {accessToken ? "Logout" : "Login"}
             </button>

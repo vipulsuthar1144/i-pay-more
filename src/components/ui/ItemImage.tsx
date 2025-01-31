@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { imgDefaultCategory } from "@assets/images/product-category"; // Ensure this import path is correct
+import { BASE_API_URL } from "@/config/axios/axios.config";
 
 interface IItemImage extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src"> {
   src: string | StaticImageData; // Override 'src' to accept StaticImageData
@@ -13,7 +14,7 @@ interface IItemImage extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "sr
 
 const ItemImage: React.FC<IItemImage> = React.memo(
   ({ src, alt = "Placeholder", className = "", errorImg = imgDefaultCategory, ...props }) => {
-    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? src : errorImg);
+    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? `${BASE_API_URL}${src}` : errorImg);
     const [loading, setLoading] = useState<boolean>(true);
 
     const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${
@@ -31,8 +32,8 @@ const ItemImage: React.FC<IItemImage> = React.memo(
 
         {/* Image Component */}
         <Image
-          width={150}
-          height={150}
+          width={800}
+          height={800}
           loading="lazy"
           draggable={false}
           src={imageSrc}

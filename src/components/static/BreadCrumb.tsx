@@ -20,11 +20,11 @@ const Breadcrumb: React.FC = () => {
 
   return (
     <nav aria-label="breadcrumb" className={`${root_container}`}>
-      <ol className="flex flex-wrap items-center text-sm">
+      <ol className="flex flex-wrap items-center text-xs md:text-sm">
         {/* Home Icon */}
         <li>
-          <Link href="/" className="text-gray-500 hover:underline hover:text-black flex items-center">
-            <Home className="mr-1" size={16} />
+          <Link href="/" className="text-gray-500 hover:underline hover:text-black flex items-center gap-1">
+            <Home size={16} />
             Home
           </Link>
         </li>

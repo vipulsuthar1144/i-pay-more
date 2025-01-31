@@ -30,7 +30,11 @@ export default function HomeWorkingSection() {
   return (
     <section className="bg-primary/5 rounded-md py-14">
       <div className={root_container}>
-        <p className="text-xl md:text-2xl lg:text-3xl font-bold font-heading px-5 sm:px-0 ">How IPM Works</p>
+        {/* <p className="text-xl md:text-2xl  font-bold font-heading  ">How IPM Works</p> */}
+        <div>
+          <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">How IPM Works</h2>
+          <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+        </div>
         <div className="grid grid-cols-1 p-5 sm:p-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
           {workingData.map((item, index) => (
             <div key={item.title} className="bg-white p-6 rounded-md  relative overflow-hidden">
@@ -38,7 +42,7 @@ export default function HomeWorkingSection() {
                 {index + 1}
               </p> */}
               {item.icon}
-              <h3 className="font-semibold text-md md:text-lg text-gray-700 mb-2">{item.title}</h3>
+              <h3 className="font-semibold text-base md:text-lg text-gray-700 mb-2">{item.title}</h3>
               <p className="text-gray-600 text-xs md:text-sm">{item.description}</p>
             </div>
           ))}

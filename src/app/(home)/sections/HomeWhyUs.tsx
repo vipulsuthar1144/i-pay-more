@@ -18,7 +18,11 @@ export default function WhyUs() {
   return (
     <section className="bg-primary/5 py-10">
       <div className={`${root_container}  px-5 sm:px-0 `}>
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">Why IPM</h2>
+        <div>
+          <h2 className="text-xl md:text-2xl  font-bold mb-1">Why IPM</h2>
+          <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
           {features.map(({ icon: Icon, title, description }, index) => (
             <div
@@ -29,7 +33,7 @@ export default function WhyUs() {
                 <Icon size={50} className="text-primary w-10" />
               </div>
               <div className="text-left space-y-2">
-                <h3 className="font-semibold text-md md:text-lg">{title}</h3>
+                <h3 className="font-semibold text-base md:text-lg">{title}</h3>
                 <p className="text-gray-600 text-xs md:text-sm">{description}</p>
               </div>
             </div>

@@ -36,7 +36,7 @@ const responseErrorHandler = (error: any) => {
   } else if (error?.response?.status >= 400 && error?.response?.status <= 499) {
     if (error.response.status === 401) {
       localStorage.clear();
-      toastUtils.error("Session Expired");
+      toastUtils.error(`${error.response?.data?.error ?? "Something went wrong"}`);
     } else {
       if (error.response?.data?.error) {
         toastUtils.error(`${error.response?.data?.error ?? "Something went wrong"}`);

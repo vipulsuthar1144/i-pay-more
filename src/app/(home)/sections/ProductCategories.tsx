@@ -56,13 +56,24 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
 
     return (
       <section ref={ref} className={root_container}>
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold font-heading">Select Your Category</h2>
-        {/* {subtitle && <p className="text-lg font-medium text-gray-900 font-heading">{subtitle}</p>} */}
+        <div>
+          <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">Select Your Category</h2>
+          {serviceFilter == "SELL" && (
+            <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+          )}
+          {serviceFilter == "BUY" && (
+            <p className="text-xs md:text-sm font-bold text-primary font-heading">Buy Apple Device with Us</p>
+          )}
+          {serviceFilter == "REPAIR" && (
+            <p className="text-xs md:text-sm font-bold text-primary font-heading">Repair Your Apple Device with Us</p>
+          )}
+        </div>
+
         {/* {categoryData?.loading && <AppLoader />} */}
         <div className="grid grid-cols-3 gap-4 md:grid-cols-7">
           {categoryData?.categoryList
             ?.filter((item) => (serviceFilter == "REPAIR" ? item.category_slug == "iphone" : item))
-            ?.map((item, index) => (
+            ?.map((item) => (
               <ProductCard
                 key={item?.category_id}
                 title={item?.category_name ?? ""}

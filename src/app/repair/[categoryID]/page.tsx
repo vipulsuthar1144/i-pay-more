@@ -4,7 +4,7 @@ import { root_container } from "@/app/Providers";
 import { ProductAPI } from "@/services/product.service";
 import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
-import Breadcrumb from "@components/sections/BreadCrumb";
+import Breadcrumb from "@components/static/BreadCrumb";
 import ProductCard from "@components/sections/ProductCard";
 import { extractIDfromString } from "@lib/utils";
 import { IProductSchema } from "@schemas/product.schema";

@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumb from "@components/sections/BreadCrumb";
+import Breadcrumb from "@components/static/BreadCrumb";
 import ProductCard from "@components/sections/ProductCard";
 import { dataIPhoneList } from "@data/iPhonsData";
 import { PRODUCT_TYPES } from "@lib/constants";

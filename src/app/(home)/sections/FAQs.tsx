@@ -20,7 +20,7 @@ export const FAQs = ({ faqs }: { faqs: FAQ[] }) => {
 
   return (
     <div className={root_container}>
-      <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">FAQs</h2>
+      <h2 className="text-xl md:text-2xl  font-bold ">FAQs</h2>
       <div className="space-y-2">
         {faqs.map((faq, index) => (
           <div key={index} className="border border-gray-300 rounded-md  overflow-hidden">

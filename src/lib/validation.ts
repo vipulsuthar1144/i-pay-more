@@ -1,7 +1,7 @@
 export const isValidUrl = (url?: string): boolean => {
   if (!url) return false;
   try {
-    return url.startsWith("http");
+    return url.startsWith("/assets");
   } catch (error) {
     return false;
   }

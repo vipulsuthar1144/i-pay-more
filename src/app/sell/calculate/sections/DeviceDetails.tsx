@@ -23,7 +23,7 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
           />
         </div>
         <div className="pl-5">
-          <p className=" text-md font-semibold  text-gray-900">{QueryParams.pmn}</p>
+          <p className=" text-base font-semibold  text-gray-900">{QueryParams.pmn}</p>
           <p className=" text-sm text-gray-500">({QueryParams.pv})</p>
           {/* <p className=" text-sm text-gray-500">{QueryParams.pclr}</p> */}
         </div>

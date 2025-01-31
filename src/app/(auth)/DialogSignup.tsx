@@ -77,7 +77,7 @@ const DialogSignup = () => {
     <div className="fixed inset-0 flex items-center justify-center h-screen bg-black bg-opacity-50 z-50">
       <div className="bg-white w-full max-w-sm md:max-w-lg rounded-lg shadow-lg p-6 m-5 relative z-50">
         {/* Header */}
-        <div className="bg-black flex justify-between items-center text-white text-xl font-medium py-4 px-6 rounded-t-lg">
+        <div className="bg-primary flex justify-between items-center text-white text-xl font-medium py-4 px-6 rounded-t-lg">
           <h6>Signup</h6>
           <button onClick={handleClose}>
             <X size={24} />
@@ -167,11 +167,11 @@ const DialogSignup = () => {
             />
             <label className="ml-2 text-sm text-gray-600">
               I agree to the{" "}
-              <a href="#" className="text-black underline">
+              <a href="#" className="text-primary underline">
                 Terms and Conditions
               </a>{" "}
               &{" "}
-              <a href="#" className="text-black underline">
+              <a href="#" className="text-primary underline">
                 Privacy Policy
               </a>
             </label>
@@ -199,7 +199,7 @@ const DialogSignup = () => {
           <div className="flex items-center justify-center mt-4">
             <label className="text-sm text-gray-600">
               Already have an account?
-              <span onClick={onLoginClick} className="text-black ml-2 underline cursor-pointer">
+              <span onClick={onLoginClick} className="text-primary ml-2 underline cursor-pointer">
                 Login
               </span>
             </label>

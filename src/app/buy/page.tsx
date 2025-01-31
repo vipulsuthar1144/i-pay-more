@@ -10,16 +10,21 @@ import ProductCategories from "../(home)/sections/ProductCategories";
 import FAQs from "../(home)/sections/FAQs";
 import { dataFaqsList } from "@data/faqsData";
 import { root_container } from "../Providers";
+import Breadcrumb from "@components/static/BreadCrumb";
+import BuyHeroSection from "./sections/BuyHeroSection";
+import SellHowItWorks from "../sell/sections/SellHowItWorksSection";
+import { AppleCardsCarouselDemo } from "./sections/TopSellingProducts";
 
 export default function Sell() {
   return (
-    <div className={`${root_container}  pt-10 space-y-10`}>
-      {/* <section className="relative h-[500px] container m-auto flex items-center rounded-xl overflow-hidden p-5">
-        <div className="absolute inset-0">
-          <Image src={imgSellHeroSection} alt="Sell Products" className="w-full h-full object-fill" />{" "}
-        </div>
-      </section> */}
+    <div className={`pt-10 space-y-10`}>
+      <div className="space-y-5">
+        <Breadcrumb />
+        <BuyHeroSection />
+      </div>
       <ProductCategories serviceFilter={"BUY"} />
+      {/* <AppleCardsCarouselDemo /> */}
+      <SellHowItWorks />
       <FAQs faqs={dataFaqsList.filter((_, index) => index < 5)} />
     </div>
   );

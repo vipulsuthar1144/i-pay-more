@@ -13,7 +13,7 @@ const HomeHeroSection = ({
   onActionButtonClick: VoidFunction;
 }) => {
   const btnStyle =
-    " text-white hover:scale-105 border-2 border-white hover:bg-white hover:text-black py-2 px-5 rounded-lg shadow-lg text-md font-semibold transition  duration-75 flex items-center justify-center gap-2";
+    " text-white hover:scale-105 border-2 border-white hover:bg-white hover:text-black py-2 px-5 rounded-lg shadow-lg text-base font-semibold transition  duration-75 flex items-center justify-center gap-2";
 
   return (
     <section className="relative h-[150px] sm:h-[200px] md:h-[25rem] flex items-center rounded-xl overflow-hidden p-5">

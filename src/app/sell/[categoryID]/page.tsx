@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumb from "@components/sections/BreadCrumb";
+import Breadcrumb from "@components/static/BreadCrumb";
 import ProductCard from "@components/sections/ProductCard";
 import { dataIPhoneList } from "@data/iPhonsData";
 import { PRODUCT_TYPES } from "@lib/constants";
@@ -86,7 +86,7 @@ const page = () => {
   if (productData?.loading) return <AppLoader />;
   return (
     <section className={`${root_container} py-10`}>
-      <h2 className="text-2xl font-semibold text-gray-900 font-heading">{title}</h2>
+      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 font-heading">{title}</h2>
       <Breadcrumb />
       <div className="w-full flex justify-between items-center">
         <p className="text-lg font-medium text-gray-900 font-heading">Select Model</p>
@@ -102,7 +102,7 @@ const page = () => {
         </div>
       </div>
       {productData?.filterList?.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-8">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8">
           {productData?.filterList?.map((item, index) => (
             <ProductCard
               key={index}

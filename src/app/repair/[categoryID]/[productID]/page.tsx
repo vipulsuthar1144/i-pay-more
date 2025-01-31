@@ -4,7 +4,7 @@ import useQueryParams from "@/config/hooks/useQueryParams";
 import { ProductAPI } from "@/services/product.service";
 import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
-import Breadcrumb from "@components/sections/BreadCrumb";
+import Breadcrumb from "@components/static/BreadCrumb";
 import Button from "@components/ui/Button";
 import ItemImage from "@components/ui/ItemImage";
 import { extractIDfromString, formatPrice } from "@lib/utils";
@@ -107,7 +107,7 @@ const page = () => {
         {/* Product Details */}
         <div className=" flex flex-2 flex-col items-start">
           <h2 className="text-xl font-semibold mb-4 ">{productDetails?.product_name}</h2>
-          <p className="text-gray-500 mb-2 text-md">Choose a variant</p>
+          <p className="text-gray-500 mb-2 text-base">Choose a variant</p>
 
           {/* Storage Options */}
           <div className="flex flex-wrap gap-4 justify-start mb-4">
@@ -126,7 +126,7 @@ const page = () => {
                 className={`px-4 py-2 border-[1px] rounded-md text-sm font-medium transition-all duration-200 ease-in-out ${
                   selectedData.varientID === variant?.variant_id
                     ? "border-black text-black scale-110"
-                    : "border-gray-400 text-gray-400"
+                    : "border-gray-400 text-gray-500"
                 }`}
               >
                 {/* {`${variant.storage} / ${variant.storage} (${variant?.processor?.processor_name})`} */}

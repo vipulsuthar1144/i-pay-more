@@ -8,11 +8,15 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react"; // For custom arrows
 import { root_container } from "@/app/Providers";
+import { bannerIpaymore } from "@assets/images/home";
 
 const images = [
-  "https://s3no.cashify.in/cashify/web/753432b9b22448d4950ce1d2f843d2a0.webp?p=default&s=lg",
-  "https://s3no.cashify.in/cashify/web/0f67dd24e97e4b9c90155539b002b0d4.webp?p=default&s=lg",
-  "https://s3no.cashify.in/cashify/web/a86132414c264aeea04d15c795177ecd.webp?p=default&s=lg",
+  bannerIpaymore,
+  bannerIpaymore,
+  bannerIpaymore,
+  // "https://s3no.cashify.in/cashify/web/753432b9b22448d4950ce1d2f843d2a0.webp?p=default&s=lg",
+  // "https://s3no.cashify.in/cashify/web/0f67dd24e97e4b9c90155539b002b0d4.webp?p=default&s=lg",
+  // "https://s3no.cashify.in/cashify/web/a86132414c264aeea04d15c795177ecd.webp?p=default&s=lg",
 ];
 
 export default function BannerCarousel() {
@@ -27,7 +31,7 @@ export default function BannerCarousel() {
         autoplay={{ delay: 4000 }}
         navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
         pagination={{
-          el: ".custom-dots",
+          // el: ".custom-dots",
           clickable: true,
           //   renderBullet: (index, className) =>
           // `<span class="${className} bg-black text-black w-10 h-10 rounded-full transition-all duration-300"></span>`,
@@ -75,7 +79,7 @@ export default function BannerCarousel() {
       </button>
 
       {/* Custom Pagination Dots */}
-      <div className="custom-dots  absolute z-15 bottom-2- left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+      {/* <div className="custom-dots  absolute z-15 bottom-2- left-1/2 transform -translate-x-1/2 flex space-x-2"></div> */}
     </div>
   );
 }

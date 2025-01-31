@@ -5,20 +5,19 @@ import { Search } from "lucide-react";
 import { imgHomeHeroSection, imgSellCover } from "@assets/images/home";
 import { root_container } from "@/app/Providers";
 
-export default function SellHeroSection() {
+export default function RepairHeroSection() {
   return (
     <section className={`bg-gray-100 p-8 rounded-xl ${root_container} space-y-0 flex items-center gap-6`}>
       {/* Left Side Content */}
       <div className="flex-1  md:text-left space-y-6">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  font-bold">
-          Sell your Apple Device for <br /> Instant Cash
+          Repair your Apple device quickly and affordably
         </h1>
         <p className="text-gray-600 text-xs  md:text-sm mt-3">
-          Get the maximum value for your old smartphone with our hassle-free process. Enjoy a secure transaction and
-          free doorstep pickup!
+          Get your Apple device repaired with our hassle-free process. Enjoy a secure service and free doorstep pickup!
         </p>
         <div className="tems-center space-y-2 text-green-600 text-xs  md:text-sm font-medium">
-          <p>&#10004; Maximum Value</p>
+          <p>&#10004; Expert Repairs</p>
           <p>&#10004; Safe & Hassle-free</p>
           <p>&#10004; Free Doorstep Pickup</p>
         </div>

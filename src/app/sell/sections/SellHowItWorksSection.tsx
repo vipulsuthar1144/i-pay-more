@@ -26,16 +26,22 @@ const steps = [
   },
 ];
 
-const HowItWorks = () => {
+const SellHowItWorks = () => {
   return (
     <div className="w-full py-12 bg-primary/5">
       <div className={root_container}>
-        <h2 className="text-xl md:text-2xl lg:text-3xl  font-bold mb-10">How IPM Works</h2>
+        <h2 className="text-xl md:text-2xl   font-bold mb-10">How IPM Works</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {steps.map((step) => (
             <div key={step.id} className="p-8 space-y-5">
               <div className="flex justify-center">
-                <Image src={step.icon} alt={step.title} width={80} height={80} />
+                <Image
+                  src={step.icon}
+                  alt={step.title}
+                  width={80}
+                  height={80}
+                  className="text-red-600 w-[60px] md:w-[80px]"
+                />
               </div>
               <div className="flex items-center justify-start gap-5 mb-2">
                 <span className="text-white text-lg  md:text-xl bg-primary w-8 h-8 flex items-center justify-center rounded-full font-bold">
@@ -52,4 +58,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default SellHowItWorks;

@@ -7,6 +7,7 @@ import { toggleLoginDialogState, toggleSignupDialogState } from "@/store/slices/
 import Button from "@components/ui/Button";
 import InputField from "@components/ui/InputField";
 import { LocalStorageKeys } from "@lib/constants";
+import toastUtils from "@lib/toast";
 import { isValidEmail, isValidPassword, isValidPhone } from "@lib/validation";
 import { IUserSchema } from "@schemas/base.shema";
 import { X } from "lucide-react";
@@ -35,11 +36,11 @@ const DialogLogin = () => {
       password: isValidPassword(password),
     });
 
-    if (isValidEmail(phone) && isValidPassword(password) && agree) {
+    if (isValidEmail(phone) && !isValidPassword(password) && agree) {
       // if (!isValidPhone(phone) && !isValidPassword(password) && agree) {
       // console.log("Login/Signup Successful");
+      handleLoginAPI();
     }
-    handleLoginAPI();
   };
 
   const handleLoginAPI = async () => {
@@ -49,6 +50,7 @@ const DialogLogin = () => {
       if (response?.token) {
         setAccessToken(response.token);
         setUserData(response.user ?? null);
+        toastUtils.success("Login Successfully");
         handleClose();
       }
     } catch (error: any) {
@@ -81,7 +83,7 @@ const DialogLogin = () => {
         }`}
       >
         {/* Header */}
-        <div className="bg-black relative text-white text-lg font-semibold py-4 px-6 rounded-t-lg">
+        <div className="bg-primary relative text-white text-lg font-semibold py-4 px-6 rounded-t-lg">
           Login
           {/* Close Button */}
           <button className="absolute top-5 right-4 text-white" onClick={handleClose}>
@@ -133,17 +135,17 @@ const DialogLogin = () => {
           <div className="flex items-center">
             <input
               type="checkbox"
-              className="w-4 h-4 accent-black caret-black"
+              className="w-4 h-4 accent-primary caret-primary"
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
             />
             <label className="ml-2 text-sm text-gray-600">
               I agree to the{" "}
-              <a href="#" className="text-black underline">
+              <a href="#" className="text-primary underline">
                 Terms and Conditions
               </a>{" "}
               &amp;
-              <a href="#" className="text-black underline">
+              <a href="#" className="text-primary underline">
                 {" "}
                 Privacy Policy
               </a>
@@ -162,7 +164,7 @@ const DialogLogin = () => {
           <div className="flex items-center justify-center">
             <label className="text-sm text-gray-600">
               Don't have an account?
-              <span onClick={onSignupClick} className="text-black ml-2 underline cursor-pointer">
+              <span onClick={onSignupClick} className="text-primary ml-2 underline cursor-pointer">
                 Signup
               </span>
             </label>

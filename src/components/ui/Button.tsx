@@ -26,11 +26,11 @@ const Button = ({
     <button
       disabled={disabled || isLoading}
       onClick={onClick}
-      className={`bg-black relative disabled:cursor-not-allowed overflow-hidden disabled:bg-black/50 text-white py-2 px-6 rounded-md flex items-center justify-center shadow-md hover:bg-gray-800 transition-all ease-in-out duration-300 ${className}`}
+      className={`bg-primary/70 relative disabled:cursor-not-allowed overflow-hidden disabled:bg-primary/50 text-white py-2 px-6 rounded-md flex items-center justify-center shadow-md hover:bg-primary transition-all ease-in-out duration-300 ${className}`}
       {...props}
     >
       {isLoading && (
-        <div className="w-full h-full absolute flex justify-center items-center bg-black/50">
+        <div className="w-full h-full absolute flex justify-center items-center bg-primary/50">
           <span className="w-5 h-5 border-2   border-white border-t-transparent rounded-full animate-spin"></span>
         </div>
       )}
