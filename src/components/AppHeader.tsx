@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { root_container } from "@/app/Providers";
 import { AppNavBar } from "./AppNavBar";
+import AppSidebar from "./AppSidebar";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -39,13 +40,9 @@ const Header = () => {
         </div>
 
         <AppNavBar />
+        <AppSidebar accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />
 
-        <div className="flex items-center space-x-4">
-          {/* <input
-            type={"text"}
-            placeholder={"Search Apple devices..."}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary border-gray-300`}
-          /> */}
+        <div className="hidden md:flex items-center space-x-4">
           {isClient && (
             <button
               onClick={handleLoginLogout}

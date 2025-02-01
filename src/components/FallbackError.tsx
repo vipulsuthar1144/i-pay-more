@@ -1,3 +1,5 @@
+"use client";
+
 import { CircleAlert, NotepadText } from "lucide-react";
 import { useRouter } from "next/navigation";
 type TErrorComponentType = "page_not_found" | "something_went_wrong" | "data_not_found" | "error_boundary";
@@ -23,7 +25,7 @@ const FallbackError = ({ type, message = "", description = "" }: IFallbackErrorP
         {/* <img src={selviLogo} alt="App Logo" className={`h-[auto] w-[150px] transition-all duration-300 mb-6`} /> */}
         <h1 className="text-3xl font-bold text-white">Page Not Found</h1>
         <p className="text-sm text-gray-300">Oops! The page you're looking for doesn't exist.</p>
-        <button onClick={listenerGoBack} className="w-full max-w-xs bg-primary-700 hover:bg-primary-800">
+        <button onClick={listenerGoBack} className="w-full max-w-xs bg-primary/50 hover:bg-primary">
           Go Back
         </button>
       </div>
@@ -70,12 +72,7 @@ const FallbackError = ({ type, message = "", description = "" }: IFallbackErrorP
           onClick={() => window.location.reload()}
           className="w-full max-w-xs mt-5 bg-primary-700 hover:bg-primary-800"
         /> */}
-        <button
-          onClick={() => window.location.reload()}
-          className="w-full max-w-xs bg-primary-700 hover:bg-primary-800"
-        >
-          Go Back
-        </button>
+        <button className="w-full max-w-xs bg-primary-700 hover:bg-primary-800">Go Back</button>
       </div>
     );
   }

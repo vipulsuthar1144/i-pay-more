@@ -3,9 +3,11 @@
 import { useAppDispatch, useAppSelector } from "@/store";
 import { toggleLoginDialogState, toggleSignupDialogState } from "@/store/slices/auth.slice";
 import Button from "@components/ui/Button";
+import InputField from "@components/ui/InputField";
 import { Select } from "@components/ui/Select";
 import { dataStateList } from "@data/statesData";
 import { X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 const DialogSignup = () => {
@@ -85,52 +87,44 @@ const DialogSignup = () => {
         </div>
 
         {/* Content */}
-        <div className="p-4">
+        <div className="p-4 space-y-2">
           {/* Full Name */}
-          <label className="block mb-2 text-gray-700">Full Name</label>
-          <input
-            type="text"
+          <InputField
+            label="Full Name"
             name="fullName"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-            placeholder="Enter your full name"
+            placeholder="Enter your name"
             value={form.fullName}
+            error={errors.fullName}
             onChange={handleChange}
           />
-          {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
-
           {/* Phone Number */}
-          <label className="block mt-4 mb-2 text-gray-700">Phone Number</label>
-          <input
-            type="tel"
+          <InputField
+            label="Phone Number"
             name="phone"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-            placeholder="Enter your phone number"
+            placeholder="Enter a 10-digit phone number"
             value={form.phone}
+            error={errors.phone}
             onChange={handleChange}
             maxLength={10}
             pattern="[0-9]*"
             onInput={(e) => (e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, ""))}
           />
 
-          {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-
           {/* City */}
-          <label className="block mt-4 mb-2 text-gray-700">City</label>
-          <input
-            type="text"
+          <InputField
+            label="City"
             name="city"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-black"
-            placeholder="Enter your city"
+            placeholder="Enter your city name"
             value={form.city}
+            error={errors.city}
             onChange={handleChange}
           />
-          {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
 
           {/* State Dropdown */}
-          <label className="block mt-4 mb-2 text-gray-700">State</label>
+          <label className="block  mb-2 text-gray-700">State</label>
           <select
             name="state"
-            className="w-full px-3 py-2 border rounded-md bg-white cursor-pointer focus:outline-none focus:ring-1 focus:ring-black transition-all duration-300 ease-in-out"
+            className="w-full px-3 py-2 border rounded-md bg-white cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary transition-all duration-300 ease-in-out"
             value={form.state}
             onChange={handleChange}
           >
@@ -146,17 +140,14 @@ const DialogSignup = () => {
           {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
 
           {/* Password */}
-          <label className="block mt-4 mb-2 text-gray-700">Password</label>
-          <input
-            type="password"
+          <InputField
+            label="Password"
             name="password"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-black"
             placeholder="Enter your password"
             value={form.password}
+            error={errors.password}
             onChange={handleChange}
           />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
-
           {/* Terms & Conditions */}
           <div className="flex items-center mt-4">
             <input
@@ -167,13 +158,13 @@ const DialogSignup = () => {
             />
             <label className="ml-2 text-sm text-gray-600">
               I agree to the{" "}
-              <a href="#" className="text-primary underline">
+              <Link href="/terms-conditions" className="text-primary underline">
                 Terms and Conditions
-              </a>{" "}
+              </Link>{" "}
               &{" "}
-              <a href="#" className="text-primary underline">
+              <Link href="/privacy-policy" className="text-primary underline">
                 Privacy Policy
-              </a>
+              </Link>
             </label>
           </div>
 

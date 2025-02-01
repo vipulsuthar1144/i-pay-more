@@ -175,7 +175,9 @@ const AppFooter = () => {
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-xs md:text-sm text-gray-700 sm:mt-0">&copy; 2025. iPayMore. All rights reserved.</p>
+            <p className="mt-8 text-xs md:text-sm text-gray-700 sm:mt-0">
+              &copy; {new Date().getFullYear()}. iPayMore. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>

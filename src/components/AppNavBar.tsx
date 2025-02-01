@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./static/Navbar-menu";
 import { HandCoins, ShoppingBasket, Wrench } from "lucide-react";
+import Link from "next/link";
 
 export function AppNavBar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
@@ -27,10 +28,12 @@ export function AppNavBar({ className }: { className?: string }) {
     },
   ];
   return (
-    <div className={cn("p-0 space-y-0 m-0", className)}>
+    <div className={cn("p-0 space-y-0 m-0 hidden md:flex", className)}>
       <Menu setActive={setActive}>
         {/* <MenuItem setActive={setActive} active={active} item="Home"></MenuItem> */}
-        <p className="text-sm md:text-base  hover:underline cursor-pointer">Home</p>
+        <Link href={"/"} className="text-sm md:text-base  hover:underline cursor-pointer">
+          Home
+        </Link>
         <MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col text-sm max-w-sm">
             {SERVICES.map(({ icon: Icon, lable, route, desc }, index) => (
@@ -48,8 +51,12 @@ export function AppNavBar({ className }: { className?: string }) {
             ))}
           </div>
         </MenuItem>
-        <p className="text-sm md:text-base  hover:underline cursor-pointer">About Us</p>
-        <p className="text-sm md:text-base  hover:underline cursor-pointer">Contact Us</p>
+        <Link href={"/about"} className="text-sm md:text-base  hover:underline cursor-pointer">
+          About Us
+        </Link>
+        <Link href={"/contact-us"} className="text-sm md:text-base  hover:underline cursor-pointer">
+          Contact Us
+        </Link>
       </Menu>
     </div>
   );

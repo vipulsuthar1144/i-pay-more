@@ -46,8 +46,8 @@ export const footerData = {
   moreInfo: {
     title: "More Info",
     items: [
-      { label: "Terms & Conditions", href: "#" },
-      { label: "Privacy Policy", href: "#" },
+      { label: "Terms & Conditions", href: "/terms-conditions" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
       //   { label: "Terms of Use", href: "#" },
       //   { label: "E-Waste Policy", href: "#" },
       { label: "Cookie Policy", href: "#" },

@@ -14,7 +14,7 @@ interface IItemImage extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "sr
 
 const ItemImage: React.FC<IItemImage> = React.memo(
   ({ src, alt = "Placeholder", className = "", errorImg = imgDefaultCategory, ...props }) => {
-    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? `${BASE_API_URL}${src}` : errorImg);
+    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? `${src}` : errorImg);
     const [loading, setLoading] = useState<boolean>(true);
 
     const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${

@@ -8,12 +8,11 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react"; // For custom arrows
 import { root_container } from "@/app/Providers";
-import { bannerIpaymore } from "@assets/images/home";
+import { bannerIpaymore, bannerIpaymore2 } from "@assets/images/home";
 
 const images = [
   bannerIpaymore,
-  bannerIpaymore,
-  bannerIpaymore,
+  bannerIpaymore2,
   // "https://s3no.cashify.in/cashify/web/753432b9b22448d4950ce1d2f843d2a0.webp?p=default&s=lg",
   // "https://s3no.cashify.in/cashify/web/0f67dd24e97e4b9c90155539b002b0d4.webp?p=default&s=lg",
   // "https://s3no.cashify.in/cashify/web/a86132414c264aeea04d15c795177ecd.webp?p=default&s=lg",
