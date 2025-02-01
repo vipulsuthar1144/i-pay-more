@@ -33,7 +33,9 @@ export default function HomeWorkingSection() {
         {/* <p className="text-xl md:text-2xl  font-bold font-heading  ">How IPM Works</p> */}
         <div>
           <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">How IPM Works</h2>
-          <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+          <p className="text-xs md:text-sm font-bold text-primary font-heading px-5 md:px-0">
+            Sell Your Apple Device with Us
+          </p>
         </div>
         <div className="grid grid-cols-1 p-5 sm:p-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
           {workingData.map((item, index) => (

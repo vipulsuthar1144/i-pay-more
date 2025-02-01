@@ -41,6 +41,7 @@ export default function Sell() {
               title={item?.n ?? ""}
               img={item?.iu ?? ""}
               onClick={() => router.push("/repair/iphones-1")}
+              addBaseUrl={false}
             />
           ))}
         </div>

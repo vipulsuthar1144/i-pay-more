@@ -10,11 +10,14 @@ interface IItemImage extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "sr
   errorImg?: StaticImageData; // Optional fallback image on error
   width?: number; // Ensure width is explicitly a number
   height?: number; // Ensure height is explicitly a number
+  addBaseUrl?: boolean;
 }
 
 const ItemImage: React.FC<IItemImage> = React.memo(
-  ({ src, alt = "Placeholder", className = "", errorImg = imgDefaultCategory, ...props }) => {
-    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(src ? `${src}` : errorImg);
+  ({ src, alt = "Placeholder", className = "", errorImg = imgDefaultCategory, addBaseUrl = true, ...props }) => {
+    const [imageSrc, setImageSrc] = useState<string | StaticImageData>(
+      !src ? errorImg : addBaseUrl ? `${BASE_API_URL}${src}` : src
+    );
     const [loading, setLoading] = useState<boolean>(true);
 
     const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${

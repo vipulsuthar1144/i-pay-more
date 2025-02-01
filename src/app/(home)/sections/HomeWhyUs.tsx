@@ -16,7 +16,7 @@ const features = [
 
 export default function WhyUs() {
   return (
-    <section className="bg-primary/5 py-10">
+    <section className="bg-primary/5 py-10 rounded-lg">
       <div className={`${root_container}  px-5 sm:px-0 `}>
         <div>
           <h2 className="text-xl md:text-2xl  font-bold mb-1">Why IPM</h2>

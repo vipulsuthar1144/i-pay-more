@@ -11,7 +11,9 @@ const HomeReviewSection = () => {
         <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">
           Trusted Feedback from Our Valued Apple Customers
         </h2>
-        <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+        <p className="text-xs md:text-sm font-bold text-primary font-heading px-5 md:px-0">
+          Sell Your Apple Device with Us
+        </p>
       </div>
       <InfiniteMovingCards items={dataReviewList} direction="left" speed="slow" />
     </section>

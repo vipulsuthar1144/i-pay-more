@@ -116,7 +116,7 @@ export default function AppSidebar({
                         <li key={subIndex}>
                           <button
                             onClick={() => handleOnItemClick(subItem.href)}
-                            className="flex w-full items-center px-10 py-2 text-sm hover:bg-primary/20"
+                            className="flex w-full items-center px-10 py-3 text-sm hover:bg-primary/20"
                           >
                             <subItem.icon className="w-4 h-4 mr-2" />
                             {subItem.name}
