@@ -20,7 +20,7 @@ const ItemImage: React.FC<IItemImage> = React.memo(
     );
     const [loading, setLoading] = useState<boolean>(true);
 
-    const imgClass = `rounded-lg object-contain w-full h-full max-w-36 aspect-square transition-opacity duration-300 ${
+    const imgClass = `rounded-lg object-contain w-full h-full max-w-28 aspect-square transition-opacity duration-300 ${
       loading ? "opacity-0" : "opacity-100"
     } ${className}`;
 
@@ -29,7 +29,7 @@ const ItemImage: React.FC<IItemImage> = React.memo(
         {/* Show loader when loading */}
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center rounded-md">
-            <div className="w-8 h-8 border-4 border-t-transparent border-black rounded-full animate-spin"></div>
+            <div className="w-8 h-8 border-4 border-t-transparent border-primary rounded-full animate-spin"></div>
           </div>
         )}
 

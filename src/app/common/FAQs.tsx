@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { cn } from "@/lib/utils"; // If you're using a utility for class names, otherwise omit this.
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, ChevronDown } from "lucide-react";
 import { root_container } from "@/app/Providers";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 type FAQ = {
   question: string;
@@ -23,7 +22,7 @@ export const FAQs = ({ faqs }: { faqs: FAQ[] }) => {
       <h2 className="text-xl md:text-2xl  font-bold ">FAQs</h2>
       <div className="space-y-2">
         {faqs.map((faq, index) => (
-          <div key={index} className="border border-gray-300 rounded-md  overflow-hidden">
+          <div key={index} className="border-b-[1.5px] border-gray-300 rounded-md  overflow-hidden">
             {/* Accordion Header */}
             <button
               className="w-full flex justify-between items-center px-6 py-3 text-left text-xs md:text-sm font-semibold  leading-relaxed  focus:outline-none  transition"

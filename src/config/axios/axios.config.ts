@@ -2,7 +2,7 @@ import axios from "axios";
 import { requestErrorHandler, requestHandler, responseErrorHandler, responseHandler } from "./axios.interceptors";
 
 // const BASE_API_URL: string = "http://192.168.198.124:4000/api";
-export const BASE_API_URL: string = "https://144m568g-5001.inc1.devtunnels.ms/api";
+export const BASE_API_URL: string = "https://144m568g-4000.inc1.devtunnels.ms/api";
 
 // const AUTH_BASE_URL: string = import.meta.env.VITE_APP_AUTH_API_BASE_ENDPOINT;
 // const headers = {

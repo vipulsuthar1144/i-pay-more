@@ -3,15 +3,15 @@
 import Image from "next/image";
 import HomeHeroSection from "./sections/HomeHeroSection";
 import HomeWorkingSection from "./sections/HomeWorkingSection";
-import Categories from "./sections/ProductCategories";
+import Categories from "../common/ProductCategories";
 import { useRef } from "react";
-import ProductCategories from "./sections/ProductCategories";
+import ProductCategories from "../common/ProductCategories";
 import HomeReviewSection from "./sections/HomeReviewSection";
-import FAQs from "@/app/(home)/sections/FAQs";
+import FAQs from "@/app/common/FAQs";
 import { dataFaqsList } from "@data/faqsData";
 import WhyUs from "./sections/HomeWhyUs";
 import HomeHeroCarousel from "./sections/HomeCarousel";
-import BannerCarousel from "./sections/BannerCarousel";
+import BannerCarousel from "../common/BannerCarousel";
 
 export default function Home() {
   const categoryRef = useRef<HTMLDivElement>(null);

@@ -1,30 +1,21 @@
 "use client";
 
-import Image from "next/image";
-import { useRef } from "react";
-import Categories from "../(home)/sections/ProductCategories";
-import HomeWorkingSection from "../(home)/sections/HomeWorkingSection";
-import HomeHeroSection from "../(home)/sections/HomeHeroSection";
-import { imgSellHeroSection } from "@assets/images/sell";
-import ProductCategories from "../(home)/sections/ProductCategories";
-import FAQs from "../(home)/sections/FAQs";
-import { dataFaqsList } from "@data/faqsData";
-import { root_container } from "../Providers";
 import Breadcrumb from "@components/static/BreadCrumb";
-import BuyHeroSection from "./sections/BuyHeroSection";
-import SellHowItWorks from "../sell/sections/SellHowItWorksSection";
-import { AppleCardsCarouselDemo } from "./sections/TopSellingProducts";
+import { dataFaqsList } from "@data/faqsData";
+import BannerCarousel from "../common/BannerCarousel";
+import FAQs from "../common/FAQs";
+import HowItWorksSection from "../common/HowItWorksSection";
+import ProductCategories from "../common/ProductCategories";
 
-export default function Sell() {
+export default function BuyPage() {
   return (
     <div className={`pt-10 space-y-10`}>
       <div className="space-y-5">
         <Breadcrumb />
-        <BuyHeroSection />
+        <BannerCarousel />
       </div>
       <ProductCategories serviceFilter={"BUY"} />
-      {/* <AppleCardsCarouselDemo /> */}
-      <SellHowItWorks />
+      <HowItWorksSection serviceType="SELL" />
       <FAQs faqs={dataFaqsList.filter((_, index) => index < 5)} />
     </div>
   );

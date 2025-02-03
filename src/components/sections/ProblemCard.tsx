@@ -13,7 +13,7 @@ const ProblemCard = ({ problem, isSelected, imagePath, onClick }: IProblemCardPr
     <div
       onClick={onClick}
       className={`flex flex-col justify-center items-center p-4 border-[1px] rounded-md cursor-pointer transition-all duration-300 ease-in-out
-      ${isSelected ? "border-gray-800 bg-gray-200" : "border-gray-400 bg-white"} 
+      ${isSelected ? "border-primary bg-primary/10" : "border-gray-400 bg-white"} 
       `}
     >
       <div className="w-full h-full flex justify-center items-center mb-3">

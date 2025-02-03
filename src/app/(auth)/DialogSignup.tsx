@@ -77,7 +77,7 @@ const DialogSignup = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center h-screen bg-black bg-opacity-50 z-50">
-      <div className="bg-white w-full max-w-sm md:max-w-lg rounded-lg shadow-lg p-6 m-5 relative z-50">
+      <div className="bg-white w-full max-w-md md:max-w-lg rounded-lg shadow-lg p-6 m-5 relative z-50">
         {/* Header */}
         <div className="bg-primary flex justify-between items-center text-white text-xl font-medium py-4 px-6 rounded-t-lg">
           <h6>Signup</h6>
@@ -152,7 +152,7 @@ const DialogSignup = () => {
           <div className="flex items-center mt-4">
             <input
               type="checkbox"
-              className="w-4 h-4"
+              className="w-4 h-4 cursor-pointer  accent-primary"
               checked={form.agree}
               onChange={(e) => setForm({ ...form, agree: e.target.checked })}
             />

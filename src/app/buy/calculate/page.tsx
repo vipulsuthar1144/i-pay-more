@@ -1,9 +1,9 @@
 "use client";
 
 import { root_container } from "@/app/Providers";
-import OrderPlacedDialog from "@/app/sell/calculate/sections/DialogOrderPlaced";
-import AddressForm from "@/app/sell/calculate/sections/steps/AddressForm";
-import StepsContainer from "@/app/sell/calculate/sections/steps/StepsContainer";
+import OrderPlacedDialog from "@/app/common/DialogOrderPlaced";
+import AddressForm from "@/app/common/AddressForm";
+import StepsContainer from "@/app/common/StepsContainer";
 import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
 import useQueryParams from "@/config/hooks/useQueryParams";
 import { AddressAPI } from "@/services/address.service";

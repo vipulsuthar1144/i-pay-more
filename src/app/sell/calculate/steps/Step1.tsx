@@ -5,7 +5,7 @@ import { dataProductQuestions } from "@data/productQuestions";
 import { IProductProblems } from "@schemas/order.schema";
 import { CheckCircleIcon, XCircleIcon } from "lucide-react";
 import React from "react";
-import { IStepProps } from "./StepsContainer";
+import { IStepProps } from "../../../common/StepsContainer";
 
 export default function Step1({ productProblems, setProductProblems }: IStepProps) {
   const handleAnswerSelection = (question: string, answer: string) => {

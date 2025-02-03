@@ -2,22 +2,10 @@
 
 import { root_container } from "@/app/Providers";
 import { CategoryAPI } from "@/services/category.service";
-import {
-  iconIAccessories,
-  iconIAirpods,
-  iconIMacs,
-  iconIPads,
-  iconIPhones,
-  iconIWatch,
-  imgDefaultCategory,
-} from "@assets/images/product-category";
-import AppLoader from "@components/AppLoader";
 import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
-import { ProductCategoryList } from "@data/productCategoryData";
+import ProductCardSekeleton from "@components/skeletons/ProductCardSekeleton";
 import { ICategorySchema, TService } from "@schemas/product-category.schema";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect, useState } from "react";
 
@@ -52,7 +40,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
     };
 
     if (categoryData?.error && !categoryData?.loading) return <FallbackError type="something_went_wrong" />;
-    if (categoryData?.loading) return <AppLoader />;
+    // if (categoryData?.loading) return <AppLoader />;
 
     return (
       <section ref={ref} className={root_container}>
@@ -71,16 +59,18 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
 
         {/* {categoryData?.loading && <AppLoader />} */}
         <div className="grid grid-cols-3 gap-4 md:grid-cols-7">
-          {categoryData?.categoryList
-            ?.filter((item) => (serviceFilter == "REPAIR" ? item.category_slug == "iphone" : item))
-            ?.map((item) => (
+          {categoryData.loading && !categoryData.error ? (
+            <ProductCardSekeleton />
+          ) : (
+            categoryData?.categoryList?.map((item) => (
               <ProductCard
                 key={item?.category_id}
                 title={item?.category_name ?? ""}
                 img={item?.image_path ?? ""}
                 onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
               />
-            ))}
+            ))
+          )}
         </div>
       </section>
     );

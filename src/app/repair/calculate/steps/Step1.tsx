@@ -1,6 +1,6 @@
 "use client";
 
-import { IStepProps } from "@/app/sell/calculate/sections/steps/StepsContainer";
+import { IStepProps } from "@/app/common/StepsContainer";
 import ProblemCard from "@components/sections/ProblemCard";
 import { dataProductQuestions } from "@data/productQuestions";
 
