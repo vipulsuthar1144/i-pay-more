@@ -2,7 +2,7 @@
 
 import ProblemCard from "@components/sections/ProblemCard";
 import { dataProductQuestions } from "@data/productQuestions";
-import { IStepProps } from "../../../common/StepsContainer";
+import { IStepProps } from "../../../../common/StepsContainer";
 
 export default function Step2({ productProblems, setProductProblems }: IStepProps) {
   const handleSelection = (problem: string) => {

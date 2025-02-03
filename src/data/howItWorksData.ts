@@ -27,6 +27,29 @@ export const dataHowItWorks = [
   },
   {
     step: 1,
+    serviceType: "BUY",
+    title: "Check Price",
+    description:
+      "Select device & check its price, and our advanced AI tech will tailor make the perfect price for you.",
+    icon: iconPriceTags,
+  },
+  {
+    step: 2,
+    serviceType: "BUY",
+    title: "Create Order",
+    description: "Create Order",
+    icon: iconScooter,
+  },
+  {
+    step: 3,
+    serviceType: "BUY",
+    title: "Placed Order",
+    description:
+      "Did we mention you get paid as soon as our executive picks up your device? It's instant payment all the way!",
+    icon: iconGetMoney,
+  },
+  {
+    step: 1,
     serviceType: "REPAIR",
     title: "Check Price",
     description: "Select your device that needs to be repaired. Get best Pricing.",

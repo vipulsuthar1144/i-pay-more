@@ -46,11 +46,11 @@ export const footerData = {
   moreInfo: {
     title: "More Info",
     items: [
-      { label: "Terms & Conditions", href: "/terms-conditions" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/policies/terms" },
+      { label: "Privacy Policy", href: "/policies/privacy" },
+      { label: "Cookie Policy", href: "/policies/cookie" },
       //   { label: "Terms of Use", href: "#" },
       //   { label: "E-Waste Policy", href: "#" },
-      { label: "Cookie Policy", href: "#" },
       //   { label: "GDPR Compliance", href: "#" },
       //   { label: "What is Refurbished", href: "#" },
       //   { label: "Device Safety", href: "#" },

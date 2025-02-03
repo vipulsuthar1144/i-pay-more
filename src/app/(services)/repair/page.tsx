@@ -2,9 +2,9 @@
 
 import Breadcrumb from "@components/static/BreadCrumb";
 import { dataFaqsList } from "@data/faqsData";
-import BannerCarousel from "../common/BannerCarousel";
-import FAQs from "../common/FAQs";
-import HowItWorksSection from "../common/HowItWorksSection";
+import BannerCarousel from "../../common/BannerCarousel";
+import FAQs from "../../common/FAQs";
+import HowItWorksSection from "../../common/HowItWorksSection";
 import RepairServiceCarousel from "./sections/RepairServiceCarousel";
 
 export default function Sell() {
@@ -16,7 +16,7 @@ export default function Sell() {
       </div>
       <RepairServiceCarousel />
       <HowItWorksSection serviceType="REPAIR" />
-      <FAQs faqs={dataFaqsList.filter((_, index) => index < 5)} />
+      <FAQs serviceType="REPAIR" />
     </div>
   );
 }

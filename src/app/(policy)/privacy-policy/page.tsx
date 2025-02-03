@@ -1,5 +1,5 @@
 "use client";
-import { root_container } from "../Providers";
+import { root_container } from "../../Providers";
 
 export default function PrivacyPolicyPage() {
   //   metadata.title = "Privacy Policy";

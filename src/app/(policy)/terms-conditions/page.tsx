@@ -1,5 +1,5 @@
 "use client";
-import { root_container } from "../Providers";
+import { root_container } from "../../Providers";
 
 export default function TermsAndConditionsPage() {
   //   metadata.title = "Privacy Policy";

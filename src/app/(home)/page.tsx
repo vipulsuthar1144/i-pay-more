@@ -1,17 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import HomeHeroSection from "./sections/HomeHeroSection";
-import HomeWorkingSection from "./sections/HomeWorkingSection";
-import Categories from "../common/ProductCategories";
-import { useRef } from "react";
-import ProductCategories from "../common/ProductCategories";
-import HomeReviewSection from "./sections/HomeReviewSection";
 import FAQs from "@/app/common/FAQs";
 import { dataFaqsList } from "@data/faqsData";
-import WhyUs from "./sections/HomeWhyUs";
-import HomeHeroCarousel from "./sections/HomeCarousel";
+import { useRef } from "react";
 import BannerCarousel from "../common/BannerCarousel";
+import ProductCategories from "../common/ProductCategories";
+import HomeReviewSection from "./sections/HomeReviewSection";
+import WhyUs from "./sections/HomeWhyUs";
+import HomeWorkingSection from "./sections/HomeWorkingSection";
 
 export default function Home() {
   const categoryRef = useRef<HTMLDivElement>(null);
@@ -29,14 +25,12 @@ export default function Home() {
   };
   return (
     <div className="space-y-10 md:space-y-16">
-      {/* <HomeHeroCarousel /> */}
       <BannerCarousel />
-      {/* <HomeHeroSection onActionButtonClick={handleActionButtonClick} /> */}
       <ProductCategories ref={categoryRef} serviceFilter={"SELL"} />
       <HomeWorkingSection />
       <HomeReviewSection />
       <WhyUs />
-      <FAQs faqs={dataFaqsList.filter((_, index) => index < 5)} />
+      <FAQs serviceType="HOME" />
     </div>
   );
 }

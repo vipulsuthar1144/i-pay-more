@@ -2,10 +2,10 @@
 
 import Breadcrumb from "@components/static/BreadCrumb";
 import { dataFaqsList } from "@data/faqsData";
-import BannerCarousel from "../common/BannerCarousel";
-import FAQs from "../common/FAQs";
-import HowItWorksSection from "../common/HowItWorksSection";
-import ProductCategories from "../common/ProductCategories";
+import BannerCarousel from "../../common/BannerCarousel";
+import FAQs from "../../common/FAQs";
+import HowItWorksSection from "../../common/HowItWorksSection";
+import ProductCategories from "../../common/ProductCategories";
 
 export default function BuyPage() {
   return (
@@ -15,8 +15,8 @@ export default function BuyPage() {
         <BannerCarousel />
       </div>
       <ProductCategories serviceFilter={"BUY"} />
-      <HowItWorksSection serviceType="SELL" />
-      <FAQs faqs={dataFaqsList.filter((_, index) => index < 5)} />
+      <HowItWorksSection serviceType="BUY" />
+      <FAQs serviceType="BUY" />
     </div>
   );
 }
