@@ -106,6 +106,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
           <ProductCardSekeleton />
         ) : (
           productData?.filterList
+            ?.slice()
             ?.reverse()
             ?.map((item, index) => (
               <ProductCard
