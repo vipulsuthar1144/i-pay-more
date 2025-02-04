@@ -1,7 +1,6 @@
 import { root_container } from "@/app/Providers";
 import { footerData } from "@/data/footerData";
 import { appLogo } from "@assets/images/home";
-import { Facebook } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -85,7 +84,7 @@ const AppFooter = () => {
                   <span className="text-xs md:text-sm uppercase tracking-wide text-gray-500"> Call us </span>
                   <a
                     href="#"
-                    className="block text-lg sm:text-xl md:text-2xl lg-text-3xl font-medium text-gray-900 hover:opacity-75"
+                    className="block text-lg sm:text-xl md:text-2xl lg-text-3xl font-medium text-gray-900 hover:underline"
                   >
                     9876543210
                   </a>
@@ -104,7 +103,7 @@ const AppFooter = () => {
                       href={item.href}
                       rel="noreferrer"
                       target="_blank"
-                      className="text-gray-700 transition hover:opacity-75"
+                      className="text-gray-700 transition hover:underline"
                     >
                       <span className="sr-only">{item.label}</span>
                       {item.icon}
@@ -118,31 +117,43 @@ const AppFooter = () => {
               <ul className="mt-4 space-y-4 text-xs md:text-sm">
                 {footerData.services.items.map((item, index) => (
                   <li key={index}>
-                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                    <Link href={item.href} className="text-gray-700 transition hover:underline">
                       {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="my-2">
-              <p className="font-bold text-gray-900 text-base md:text-lg">{footerData.company.title}</p>
+            {/* <div className="my-2">
+              <p className="font-bold text-gray-900 text-base md:text-lg">{footerData?.company?.title}</p>
               <ul className="mt-4 space-y-4 text-xs md:text-sm">
-                {footerData.company.items.map((item, index) => (
+                {footerData?.company?.items.map((item, index) => (
                   <li key={index}>
-                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                    <Link href={item.href} className="text-gray-700 transition hover:underline">
                       {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div className="my-2">
               <p className="font-bold text-gray-900 text-base md:text-lg">{footerData.sellDevice.title}</p>
               <ul className="mt-4 space-y-4 text-xs md:text-sm">
                 {footerData.sellDevice.items.map((item, index) => (
                   <li key={index}>
-                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                    <Link href={item.href} className="text-gray-700 transition hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="my-2">
+              <p className="font-bold text-gray-900 text-base md:text-lg">{footerData.buyDevice.title}</p>
+              <ul className="mt-4 space-y-4 text-xs md:text-sm">
+                {footerData.buyDevice.items.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className="text-gray-700 transition hover:underline">
                       {item.label}
                     </Link>
                   </li>
@@ -154,7 +165,7 @@ const AppFooter = () => {
               <ul className="mt-4 space-y-4 text-xs md:text-sm">
                 {footerData.helpSupport.items.map((item, index) => (
                   <li key={index}>
-                    <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                    <Link href={item.href} className="text-gray-700 transition hover:underline">
                       {item.label}
                     </Link>
                   </li>
@@ -163,13 +174,13 @@ const AppFooter = () => {
             </div>
           </div>
         </div>
-        <div className="h-1 bg-gray-200 my-10" />
+        <div className="h-[1px] bg-gray-400 my-10" />
         <div className={root_container}>
           <div className="md:flex md:items-center md:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs ">
               {footerData.moreInfo.items.map((item, index) => (
                 <li key={index}>
-                  <Link href={item.href} className="text-gray-700 transition hover:opacity-75">
+                  <Link href={item.href} className="text-gray-700 transition hover:underline">
                     {item.label}
                   </Link>
                 </li>

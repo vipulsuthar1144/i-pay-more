@@ -1,17 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import Slider from "react-slick";
-import Image from "next/image";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { root_container } from "@/app/Providers";
-import { dataRepairServiceList } from "@data/repairServices";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import ProductCard from "@components/sections/ProductCard";
 import { RepairAPI } from "@/services/repair.service";
-import { IRepairServiceSchema } from "@schemas/repair-services.schema";
-import { useRouter } from "next/navigation";
-import ProductCardSekeleton from "@components/skeletons/ProductCardSekeleton";
 import FallbackError from "@components/FallbackError";
+import ProductCard from "@components/sections/ProductCard";
+import { IRepairServiceSchema } from "@schemas/repair-services.schema";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 // Sample Data
 const categories = [
@@ -52,7 +49,8 @@ const CategoryCarousel = () => {
     ],
   };
   const isFirstSlide = currentSlide === 0;
-  const isLastSlide = currentSlide >= (repairServiceData.loading ? 10 : dataRepairServiceList.length) - slidesToShow;
+  const isLastSlide =
+    currentSlide >= (repairServiceData.loading ? 10 : repairServiceData.serviceList.length) - slidesToShow;
 
   useEffect(() => {
     handleGetRepairServiceAPI();
@@ -72,6 +70,7 @@ const CategoryCarousel = () => {
     if (repairServiceData?.error && !repairServiceData?.loading) return <FallbackError type="something_went_wrong" />;
     if (!repairServiceData?.error && !repairServiceData?.loading && repairServiceData.serviceList.length == 0)
       return <FallbackError type="data_not_found" />;
+
     return (
       <div className="relative">
         <button
@@ -89,14 +88,14 @@ const CategoryCarousel = () => {
                   <div key={index} className="w-full h-[180px]  bg-gray-200 animate-pulse rounded-lg"></div>
                 </div>
               ))
-            : dataRepairServiceList.map((item, index) => (
+            : repairServiceData.serviceList.map((item, index) => (
                 <div key={index} className="p-2 cursor-pointer">
                   <ProductCard
                     key={item?.id}
-                    title={item?.n ?? ""}
-                    img={item?.iu ?? ""}
-                    addBaseUrl={false}
-                    // onClick={() => router.push(`/repair/${item.category_name?.toLowerCase()}-${item.category_id}`)}
+                    title={item?.service_name ?? ""}
+                    img={item?.image_path ?? ""}
+                    addBaseUrl
+                    onClick={() => router.push(`/repair/${item.category_name?.toLowerCase()}-${item.category_id}`)}
                   />
                 </div>
               ))}

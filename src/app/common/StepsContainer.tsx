@@ -35,7 +35,7 @@ const StepsContainer = ({
       className={`rounded-md w-full sm:w-2/3 bg-white border-[1px] border-gray-400 p-6 sm:mr-4 sm:min-h-72 flex flex-col justify-between ${className}`}
     >
       <div>
-        <div className="text-center text-xl font-semibold text-gray-900 mb-2">{title}</div>
+        <div className="text-center text-lg md:text-xl font-semibold text-gray-900 mb-2">{title}</div>
         <div className="text-center text-gray-600 mb-5 text-sm">{subTitle}</div>
         {children}
       </div>

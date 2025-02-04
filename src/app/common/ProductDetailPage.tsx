@@ -101,16 +101,51 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
     router.push(`/${serviceType.toLowerCase()}/calculate${params}`);
   };
 
+  const renderSkeleton = () => {
+    return (
+      <>
+        {/* Image Skeleton */}
+        <div className="w-full md:max-w-[25%] h-40 bg-gray-200 animate-pulse rounded-lg self-center mb-5 md:mb-0 m-auto md:m-0"></div>
+
+        {/* Content Skeleton */}
+        <div className="flex flex-2 flex-col justify-start items-start w-full space-y-4">
+          {/* Title */}
+          <h2 className="h-6 w-3/4 bg-gray-200 animate-pulse rounded"></h2>
+
+          {/* Description */}
+          <p className="h-4 w-1/4 bg-gray-200 animate-pulse rounded"></p>
+
+          {/* Tags/Buttons */}
+          <div className="flex flex-wrap gap-4 w-full">
+            <div className="h-8 w-24 bg-gray-200 animate-pulse rounded"></div>
+            <div className="h-8 w-24 bg-gray-200 animate-pulse rounded"></div>
+          </div>
+
+          {/* Buttons/Actions */}
+          <div className="flex space-x-4  w-full justify-start">
+            <div className="h-14 w-14 bg-gray-200 animate-pulse rounded-full"></div>
+            <div className="h-14 w-14 bg-gray-200 animate-pulse rounded-full"></div>
+          </div>
+
+          {/* Additional button */}
+          <div className="h-10 w-40 bg-gray-200 animate-pulse rounded"></div>
+        </div>
+      </>
+    );
+  };
+
   const renderContent = () => {
     if (productData?.error && !productData?.loading) return <FallbackError type="something_went_wrong" />;
-    if (productData?.loading) {
-      return (
-        <div className="w-full flex justify-center items-center">
-          <AppLoader />
-        </div>
-      );
-    }
-    if (!productData.productDetails) return <FallbackError type="data_not_found" />;
+    // if (productData?.loading) {
+    //   return (
+    //     <div className="w-full flex justify-center items-center">
+    //       <AppLoader />
+    //     </div>
+    //   );
+    // }
+    if (productData?.loading) return renderSkeleton();
+
+    if (!productData.productDetails && !productData?.loading) return <FallbackError type="data_not_found" />;
     return (
       <>
         {/* Product Image */}
@@ -199,7 +234,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
   };
 
   return (
-    <div className={` ${root_container}   py-10 space-y-5 `}>
+    <div className={` ${root_container}   pt-10 space-y-5 `}>
       <h2 className="text-2xl font-semibold text-gray-900 font-heading">
         {title} {productDetails?.product_name}
       </h2>

@@ -20,6 +20,7 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
             src={isValidUrl(QueryParams.pimg) && QueryParams.pimg ? QueryParams.pimg : ""}
             alt={QueryParams.pmn}
             className="max-w-20 w-20 h-20"
+            addBaseUrl
           />
         </div>
         <div className="pl-5">
@@ -28,7 +29,7 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
           {/* <p className=" text-sm text-gray-500">{QueryParams.pclr}</p> */}
         </div>
       </div>
-      <div className="text-lg font-medium text-gray-800 mb-3">Device Evaluation</div>
+      <div className="text-base md:text-lg font-medium text-gray-800 mb-3">Device Evaluation</div>
       {productProblems.basic && productProblems.basic.length > 0 && (
         <div className="text-xs font-semibold  text-gray-600 mb-2 mt-2">Device Details</div>
       )}

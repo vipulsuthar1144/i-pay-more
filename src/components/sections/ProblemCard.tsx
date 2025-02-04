@@ -7,8 +7,9 @@ interface IProblemCardProps {
   isSelected: boolean;
   imagePath: string;
   onClick: VoidFunction;
+  addBasePath?: boolean;
 }
-const ProblemCard = ({ problem, isSelected, imagePath, onClick }: IProblemCardProps) => {
+const ProblemCard = ({ problem, isSelected, imagePath, addBasePath = false, onClick }: IProblemCardProps) => {
   return (
     <div
       onClick={onClick}
@@ -21,9 +22,10 @@ const ProblemCard = ({ problem, isSelected, imagePath, onClick }: IProblemCardPr
           src={isValidUrl(imagePath) && imagePath ? imagePath : ""}
           alt={problem}
           className="w-full h-full min-w-full mix-blend-multiply"
+          addBaseUrl={addBasePath}
         />
       </div>
-      <div className={`text-center  text-gray-700 text-sm`}>{problem}</div>
+      <div className={`text-center font-semibold  text-gray-700 text-xs`}>{problem}</div>
     </div>
   );
 };

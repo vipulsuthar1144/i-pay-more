@@ -25,7 +25,7 @@ export const FAQs = ({ serviceType = "HOME" }: IFAQProps) => {
         {dataFaqsList
           .filter((item) => item.serviceType == serviceType)
           .map((faq, index) => (
-            <div key={index} className="border-b-[1.5px] border-gray-300 rounded-md  overflow-hidden">
+            <div key={index} className="border-b-[1.5px] border-gray-300   overflow-hidden">
               {/* Accordion Header */}
               <button
                 className="w-full flex justify-between items-center px-6 py-3 text-left text-xs md:text-sm font-semibold  leading-relaxed  focus:outline-none  transition"

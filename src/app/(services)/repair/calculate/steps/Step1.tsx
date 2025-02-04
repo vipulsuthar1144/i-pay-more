@@ -8,10 +8,7 @@ export default function Step1({ productProblems, setProductProblems }: IStepProp
   const handleSelection = (problem: string) => {
     const updatedRepairServices = productProblems.repair_services.some((service) => service.question === problem)
       ? productProblems.repair_services.filter((service) => service.question !== problem)
-      : [
-          ...productProblems.repair_services,
-          { question: problem, answer: "YES" }, // Add default answer or modify as needed
-        ];
+      : [...productProblems.repair_services, { question: problem, answer: "YES" }];
 
     setProductProblems((prev) => ({
       ...prev,

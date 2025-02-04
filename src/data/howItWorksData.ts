@@ -37,7 +37,9 @@ export const dataHowItWorks = [
     step: 2,
     serviceType: "BUY",
     title: "Create Order",
-    description: "Create Order",
+    description:
+      "Select device & check its price, and our advanced AI tech will tailor make the perfect price for you.",
+
     icon: iconScooter,
   },
   {

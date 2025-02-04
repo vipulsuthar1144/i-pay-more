@@ -119,7 +119,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
   };
 
   return (
-    <section className={`${root_container} py-10`}>
+    <section className={`${root_container} pt-10`}>
       <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 font-heading">{title}</h2>
       <Breadcrumb />
       <div className="w-full gap-2 flex flex-col md:flex-row justify-between ">

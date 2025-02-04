@@ -4,11 +4,11 @@ import Image from "next/image";
 const AppDownload = () => {
   return (
     <section
-      className={` container mx-auto max-w-7xl bg-primary/10  rounded-xl mt-14 px-6 pt-6 md:pt-10 md:px-10 flex flex-col md:flex-row items-center justify-center gap-6`}
+      className={` container mx-auto max-w-7xl bg-primary/10  rounded-xl mt-10 px-6 pt-6 md:pt-10 md:px-10 flex flex-col md:flex-row items-center justify-center gap-6`}
     >
       {/* Left Content */}
       <div>
-        <h2 className="text-lg sm:text-xl md:text-2xl  font-bold mb-2">Download the App</h2>
+        <h2 className="text-xl md:text-2xl  font-bold mb-2">Download the App</h2>
         <p className="text-xs sm:text-sm md:text-base">
           Sell your old phone | Buy top-quality refurbished phones | Get your phone repaired
         </p>

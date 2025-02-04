@@ -30,7 +30,7 @@ export default function Step1({ productProblems, setProductProblems }: IStepProp
             <section key={index} className="flex flex-col mb-5 w-full">
               <div className="text-base font-medium text-gray-700">{problem}</div>
               <div className="text-xs text-gray-500 mb-3">{desc}</div>
-              <div className="flex flex-wrap justify-start gap-4">
+              <div className="flex  justify-start gap-4">
                 {(options || ["YES", "NO"]).map((value) => (
                   <div
                     key={value}
@@ -62,7 +62,7 @@ export default function Step1({ productProblems, setProductProblems }: IStepProp
                         <XCircleIcon className="text-gray-500" />
                       )}
                     </div>
-                    <div className="ml-3 text-sm">{value}</div>
+                    <div className="ml-3 text-xs md:text-sm">{value}</div>
                   </div>
                 ))}
               </div>

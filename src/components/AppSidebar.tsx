@@ -31,10 +31,10 @@ const menuItems = [
       { name: "Repair", href: "/repair", icon: Wrench },
     ],
   },
-  { name: "About Us", href: "/about", icon: Info },
-  { name: "Contact Us", href: "/contact", icon: Phone },
-  { name: "Privacy & Policy", href: "/privacy-policy", icon: NotebookText },
-  { name: "Terms and Conditions", href: "/terms-conditions", icon: File },
+  // { name: "About Us", href: "/about", icon: Info },
+  { name: "Contact Us", href: "/contact-us", icon: Phone },
+  { name: "Privacy & Policy", href: "/policies/privacy", icon: NotebookText },
+  { name: "Terms and Conditions", href: "/policies/conditions", icon: File },
   { name: "Logout", href: "/login", icon: LogOut },
 ];
 
@@ -118,7 +118,7 @@ export default function AppSidebar({
                             onClick={() => handleOnItemClick(subItem.href)}
                             className="flex w-full items-center px-10 py-3 text-sm hover:bg-primary/20"
                           >
-                            <subItem.icon className="w-4 h-4 mr-2" />
+                            <subItem.icon className="w-5 h-5 mr-2" />
                             {subItem.name}
                           </button>
                         </li>

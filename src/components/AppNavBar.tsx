@@ -51,9 +51,9 @@ export function AppNavBar({ className }: { className?: string }) {
             ))}
           </div>
         </MenuItem>
-        <Link href={"/about"} className="text-sm md:text-base  hover:underline cursor-pointer">
+        {/* <Link href={"/about"} className="text-sm md:text-base  hover:underline cursor-pointer">
           About Us
-        </Link>
+        </Link> */}
         <Link href={"/contact-us"} className="text-sm md:text-base  hover:underline cursor-pointer">
           Contact Us
         </Link>

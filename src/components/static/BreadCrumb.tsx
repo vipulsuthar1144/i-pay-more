@@ -20,7 +20,7 @@ const Breadcrumb: React.FC = () => {
 
   return (
     <nav aria-label="breadcrumb" className={`${root_container}`}>
-      <ol className="flex flex-wrap items-center text-xs md:text-sm">
+      <ol className="flex flex-nowrap overflow-x-auto items-center text-xs md:text-sm">
         {/* Home Icon */}
         <li>
           <Link href="/" className="text-gray-500 hover:underline hover:text-black flex items-center gap-1">

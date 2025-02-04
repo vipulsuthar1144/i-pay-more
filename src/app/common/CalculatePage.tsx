@@ -266,12 +266,12 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
     return (
       <>
         <nav aria-label="breadcrumb" className=" rounded-md">
-          <ol className="flex flex-wrap items-center text-sm">
+          <ol className="flex flex-nowrap overflow-x-auto items-center text-sm">
             {BreadcrumbList.map((item, index) => {
               const isLast = index === BreadcrumbList.length - 1;
 
               return (
-                <li key={index} className="flex items-center">
+                <li key={index} className="flex text-nowrap items-center">
                   {index == 0 ? (
                     <HomeIcon className="mr-1 text-gray-500" size={16} />
                   ) : (
@@ -299,7 +299,7 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
   }
 
   return (
-    <div className={`${root_container} py-10`}>
+    <div className={`${root_container} pt-10`}>
       <OrderPlacedDialog
         isOpen={openSuccessDialog}
         onClose={() => {
