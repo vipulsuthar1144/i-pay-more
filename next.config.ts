@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["*"], // Add external domains here
+    // domains: ["*"], // Add external domains here
     remotePatterns: [
       {
         protocol: "https",
