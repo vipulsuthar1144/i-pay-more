@@ -4,6 +4,7 @@ import React from "react";
 import { imgDefaultCategory } from "@assets/images/product-category";
 import { IProductProblems } from "@schemas/order.schema";
 import { isValidUrl } from "@lib/validation";
+import { formatPrice } from "@lib/utils";
 
 interface IDeviceDetails {
   productProblems: IProductProblems;
@@ -74,7 +75,9 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
       <ul className="list-disc ml-6 text-xs text-gray-600 space-y-2">
         {productProblems.repair_services &&
           productProblems.repair_services.length > 0 &&
-          productProblems.repair_services.map((issue, index: number) => <li key={index}>{issue.question}</li>)}
+          productProblems.repair_services.map((issue, index: number) => (
+            <li key={index}>{`${issue.question} : ${formatPrice(Number(issue.answer ?? 0))}`}</li>
+          ))}
       </ul>
     </div>
   );

@@ -1,15 +1,24 @@
 import ItemImage from "@components/ui/ItemImage";
+import { formatPrice } from "@lib/utils";
 import { isValidUrl } from "@lib/validation";
 import React from "react";
 
 interface IProblemCardProps {
   problem: string;
   isSelected: boolean;
+  subtitle?: string;
   imagePath: string;
   onClick: VoidFunction;
   addBasePath?: boolean;
 }
-const ProblemCard = ({ problem, isSelected, imagePath, addBasePath = false, onClick }: IProblemCardProps) => {
+const ProblemCard = ({
+  problem,
+  isSelected,
+  subtitle = "",
+  imagePath,
+  addBasePath = false,
+  onClick,
+}: IProblemCardProps) => {
   return (
     <div
       onClick={onClick}
@@ -26,6 +35,9 @@ const ProblemCard = ({ problem, isSelected, imagePath, addBasePath = false, onCl
         />
       </div>
       <div className={`text-center font-semibold  text-gray-700 text-xs`}>{problem}</div>
+      {subtitle && (
+        <p className={`text-center font-semibold  mt-1 text-green-600 text-xs`}>{formatPrice(Number(subtitle ?? 0))}</p>
+      )}
     </div>
   );
 };

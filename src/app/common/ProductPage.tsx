@@ -105,14 +105,16 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
         {productData?.loading && !productData?.error ? (
           <ProductCardSekeleton />
         ) : (
-          productData?.filterList?.map((item, index) => (
-            <ProductCard
-              key={index}
-              title={item.product_name ?? "Apple Device"}
-              img={item.product_images ?? ""}
-              onClick={() => listenerGoToProductDetails(`${item.product_slug}-${item.product_id}`)}
-            />
-          ))
+          productData?.filterList
+            ?.reverse()
+            ?.map((item, index) => (
+              <ProductCard
+                key={index}
+                title={item.product_name ?? "Apple Device"}
+                img={item.product_images ?? ""}
+                onClick={() => listenerGoToProductDetails(`${item.product_slug}-${item.product_id}`)}
+              />
+            ))
         )}
       </div>
     );
