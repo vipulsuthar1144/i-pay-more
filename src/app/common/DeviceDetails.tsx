@@ -1,6 +1,8 @@
+"use client";
+
 import useQueryParams from "@/config/hooks/useQueryParams";
 import ItemImage from "@components/ui/ItemImage";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { imgDefaultCategory } from "@assets/images/product-category";
 import { IProductProblems } from "@schemas/order.schema";
 import { isValidUrl } from "@lib/validation";
@@ -13,6 +15,16 @@ interface IDeviceDetails {
 export default function DeviceDetails({ productProblems }: IDeviceDetails) {
   const { getParams } = useQueryParams();
   const QueryParams = getParams();
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    if (productProblems.repair_services && productProblems.repair_services.length > 0) {
+      const total = productProblems.repair_services.reduce((acc, issue) => acc + Number(issue.answer ?? 0), 0);
+      setTotalPrice(total);
+    } else {
+      setTotalPrice(0);
+    }
+  }, [productProblems.repair_services]);
   return (
     <div className=" bg-white border-[1px] border-gray-400 rounded-md w-full sm:w-1/3 flex flex-col p-6 transition-all ease-in-out duration-300">
       <div className="flex flex-row items-center p-4">
@@ -79,6 +91,11 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
             <li key={index}>{`${issue.question} : ${formatPrice(Number(issue.answer ?? 0))}`}</li>
           ))}
       </ul>
+      {totalPrice !== 0 && (
+        <div className="text-sm font-semibold my-2">
+          Total Price : <span className="text-green-600">{formatPrice(totalPrice)}</span>
+        </div>
+      )}
     </div>
   );
 }
