@@ -1,3 +1,5 @@
+import { IColorSchema, IProductSchema, IVariantSchema } from "./product.schema";
+
 export interface ISaleLeadBaseSchema {
   message?: string;
   lead?: ISaleLeadSchema;
@@ -16,7 +18,11 @@ export interface ISaleLeadSchema {
   address_id?: number;
   product_id?: number;
   variant_id?: number;
+  type?: string;
   lead_details?: ILeadDetailsSchema;
+  product?: IProductSchema;
+  variant?: IVariantSchema;
+  color?: IColorSchema;
 }
 
 export interface ILeadDetailsSchema {

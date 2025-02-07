@@ -16,14 +16,10 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const [accessToken, __, removeAccessToken] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
   const [isClient, setIsClient] = useState(false);
-  const [buttonLable, setButtonLable] = useState("logout");
 
   useLayoutEffect(() => {
     setIsClient(true);
   }, []);
-  useEffect(() => {
-    accessToken ? setButtonLable("logout") : setButtonLable("login");
-  }, [accessToken]);
 
   const handleLoginLogout = () => {
     if (isClient && accessToken && typeof window !== "undefined") {
@@ -49,14 +45,12 @@ const Header = () => {
 
         {!accessToken && (
           <div className="hidden md:flex items-center space-x-4">
-            {isClient && (
-              <button
-                onClick={handleLoginLogout}
-                className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
-              >
-                {buttonLable}
-              </button>
-            )}
+            <button
+              onClick={handleLoginLogout}
+              className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
+            >
+              Login
+            </button>
           </div>
         )}
       </div>

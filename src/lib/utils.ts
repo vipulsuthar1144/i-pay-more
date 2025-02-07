@@ -24,3 +24,16 @@ export const formatPrice = (amount: number, currency: string = "INR", locale: st
     maximumFractionDigits: 2,
   }).format(amount);
 };
+
+export const calculateDiscountedPrice = (actualPrice: number, discountPercentage: number): number => {
+  return actualPrice - actualPrice * (discountPercentage / 100);
+};
+
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+};

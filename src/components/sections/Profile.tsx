@@ -1,7 +1,9 @@
+"use client";
+
 import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
 import { LocalStorageKeys } from "@lib/constants";
 import { IUserSchema } from "@schemas/base.shema";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Profile = ({ accessToken, onLoginLogoutClick }: { accessToken: string; onLoginLogoutClick: VoidFunction }) => {

@@ -6,9 +6,9 @@ import { root_container } from "@/app/Providers";
 
 // Utility function to format route names
 const formatSegment = (segment: string) => {
-  return segment
+  return decodeURI(segment)
     .replace(/-/g, " ") // Replace hyphens with spaces
-    .replace(/\d+/g, "")
+    .replace(/\s\d+$/, "")
     .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
 };
 

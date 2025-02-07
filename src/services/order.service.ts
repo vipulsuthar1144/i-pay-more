@@ -11,7 +11,7 @@ export const SaleLeadsAPI = {
     }
     return null;
   },
-  get: async (): Promise<ISaleLeadBaseSchema[] | null> => {
+  get: async (): Promise<ISaleLeadSchema[] | null> => {
     const response = await apiInstance.get(`/sale-leads`);
     if (response.data) {
       return response.data;

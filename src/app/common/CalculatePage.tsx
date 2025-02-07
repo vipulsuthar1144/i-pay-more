@@ -109,23 +109,26 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
   const handleCreateSaleLeadsAPI = async (address: IAddressSchema) => {
     try {
       setIsCreateSellLeadsLoading(true);
-      await AddressAPI.update(address);
-      await SaleLeadsAPI.create({
-        name: address.name,
-        mobile: address.phone_no,
-        email: "random@user.com",
-        city: address.city,
-        state: address.state,
-        color_id: Number(QueryParams.pclrid),
-        address_id: Number(USER_DATA?.address?.id),
-        product_id: Number(QueryParams.pid),
-        variant_id: Number(QueryParams.pvid),
-        lead_details: {
-          address: address,
-          questions: productProblems,
-        },
-      });
-      setOpenSuccessDialog(true);
+      const addressData = await AddressAPI.update(address);
+      if (addressData?.id) {
+        await SaleLeadsAPI.create({
+          name: address.name,
+          mobile: address.phone_no,
+          email: USER_DATA?.email,
+          city: address.city,
+          state: address.state,
+          color_id: Number(QueryParams.pclrid),
+          address_id: Number(addressData?.id),
+          product_id: Number(QueryParams.pid),
+          variant_id: Number(QueryParams.pvid),
+          type: serviceType,
+          lead_details: {
+            address: address,
+            questions: productProblems,
+          },
+        });
+        setOpenSuccessDialog(true);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -202,6 +205,7 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
       }
     }
     if (serviceType == "BUY") {
+      USER_DATA;
       return (
         <StepsContainer
           handleContinue={handleContinue}

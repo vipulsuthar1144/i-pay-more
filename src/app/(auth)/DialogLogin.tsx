@@ -52,7 +52,6 @@ const DialogLogin = () => {
       }
     } catch (error: any) {
       console.error(`${error}`);
-      setOpenOTPdialog(true);
     } finally {
       setIsLoading(false);
     }

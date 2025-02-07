@@ -83,7 +83,7 @@ export default function AddressForm({ onSubmit }: { onSubmit: (address: IAddress
           />
           <InputField
             label="Mobile"
-            name="mobile"
+            name="phone_no"
             placeholder="Enter a 10-digit mobile number"
             value={formData.phone_no}
             error={errors.phone_no}

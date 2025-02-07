@@ -8,7 +8,6 @@ export interface IProductSchema {
   product_name?: string;
   product_slug?: string;
   category_id?: number;
-  colors?: IColorSchema[];
   screen_size?: string;
   release_date?: string;
   discontinued_date?: string;
@@ -30,7 +29,9 @@ export interface IVariantSchema {
   memory?: string;
   os?: string;
   price?: string;
+  color?: IColorSchema;
   processor?: {
+    processor_id?: number;
     processor_name?: string;
   };
 }

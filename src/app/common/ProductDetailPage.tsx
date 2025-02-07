@@ -198,23 +198,21 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
 
           {/* Color Options */}
           <div className="flex space-x-4 justify-center md:justify-start mb-4">
-            {productDetails?.colors?.map((color, index: number) => (
+            {productDetails?.Variants?.map((item, index: number) => (
               <button
                 key={index}
                 onClick={() => {
-                  console.log(color);
-
-                  color.color_id &&
+                  item?.color?.color_id &&
                     setSelectedData((pre) => ({
                       ...pre,
-                      color: color?.color_html_code ?? "",
-                      colorID: color?.color_id ?? null,
+                      color: item?.color?.color_html_code ?? "",
+                      colorID: item?.color?.color_id ?? null,
                     }));
                 }}
                 className={`w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out ${
-                  selectedData.colorID == color.color_id ? "border-primary scale-110" : "border-gray-300"
+                  selectedData.colorID == item?.color?.color_id ? "border-primary scale-110" : "border-gray-300"
                 } `}
-                style={{ backgroundColor: color.color_html_code }}
+                style={{ backgroundColor: item?.color?.color_html_code }}
               ></button>
             ))}
           </div>

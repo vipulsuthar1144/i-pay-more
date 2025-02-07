@@ -22,6 +22,7 @@ const DialogSignup = () => {
     phone: "",
     city: "",
     state: "",
+    email: "",
     agree: false,
   });
 
@@ -29,6 +30,7 @@ const DialogSignup = () => {
     fullName: "",
     phone: "",
     city: "",
+    email: "",
     state: "",
   });
 
@@ -55,6 +57,7 @@ const DialogSignup = () => {
       phone: validatePhone(form.phone),
       city: validateCity(form.city),
       state: validateState(form.state),
+      email: "",
     };
 
     setErrors(newErrors);
@@ -70,7 +73,7 @@ const DialogSignup = () => {
       const response = await AuthAPI.signup({
         phone_number: form.phone,
         full_name: form.fullName,
-        email: "random@gmail.com",
+        email: form.email,
         state: form.state,
         city: form.city,
       });
@@ -91,12 +94,14 @@ const DialogSignup = () => {
       phone: "",
       city: "",
       state: "",
+      email: "",
       agree: false,
     });
     setErrors({
       fullName: "",
       phone: "",
       city: "",
+      email: "",
       state: "",
     });
     dispatch(toggleSignupDialogState());
@@ -140,6 +145,7 @@ const DialogSignup = () => {
                 error={errors.fullName}
                 onChange={handleChange}
               />
+
               {/* Phone Number */}
               <InputField
                 label="Phone Number"
@@ -152,7 +158,14 @@ const DialogSignup = () => {
                 pattern="[0-9]*"
                 onInput={(e) => (e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, ""))}
               />
-
+              <InputField
+                label="Email"
+                name="email"
+                placeholder="Enter your email address"
+                value={form.email}
+                error={errors.email}
+                onChange={handleChange}
+              />
               {/* City */}
               <InputField
                 label="City"
@@ -192,7 +205,7 @@ const DialogSignup = () => {
             onChange={handleChange}
           /> */}
               {/* Terms & Conditions */}
-              <div className="flex items-center mt-4">
+              <div className="flex items-center my-5">
                 <input
                   type="checkbox"
                   className="w-4 h-4 cursor-pointer  accent-primary"
@@ -219,10 +232,12 @@ const DialogSignup = () => {
                 disabled={
                   !form.fullName ||
                   !form.phone ||
+                  !form.email ||
                   !form.city ||
                   !form.state ||
                   !!errors.fullName ||
                   !!errors.phone ||
+                  !!errors.email ||
                   !!errors.city ||
                   !!errors.state ||
                   !form.agree
