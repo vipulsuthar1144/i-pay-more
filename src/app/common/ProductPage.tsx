@@ -6,6 +6,7 @@ import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
 import ProductCardSekeleton from "@components/skeletons/ProductCardSekeleton";
 import Breadcrumb from "@components/static/BreadCrumb";
+import Button from "@components/ui/Button";
 import { extractIDfromString } from "@lib/utils";
 import { TService } from "@schemas/product-category.schema";
 import { IProductSchema } from "@schemas/product.schema";
@@ -27,11 +28,15 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
   const [productData, setProductData] = useState<{
     loading: boolean;
     error: string | null;
+    page: number;
+    hasMoreData: boolean;
     productList: IProductSchema[];
     filterList: IProductSchema[];
   }>({
     loading: false,
     error: null,
+    page: 0,
+    hasMoreData: true,
     productList: [],
     filterList: [],
   });
@@ -60,12 +65,20 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
     try {
       const cID = extractIDfromString(categoryID?.toString());
       if (cID) {
-        setProductData({ loading: true, error: null, productList: [], filterList: [] });
-        const response = await ProductAPI.get(+cID as number);
-        setProductData({ loading: false, error: null, productList: response ?? [], filterList: response ?? [] });
+        setProductData((pre) => ({ ...pre, loading: true, error: null }));
+        const response = await ProductAPI.get(+cID as number, productData.page + 1);
+        setProductData((pre) => ({
+          ...pre,
+          loading: false,
+          error: null,
+          page: productData.page + 1,
+          hasMoreData: (response?.total ?? 0) > pre.productList.length,
+          productList: [...pre.productList, ...(response?.products ?? [])],
+          filterList: [...pre.filterList, ...(response?.products ?? [])],
+        }));
       }
     } catch (error: any) {
-      setProductData({ loading: false, error: error ?? "Something Wents Wrong", productList: [], filterList: [] });
+      setProductData((pre) => ({ ...pre, error: error ?? "Something Wents Wrong" }));
     } finally {
       setProductData((pre) => ({ ...pre, loading: false }));
     }
@@ -101,11 +114,9 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
     if (!productData?.loading && !productData?.error && productData.filterList.length == 0)
       return <FallbackError type="data_not_found" />;
     return (
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7">
-        {productData?.loading && !productData?.error ? (
-          <ProductCardSekeleton />
-        ) : (
-          productData?.filterList
+      <>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {productData?.filterList
             ?.slice()
             ?.reverse()
             ?.map((item, index) => (
@@ -115,9 +126,24 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
                 img={item.product_images ?? ""}
                 onClick={() => listenerGoToProductDetails(`${item.product_slug}-${item.product_id}`)}
               />
-            ))
+            ))}
+          {productData?.loading && !productData?.error && (
+            <>
+              {Array.from({ length: 6 })?.map((_, index) => (
+                <div
+                  key={index}
+                  className="w-full h-[150px] md:h-[180px] aspect-square  m-2 bg-gray-200 animate-pulse rounded-lg"
+                ></div>
+              ))}
+            </>
+          )}
+        </div>
+        {productData.hasMoreData && (
+          <div className="flex items-center justify-center">
+            <Button label="Load More" isLoading={productData.loading} onClick={handleGetProductsAPI} />
+          </div>
         )}
-      </div>
+      </>
     );
   };
 

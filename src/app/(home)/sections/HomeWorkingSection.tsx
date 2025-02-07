@@ -33,7 +33,7 @@ export default function HomeWorkingSection() {
         {/* <p className="text-xl md:text-2xl  font-bold font-heading  ">How IPM Works</p> */}
         <div>
           <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">How IPM Works</h2>
-          <p className="text-xs md:text-sm font-bold text-primary font-heading px-5 md:px-0">
+          <p className="text-xs md:text-sm  font-bold text-primary font-heading px-5 md:px-0">
             Sell Your Apple Device with Us
           </p>
         </div>
@@ -44,8 +44,8 @@ export default function HomeWorkingSection() {
                 {index + 1}
               </p> */}
               {item.icon}
-              <h3 className="font-semibold text-base md:text-lg text-gray-700 mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-xs md:text-sm">{item.description}</p>
+              <h3 className="font-semibold text-sm md:text-base text-gray-700 mb-2">{item.title}</h3>
+              <p className="text-gray-600 text-xs">{item.description}</p>
             </div>
           ))}
         </div>

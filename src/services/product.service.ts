@@ -1,9 +1,10 @@
 import { apiInstance } from "@/config/axios/axios.config";
-import { IProductSchema } from "@schemas/product.schema";
+import { ITEM_PER_PAGE } from "@lib/constants";
+import { IProductBaseSchema, IProductSchema } from "@schemas/product.schema";
 
 export const ProductAPI = {
-  get: async (categoryID: number): Promise<IProductSchema[] | null> => {
-    const response = await apiInstance.get(`/products?category=${categoryID}`);
+  get: async (categoryID: number, page?: number, limit: number = ITEM_PER_PAGE): Promise<IProductBaseSchema | null> => {
+    const response = await apiInstance.get(`/products?category=${categoryID}&limit=${limit}&page=${page}`);
     if (response.data) {
       return response.data;
     }

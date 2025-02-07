@@ -30,7 +30,7 @@ const ProblemCard = ({
         <ItemImage
           src={isValidUrl(imagePath) && imagePath ? imagePath : ""}
           alt={problem}
-          className="w-full h-full min-w-full mix-blend-multiply"
+          className="w-full h-full max-w-[100px] aspect-square  mix-blend-multiply"
           addBaseUrl={addBasePath}
         />
       </div>

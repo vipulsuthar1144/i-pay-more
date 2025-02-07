@@ -110,7 +110,8 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
         {/* Content Skeleton */}
         <div className="flex flex-2 flex-col justify-start items-start w-full space-y-4">
           {/* Title */}
-          <h2 className="h-6 w-3/4 bg-gray-200 animate-pulse rounded"></h2>
+
+          <h2 className="h-6 w-3/4 bg-gray-200 animate-pulse rounded "></h2>
 
           {/* Description */}
           <p className="h-4 w-1/4 bg-gray-200 animate-pulse rounded"></p>

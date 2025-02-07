@@ -37,7 +37,7 @@ const FallbackError = ({ type, message = "", description = "" }: IFallbackErrorP
       <div className="w-full h-full flex  items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-2 text-center p-4">
           <CircleAlert size={"50px"} className="text-red-600 w-[50px] md:w-[70px]" />
-          <h1 className="text-lg md:text-xl lg:text-2xl font-bold">{message || "Something went wrong."}</h1>
+          <h1 className="text-xl md:text-2xl lg:text-2xl font-bold">{message || "Something went wrong."}</h1>
           <p className="text-xs md:text-sm">
             {description || "Oops! It seems there was a problem with the server. Please try again later."}
           </p>
@@ -50,7 +50,7 @@ const FallbackError = ({ type, message = "", description = "" }: IFallbackErrorP
     return (
       <div className="flex  flex-col items-center justify-center gap-2 w-full max-w-md h-auto text-center p-4 m-auto">
         <NotepadText size={"50px"} />
-        <h1 className="text-lg md:text-xl lg:text-2xl font-bold">{message || "Empty Data"}</h1>
+        <h1 className="text-xl md:text-2xl lg:text-2xl font-bold">{message || "Empty Data"}</h1>
         <p className="text-xs md:text-sm">
           {description || "The data you're looking for might not be available. Please try something else."}
         </p>

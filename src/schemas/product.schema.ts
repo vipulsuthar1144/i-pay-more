@@ -1,3 +1,8 @@
+export interface IProductBaseSchema {
+  total?: number;
+  products?: IProductSchema[];
+}
+
 export interface IProductSchema {
   product_id?: number;
   product_name?: string;

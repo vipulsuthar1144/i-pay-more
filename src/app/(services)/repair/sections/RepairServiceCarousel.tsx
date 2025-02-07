@@ -121,7 +121,7 @@ const CategoryCarousel = () => {
     <section className={`${root_container} relative`}>
       <div className="space-y-2">
         <h2 className="text-xl md:text-2xl  font-bold font-heading">Our Repair Services</h2>
-        <p className="text-xs md:text-sm font-bold text-primary font-heading">Repair Your Apple Device with Us</p>
+        <p className="text-xs  font-bold text-primary font-heading">Repair Your Apple Device with Us</p>
       </div>
       {renderContent()}
     </section>

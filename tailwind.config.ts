@@ -27,6 +27,9 @@ export default {
       },
       boxShadow: {
         "custom-hover": "0 6px 10px rgba(0, 0, 0, 0.15), 0 3px 4px rgba(0, 0, 0, 0.10)",
+        // custom: "0px 4px 10px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05)",
+        custom:
+          "0px 4px 8px rgba(0, 0, 0, 0.1), 0px -4px 8px rgba(0, 0, 0, 0.1), 4px 0px 8px rgba(0, 0, 0, 0.1), -4px 0px 8px rgba(0, 0, 0, 0.1)",
       },
       colors: {
         background: "var(--background)",

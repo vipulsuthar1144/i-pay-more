@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { AppNavBar } from "./AppNavBar";
 import AppSidebar from "./AppSidebar";
+import Profile from "./sections/Profile";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -44,17 +45,20 @@ const Header = () => {
 
         <AppNavBar />
         <AppSidebar accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />
+        {accessToken && <Profile accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />}
 
-        <div className="hidden md:flex items-center space-x-4">
-          {isClient && (
-            <button
-              onClick={handleLoginLogout}
-              className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
-            >
-              {buttonLable}
-            </button>
-          )}
-        </div>
+        {!accessToken && (
+          <div className="hidden md:flex items-center space-x-4">
+            {isClient && (
+              <button
+                onClick={handleLoginLogout}
+                className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
+              >
+                {buttonLable}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );

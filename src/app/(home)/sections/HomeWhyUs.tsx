@@ -20,7 +20,7 @@ export default function WhyUs() {
       <div className={`${root_container}  px-5 sm:px-0 `}>
         <div>
           <h2 className="text-xl md:text-2xl  font-bold mb-1">Why IPM</h2>
-          <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+          <p className="text-xs md:text-sm  font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">

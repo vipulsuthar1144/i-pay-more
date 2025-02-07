@@ -20,7 +20,7 @@ export const FAQs = ({ serviceType = "HOME" }: IFAQProps) => {
 
   return (
     <div className={root_container}>
-      <h2 className="text-xl md:text-2xl  font-bold ">FAQs</h2>
+      <h2 className="text-xl md:text-2xl  font-bold ">Frequenty Asked Questions</h2>
       <div className="space-y-2">
         {dataFaqsList
           .filter((item) => item.serviceType == serviceType)
@@ -46,7 +46,7 @@ export const FAQs = ({ serviceType = "HOME" }: IFAQProps) => {
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="px-8 py-3  text-gray-700 text-xs md:text-sm leading-relaxed  "> ● {faq.answer}</p>
+                    <p className="px-6 py-1  text-gray-700 text-xs md:text-sm leading-relaxed  ">{faq.answer}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

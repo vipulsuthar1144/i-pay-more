@@ -47,26 +47,34 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
         <div>
           <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">Select Your Category</h2>
           {serviceFilter == "SELL" && (
-            <p className="text-xs md:text-sm font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
+            <p className="text-xs  font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
           )}
           {serviceFilter == "BUY" && (
-            <p className="text-xs md:text-sm font-bold text-primary font-heading">Buy Apple Device with Us</p>
+            <p className="text-xs  font-bold text-primary font-heading">Buy Apple Device with Us</p>
           )}
           {serviceFilter == "REPAIR" && (
-            <p className="text-xs md:text-sm font-bold text-primary font-heading">Repair Your Apple Device with Us</p>
+            <p className="text-xs  font-bold text-primary font-heading">Repair Your Apple Device with Us</p>
           )}
         </div>
 
         {/* {categoryData?.loading && <AppLoader />} */}
-        <div className="grid grid-cols-3 gap-4 md:grid-cols-7">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-9">
           {categoryData.loading && !categoryData.error ? (
-            <ProductCardSekeleton />
+            <>
+              {Array.from({ length: 9 })?.map((_, index) => (
+                <div
+                  key={index}
+                  className="w-full h-auto sm:h-[120] md:h-[130] lg:h-[130px] m-2 bg-gray-200 animate-pulse rounded-lg"
+                ></div>
+              ))}
+            </>
           ) : (
             categoryData?.categoryList?.map((item) => (
               <ProductCard
                 key={item?.category_id}
                 title={item?.category_name ?? ""}
                 img={item?.image_path ?? ""}
+                cardClasses="bg-primary/5 shadow-none border-none h-auto sm:h-[120] md:h-[130] lg:h-[140px]  hover:shadow-none"
                 onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
               />
             ))

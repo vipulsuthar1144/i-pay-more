@@ -31,7 +31,7 @@ const menuItems = [
       { name: "Repair", href: "/repair", icon: Wrench },
     ],
   },
-  // { name: "About Us", href: "/about", icon: Info },
+  { name: "Orders", href: "/orders", icon: ShoppingBag },
   { name: "Contact Us", href: "/contact-us", icon: Phone },
   { name: "Privacy & Policy", href: "/policies/privacy", icon: NotebookText },
   { name: "Terms and Conditions", href: "/policies/conditions", icon: File },
