@@ -13,7 +13,7 @@ export default function BuyPage() {
     <div className={`pt-10 space-y-10`}>
       <div className="space-y-5">
         <Breadcrumb />
-        <BannerCarousel images={[banner4, banner5, banner6]} />
+        <BannerCarousel images={[banner5, banner5, banner5]} />
       </div>
       <ProductCategories serviceFilter={"BUY"} />
       <HowItWorksSection serviceType="BUY" />

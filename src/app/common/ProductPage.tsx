@@ -107,7 +107,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
   const listenerGoToProductDetails = (navigateRoute?: string) => {
     categoryID &&
       navigateRoute &&
-      navigate.push(`/${serviceType.toLowerCase()}/${categoryID}/${encodeURIComponent(navigateRoute)}`);
+      navigate.push(`/${serviceType.toLowerCase()}/${categoryID}/${navigateRoute.replace(/\//g, "-")}`);
   };
 
   const renderContent = () => {

@@ -14,8 +14,8 @@ const Profile = ({ accessToken, onLoginLogoutClick }: { accessToken: string; onL
   const menuItems = [
     { label: "Orders", href: "/orders" },
     // { label: "Saved Payments", href: "/payments" },
-    // { label: "Saved Address", href: "/address" },
-    // { label: "My Earnings", href: "/earnings" },
+    { label: "Privacy Policy", href: "/policies/privacy" },
+    { label: "Terms and Conditions", href: "/policies/conditions" },
     { label: "Log Out", href: "/logout" },
   ];
 
@@ -31,7 +31,7 @@ const Profile = ({ accessToken, onLoginLogoutClick }: { accessToken: string; onL
 
   return (
     <div
-      className="relative inline-block text-left"
+      className="relative hidden md:inline-block text-left "
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >

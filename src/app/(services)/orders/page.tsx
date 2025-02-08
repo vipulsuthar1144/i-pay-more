@@ -113,7 +113,7 @@ const Page = () => {
   return (
     <section className={root_container}>
       <div className="space-y-2">
-        <h2 className="text-xl md:text-2xl px-5 md:px-0 font-bold mb-1">Your Orders</h2>
+        <h2 className="text-xl md:text-2xl  font-bold mb-1">Your Orders</h2>
         <Breadcrumb />
         {/* Radio Buttons */}
         <FilterButton selectedType={selectedType} setSelectedType={setSelectedType} />

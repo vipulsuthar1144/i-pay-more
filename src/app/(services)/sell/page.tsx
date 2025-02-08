@@ -13,7 +13,7 @@ export default function Sell() {
     <div className={`space-y-10 pt-10 `}>
       <div className="space-y-5">
         <Breadcrumb />
-        <BannerCarousel images={[banner1, banner2, banner3]} />
+        <BannerCarousel images={[banner3, banner3, banner3]} />
       </div>
       <ProductCategories serviceFilter={"SELL"} />
       <HowItWorksSection serviceType="SELL" />

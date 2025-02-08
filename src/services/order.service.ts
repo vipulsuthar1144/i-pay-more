@@ -13,7 +13,7 @@ export const SaleLeadsAPI = {
     return null;
   },
   get: async ({ type }: { type: TService }): Promise<ISaleLeadSchema[] | null> => {
-    const response = await apiInstance.get(`/sale-leads&type=${type}`);
+    const response = await apiInstance.get(`/sale-leads?type=${type}`);
     if (response.data) {
       return response.data;
     }

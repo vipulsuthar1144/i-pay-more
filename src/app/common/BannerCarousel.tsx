@@ -48,7 +48,7 @@ export default function BannerCarousel({
               alt={`Slide ${index + 1}`}
               width={10000}
               height={1000}
-              className="w-full  h-full object-fill aspect-video rounded-xl"
+              className="w-full h-full object-contain  rounded-xl"
               priority
             />
           </SwiperSlide>
