@@ -7,7 +7,7 @@ import { CheckCircleIcon, XCircleIcon } from "lucide-react";
 import React from "react";
 import { IStepProps } from "../../../../common/StepsContainer";
 
-export default function Step1({ productProblems, setProductProblems }: IStepProps) {
+export default function Step1({ productProblems, setProductProblems, deviceType }: IStepProps) {
   const handleAnswerSelection = (question: string, answer: string) => {
     const updatedBasic = productProblems.basic.some((item) => item.question === question)
       ? productProblems.basic.map((item) => (item.question === question ? { ...item, answer } : item))
@@ -22,7 +22,7 @@ export default function Step1({ productProblems, setProductProblems }: IStepProp
   return (
     <>
       {dataProductQuestions
-        .filter((item) => item.type === "BASIC" && item.device === "IPHONES")
+        .filter((item) => item.type === "BASIC" && item.device === deviceType)
         .map(({ problem, desc, options }, index) => {
           const selectedAnswer = productProblems.basic.find((item) => item.question === problem)?.answer;
 

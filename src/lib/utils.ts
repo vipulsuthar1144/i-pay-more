@@ -1,3 +1,4 @@
+import { TDevice } from "@schemas/product-category.schema";
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -36,4 +37,11 @@ export const formatDate = (dateString: string): string => {
     month: "short",
     year: "numeric",
   });
+};
+
+export const getDeviceType = (product_slug: string): TDevice => {
+  if (product_slug.toLowerCase().includes("iphone")) return "IPHONES";
+  if (product_slug.toLowerCase().includes("ipad")) return "IPADS";
+  if (product_slug.toLowerCase().includes("mac")) return "MACBOOKS";
+  return "IPHONES";
 };

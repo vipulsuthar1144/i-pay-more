@@ -2,6 +2,7 @@
 
 import Button from "@components/ui/Button";
 import { IProductProblems } from "@schemas/order.schema";
+import { TDevice } from "@schemas/product-category.schema";
 import { subtle } from "crypto";
 import React from "react";
 
@@ -18,6 +19,7 @@ interface IStepsContainerProps {
 export interface IStepProps {
   productProblems: IProductProblems;
   setProductProblems: React.Dispatch<React.SetStateAction<IProductProblems>>;
+  deviceType?: TDevice;
 }
 
 const StepsContainer = ({

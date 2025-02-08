@@ -3,7 +3,7 @@
 import Breadcrumb from "@components/static/BreadCrumb";
 import Button from "@components/ui/Button";
 import ItemImage from "@components/ui/ItemImage";
-import { extractIDfromString, formatPrice } from "@lib/utils";
+import { extractIDfromString, formatPrice, getDeviceType } from "@lib/utils";
 import { isValidUrl } from "@lib/validation";
 import React, { useEffect, useState } from "react";
 import { root_container } from "../Providers";
@@ -97,6 +97,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
       pimg: productDetails?.product_images,
       st: serviceType,
       cid: categoryID?.toString(),
+      dt: getDeviceType(productDetails?.product_slug?.toString() ?? ""),
     });
     router.push(`/${serviceType.toLowerCase()}/calculate${params}`);
   };
@@ -198,23 +199,26 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
 
           {/* Color Options */}
           <div className="flex space-x-4 justify-center md:justify-start mb-4">
-            {productDetails?.Variants?.map((item, index: number) => (
-              <button
-                key={index}
-                onClick={() => {
-                  item?.color?.color_id &&
-                    setSelectedData((pre) => ({
-                      ...pre,
-                      color: item?.color?.color_html_code ?? "",
-                      colorID: item?.color?.color_id ?? null,
-                    }));
-                }}
-                className={`w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out ${
-                  selectedData.colorID == item?.color?.color_id ? "border-primary scale-110" : "border-gray-300"
-                } `}
-                style={{ backgroundColor: item?.color?.color_html_code }}
-              ></button>
-            ))}
+            {productDetails?.Variants?.map(
+              (item, index: number) =>
+                item.color && (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      item?.color?.color_id &&
+                        setSelectedData((pre) => ({
+                          ...pre,
+                          color: item?.color?.color_html_code ?? "",
+                          colorID: item?.color?.color_id ?? null,
+                        }));
+                    }}
+                    className={`w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out ${
+                      selectedData.colorID == item?.color?.color_id ? "border-primary scale-110" : "border-gray-300"
+                    } `}
+                    style={{ backgroundColor: item?.color?.color_html_code }}
+                  ></button>
+                )
+            )}
           </div>
 
           {selectedData.price && serviceType == "BUY" && (

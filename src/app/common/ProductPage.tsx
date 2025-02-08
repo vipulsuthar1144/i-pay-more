@@ -4,7 +4,6 @@ import { root_container } from "@/app/Providers";
 import { ProductAPI } from "@/services/product.service";
 import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
-import ProductCardSekeleton from "@components/skeletons/ProductCardSekeleton";
 import Breadcrumb from "@components/static/BreadCrumb";
 import Button from "@components/ui/Button";
 import { extractIDfromString } from "@lib/utils";
@@ -106,7 +105,9 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
   }, [searchQuery]);
 
   const listenerGoToProductDetails = (navigateRoute?: string) => {
-    categoryID && navigateRoute && navigate.push(`/${serviceType.toLowerCase()}/${categoryID}/${navigateRoute}`);
+    categoryID &&
+      navigateRoute &&
+      navigate.push(`/${serviceType.toLowerCase()}/${categoryID}/${encodeURIComponent(navigateRoute)}`);
   };
 
   const renderContent = () => {

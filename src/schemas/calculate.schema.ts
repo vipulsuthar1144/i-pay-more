@@ -12,4 +12,5 @@ export interface ICalculateQueryParams {
   pimg: string; // product image
   st: TService; // service type :: SELL,BUY,REPAIR
   cid: string; // category id :: IPHONES, IPADS, MACBOOKS
+  dt: TDevice;
 }

@@ -5,20 +5,16 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react"; // For custom arrows
 import { root_container } from "@/app/Providers";
-import { bannerIpaymore, bannerIpaymore2 } from "@assets/images/home";
+import { homeBanner1, homeBanner2 } from "@assets/images/banners";
 
-const images = [
-  bannerIpaymore,
-  bannerIpaymore2,
-  // "https://s3no.cashify.in/cashify/web/753432b9b22448d4950ce1d2f843d2a0.webp?p=default&s=lg",
-  // "https://s3no.cashify.in/cashify/web/0f67dd24e97e4b9c90155539b002b0d4.webp?p=default&s=lg",
-  // "https://s3no.cashify.in/cashify/web/a86132414c264aeea04d15c795177ecd.webp?p=default&s=lg",
-];
-
-export default function BannerCarousel() {
+export default function BannerCarousel({
+  images = [homeBanner1, homeBanner2],
+}: {
+  images?: string[] | StaticImageData[];
+}) {
   return (
     <div className={`relative ${root_container} `}>
       {/* Swiper Container */}
@@ -42,17 +38,17 @@ export default function BannerCarousel() {
           alignItems: "center",
         }}
       >
-        {images.map((src, index) => (
+        {images?.map((src, index) => (
           <SwiperSlide
             key={index}
-            className="flex justify-center rounded-xl items-center min-h-[150px] h-auto max-h-[400px]"
+            className="flex justify-center rounded-xl overflow-hidden items-center min-h-[150px] h-auto max-h-[400px]"
           >
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
-              width={800}
-              height={800}
-              className="w-full min-h-[150px] h-full object-fill rounded-xl"
+              width={10000}
+              height={1000}
+              className="w-full  h-full object-fill aspect-video rounded-xl"
               priority
             />
           </SwiperSlide>

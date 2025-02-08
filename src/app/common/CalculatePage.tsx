@@ -148,7 +148,11 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
               subTitle="The better condition your device is in, the more we will pay you."
               currentStep={currentStep}
             >
-              <Step1 setProductProblems={setProductProblems} productProblems={productProblems} />
+              <Step1
+                setProductProblems={setProductProblems}
+                deviceType={QueryParams.dt}
+                productProblems={productProblems}
+              />
             </StepsContainer>
           );
         case 2:
