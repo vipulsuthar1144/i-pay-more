@@ -96,12 +96,20 @@ export default function Step1({ productProblems, setProductProblems }: IStepProp
                 </div>
                 <div className={`text-center font-semibold  text-gray-700 text-xs`}>{service_name}</div>
 
-                <p className={`text-center font-semibold  mt-1 text-green-600 text-xs text-wrap`}>
-                  {discount_percentage && (
-                    <span className="line-through text-gray-500">{formatPrice(discounted_price)}</span>
-                  )}{" "}
-                  {formatPrice(Number(service_price ?? 0))}
-                </p>
+                {discount_percentage ? (
+                  <>
+                    <p className="line-through text-gray-500 mt-1 text-xs text-wrap">
+                      {formatPrice(Number(service_price ?? 0))}
+                    </p>
+                    <p className={`text-center font-semibold text-green-600 text-xs text-wrap`}>
+                      {formatPrice(discounted_price)}
+                    </p>
+                  </>
+                ) : (
+                  <p className={`text-center font-semibold  mt-1 text-green-600 text-xs text-wrap`}>
+                    {formatPrice(Number(service_price ?? 0))}
+                  </p>
+                )}
               </div>
             );
           }
