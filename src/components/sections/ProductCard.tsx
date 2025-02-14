@@ -17,10 +17,17 @@ const ProductCard = forwardRef<HTMLDivElement, IProductCardProps<any>>(
         onClick={() => {
           onClick && onClick();
         }}
-        className={`bg-blue-50/10 cursor-pointer h-[150px] md:h-[180px] aspect-square border-gray-200 rounded-md shadow-custom p-4 text-center flex flex-col items-center transition-all duration-300 ease-in-out ${cardClasses}`}
+        className={` cursor-pointer aspect-auto  border-gray-200 rounded-md border-[1px] md:shadow-custom p-4 text-center flex flex-col items-center transition-all duration-300 ease-in-out ${cardClasses}`}
       >
-        <ItemImage addBaseUrl={addBaseUrl} src={isValidUrl(img) && img ? img : ""} alt={title || "Category Image"} />
-        <h3 className="font-medium text-xs  mt-1">{title}</h3>
+        <div className="w-full h-auto min-h-24">
+          <ItemImage
+            // className="min-h-24"
+            addBaseUrl={addBaseUrl}
+            src={isValidUrl(img) && img ? img : ""}
+            alt={title || "Category Image"}
+          />
+        </div>
+        <h3 className="font-medium text-xs mt-1">{title}</h3>
       </div>
     );
   }

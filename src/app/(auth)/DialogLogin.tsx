@@ -147,7 +147,7 @@ const DialogLogin = () => {
                   checked={agree}
                   onChange={(e) => setAgree(e.target.checked)}
                 />
-                <label className="ml-2 text-sm text-gray-600">
+                <label className="ml-2 text-xs md:text-sm text-gray-600">
                   I agree to the{" "}
                   <a href="#" className="text-primary underline">
                     Terms and Conditions
@@ -170,7 +170,7 @@ const DialogLogin = () => {
               />
 
               <div className="flex items-center justify-center">
-                <label className="text-sm text-gray-600">
+                <label className="text-xs md:text-sm text-gray-600">
                   Don't have an account?
                   <span onClick={onSignupClick} className="text-primary ml-2 underline cursor-pointer">
                     Signup

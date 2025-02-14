@@ -32,10 +32,10 @@ const HowItWorksSection = ({ serviceType = "SELL" }: IHowItWorksSectionProps) =>
                 </div>
                 <div>
                   <div className="flex items-center justify-start gap-5 mb-2">
-                    <span className="text-white text-lg  md:text-xl bg-primary w-8 h-8 flex items-center justify-center rounded-full font-bold">
+                    <span className="text-white text-base  md:text-xl bg-primary w-8 h-8 flex items-center justify-center rounded-full font-bold">
                       {step.step}
                     </span>
-                    <h3 className="text-lg  md:text-xl  font-semibold">{step.title}</h3>
+                    <h3 className="text-base  md:text-xl  font-semibold">{step.title}</h3>
                   </div>
                   <p className="text-gray-600 text-xs md:text-sm">{step.description}</p>
                 </div>

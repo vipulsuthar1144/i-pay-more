@@ -42,7 +42,7 @@ export default function DeviceDetails({ productProblems }: IDeviceDetails) {
           {/* <p className=" text-sm text-gray-500">{QueryParams.pclr}</p> */}
         </div>
       </div>
-      <div className="text-base md:text-lg font-medium text-gray-800 mb-3">Device Evaluation</div>
+      <div className="text-sm md:text-base font-medium text-gray-800 mb-3">Device Evaluation</div>
       {productProblems.basic && productProblems.basic.length > 0 && (
         <div className="text-xs font-semibold  text-gray-600 mb-2 mt-2">Device Details</div>
       )}

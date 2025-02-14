@@ -41,14 +41,14 @@ export default function BannerCarousel({
         {images?.map((src, index) => (
           <SwiperSlide
             key={index}
-            className="flex justify-center rounded-xl overflow-hidden items-center min-h-[150px] h-auto max-h-[400px]"
+            className="flex justify-center rounded-xl overflow-hidden items-center  h-auto max-h-[400px]"
           >
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
               width={10000}
               height={1000}
-              className="w-full h-full object-contain  rounded-xl"
+              className="w-full h-full min-h-[180px] object-fill md:object-cover  rounded-xl"
               priority
             />
           </SwiperSlide>
@@ -57,7 +57,7 @@ export default function BannerCarousel({
 
       {/* Custom Navigation Buttons */}
       <button
-        className="custom-prev absolute top-1/2 left-0 z-10 m-0 transform -translate-y-1/2 bg-white text-black p-2 rounded-se-md rounded-ee-md transition"
+        className="custom-prev  hidden md:block absolute top-1/2 left-0 z-10 m-0 transform -translate-y-1/2 bg-white text-black p-2 rounded-se-md rounded-ee-md transition"
         style={{
           margin: 0,
         }}
@@ -65,7 +65,7 @@ export default function BannerCarousel({
         <ChevronLeft size={24} />
       </button>
       <button
-        className="custom-next absolute top-1/2 right-0 z-10 transform -translate-y-1/2 bg-white text-black p-2 rounded-ss-md rounded-es-md transition"
+        className="custom-next absolute hidden md:block top-1/2 right-0 z-10 transform -translate-y-1/2 bg-white text-black p-2 rounded-ss-md rounded-es-md transition"
         style={{
           margin: 0,
         }}

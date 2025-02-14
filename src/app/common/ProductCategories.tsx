@@ -3,8 +3,8 @@
 import { root_container } from "@/app/Providers";
 import { CategoryAPI } from "@/services/category.service";
 import FallbackError from "@components/FallbackError";
-import ProductCard from "@components/sections/ProductCard";
-import ProductCardSekeleton from "@components/skeletons/ProductCardSekeleton";
+import ItemImage from "@components/ui/ItemImage";
+import { isValidUrl } from "@lib/validation";
 import { ICategorySchema, TService } from "@schemas/product-category.schema";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect, useState } from "react";
@@ -45,7 +45,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
     return (
       <section ref={ref} className={root_container}>
         <div>
-          <h2 className="text-xl md:text-2xl px-5 md:px-0  font-bold mb-1">Select Your Category</h2>
+          <h2 className="text-xl md:text-2xl  font-bold mb-1">Select Your Category</h2>
           {serviceFilter == "SELL" && (
             <p className="text-xs  font-bold text-primary font-heading">Sell Your Apple Device with Us</p>
           )}
@@ -58,7 +58,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
         </div>
 
         {/* {categoryData?.loading && <AppLoader />} */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-9">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-7">
           {categoryData.loading && !categoryData.error ? (
             <>
               {Array.from({ length: 9 })?.map((_, index) => (
@@ -70,13 +70,28 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
             </>
           ) : (
             categoryData?.categoryList?.map((item) => (
-              <ProductCard
+              // <ProductCard
+              //   key={item?.category_id}
+              //   title={item?.category_name ?? ""}
+              //   img={item?.image_path ?? ""}
+              //   cardClasses="bg-primary/5 shadow-none border-none h-auto sm:h-[120] md:h-[130] lg:h-[140px]  hover:shadow-none"
+              //   onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
+              // />
+              <div
                 key={item?.category_id}
-                title={item?.category_name ?? ""}
-                img={item?.image_path ?? ""}
-                cardClasses="bg-primary/5 shadow-none border-none h-auto sm:h-[120] md:h-[130] lg:h-[140px]  hover:shadow-none"
                 onClick={() => listenerGoToProductList(`${item.category_slug}-${item.category_id}`)}
-              />
+                className={`bg-primary/5 shadow-none border-none h-auto sm:h-[120] md:h-[130] lg:h-[140px]  hover:shadow-none cursor-pointer aspect-auto  border-gray-200 rounded-md p-4 text-center flex flex-col items-center`}
+              >
+                <div className="min-h-24">
+                  <ItemImage
+                    // className="min-h-24"
+                    addBaseUrl
+                    src={isValidUrl(item?.image_path) && item?.image_path ? item?.image_path : ""}
+                    alt={item?.category_name || "Category Image"}
+                  />
+                </div>
+                <h3 className="font-medium text-xs mt-1">{item?.category_name}</h3>
+              </div>
             ))
           )}
         </div>

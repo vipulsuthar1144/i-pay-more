@@ -38,7 +38,9 @@ export default function RootLayout({
         <Providers>
           <AppHeader />
           <main className="min-h-[60vh] p-5 md:px-10 lg:px-0">{children}</main>
-          <AppDownload />
+          <div className="mx-5">
+            <AppDownload />
+          </div>
           <AppFooter />
         </Providers>
       </body>

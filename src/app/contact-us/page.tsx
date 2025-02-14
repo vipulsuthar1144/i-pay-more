@@ -56,70 +56,70 @@ const ContactUs: React.FC = () => {
       {/* Right Image Section */}
       <div className="w-full md:w-1/2 flex justify-center">
         <div className="bg-white p-6 md:p-10 rounded-2xl border border-gray-400 max-w-lg w-full">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          <h2 className="text-lg md:text-2xl font-bold text-center text-gray-800 mb-6">
             Contact <span className="text-primary">Us</span>
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Full Name</label>
+              <label className="block text-gray-700 font-medium mb-1 text-xs md:text-sm ">Full Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
+                className="text-xs md:text-sm  w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
                 placeholder="Enter your name"
               />
-              {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+              {errors.name && <p className="text-red-500 text-xs md:text-sm ">{errors.name}</p>}
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Email</label>
+              <label className="block text-gray-700 font-medium mb-1 text-xs md:text-sm ">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
+                className="text-xs md:text-sm  w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
                 placeholder="Enter your email"
               />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+              {errors.email && <p className="text-red-500 text-xs md:text-sm ">{errors.email}</p>}
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Phone</label>
+              <label className="block text-gray-700 font-medium mb-1 text-xs md:text-sm ">Phone</label>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
+                className="text-xs md:text-sm  w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none"
                 placeholder="Enter your phone number"
               />
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+              {errors.phone && <p className="text-red-500 text-xs md:text-sm ">{errors.phone}</p>}
             </div>
 
             {/* Message */}
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Message</label>
+              <label className="block text-gray-700 font-medium mb-1 text-xs md:text-sm ">Message</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none resize-none"
+                className="text-xs md:text-sm w-full px-4 py-2 border rounded-md focus:ring-1 focus:ring-primary outline-none resize-none"
                 rows={4}
                 placeholder="Enter your message"
               ></textarea>
-              {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+              {errors.message && <p className="text-red-500 text-xs md:text-sm ">{errors.message}</p>}
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-primary/50 text-white font-semibold py-2 rounded-md hover:bg-primary transition"
+              className="w-full text-sm md:text-base bg-primary/50 text-white font-semibold py-2 rounded-md hover:bg-primary transition"
             >
               Send Message
             </button>

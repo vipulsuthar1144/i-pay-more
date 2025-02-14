@@ -18,7 +18,7 @@ export default function FilterButton({
         <button
           key={type}
           className={`px-4 py-2 text-xs font-medium rounded-full transition-all
-            ${selectedType === type ? "bg-primary text-white" : "bg-gray-300 text-black"}`}
+            ${selectedType === type ? "bg-primary text-white" : "bg-gray-200 text-black"}`}
           onClick={() => setSelectedType(type)}
         >
           {_.capitalize(type)}

@@ -84,22 +84,22 @@ export const InfiniteMovingCards = ({
         >
           {items.map((item, idx) => (
             <li
-              className="w-[350px] max-w-full relative rounded-2xl border-[1px]  border-gray-400 bg-white  px-6 py-6 md:w-[450px] flex flex-col items-start"
+              className="w-[300px] max-w-full h-auto relative rounded-2xl border-[1px]  border-gray-400 bg-white  p-3 md:p-6 md:w-[450px] flex flex-col items-start"
               key={item.name}
             >
               {/* Double-Quote Icon */}
-              <div className="text-primary text-[100px] leading-none mb-2 absolute top-5 left-5">
+              <div className="text-primary text-[60px]  md:text-[100px] leading-none mb-2 absolute top-5 left-5">
                 <span>“</span>
               </div>
               {/* <ItemImage src={imgDoubleQuates as any} alt="“" className=" max-w-16 mb-2" /> */}
 
               {/* Quote */}
-              <p className="text-gray-700 text-start text-sm leading-5 mb-4 pt-14">{item.quote}</p>
+              <p className="text-gray-700 text-start text-xs md:text-sm leading-5 mb-4 pt-10 md:pt-14">{item.quote}</p>
 
               {/* User Details */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start">
                 <div>
-                  <p className="text-gray-800 font-semibold text-sm">{item.name}</p>
+                  <p className="text-gray-800 font-semibold text-xs md:text-sm">{item.name}</p>
                   <p className="text-gray-500 text-xs">{item.title}</p>
                 </div>
               </div>

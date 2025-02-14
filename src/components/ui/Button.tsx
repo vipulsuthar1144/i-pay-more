@@ -26,7 +26,7 @@ const Button = ({
     <button
       disabled={disabled || isLoading}
       onClick={onClick}
-      className={`bg-primary/70 relative disabled:cursor-not-allowed overflow-hidden disabled:bg-primary/50 text-white py-2 px-6 rounded-md flex items-center justify-center shadow-md hover:bg-primary transition-all ease-in-out duration-300 ${className}`}
+      className={`bg-primary/70 relative text-sm md:text-base disabled:cursor-not-allowed overflow-hidden disabled:bg-primary/50 text-white py-2 px-6 rounded-md flex items-center justify-center shadow-md hover:bg-primary transition-all ease-in-out duration-300 ${className}`}
       {...props}
     >
       {isLoading && (

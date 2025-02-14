@@ -116,7 +116,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
       return <FallbackError type="data_not_found" />;
     return (
       <>
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {productData?.filterList
             ?.slice()
             ?.reverse()
@@ -139,7 +139,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
             </>
           )}
         </div>
-        {productData.hasMoreData && (
+        {productData.hasMoreData && !searchQuery && (
           <div className="flex items-center justify-center">
             <Button label="Load More" isLoading={productData.loading} onClick={handleGetProductsAPI} />
           </div>
@@ -161,7 +161,7 @@ const ProductPage = ({ serviceType }: ISelectModelPage) => {
             placeholder="Search model"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)} // Update search query
-            className="w-full md:w-[250px] pl-10 pr-4 py-2 border-[1px] border-[#d2d2d7] rounded-lg text-gray-700 focus:outline-none"
+            className=" text-sm md:text-base w-full md:w-[250px] pl-10 pr-4 py-2 border-[1px] border-[#d2d2d7] rounded-lg text-gray-700 focus:outline-none"
           />
         </div>
       </div>

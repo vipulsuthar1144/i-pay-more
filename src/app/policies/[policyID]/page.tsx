@@ -3,7 +3,7 @@
 import { Menu } from "lucide-react"; // For mobile menu icon
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FeedbackSection from "../sections/FeedbackSection";
 import Breadcrumb from "@components/static/BreadCrumb";
 import { root_container } from "@/app/Providers";
@@ -35,6 +35,10 @@ const policyContent: Record<string, string> = {
 const PolicyPage = () => {
   const { policyID } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [policyID]);
 
   return (
     <div className={root_container}>

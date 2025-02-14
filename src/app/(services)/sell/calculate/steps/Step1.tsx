@@ -27,8 +27,8 @@ export default function Step1({ productProblems, setProductProblems, deviceType 
           const selectedAnswer = productProblems.basic.find((item) => item.question === problem)?.answer;
 
           return (
-            <section key={index} className="flex flex-col mb-5 w-full">
-              <div className="text-base font-medium text-gray-700">{problem}</div>
+            <section key={index} className="flex flex-col mb-5 w-full border-b-[1px]">
+              <div className="text-sm md:text-base font-medium text-gray-700">{problem}</div>
               <div className="text-xs text-gray-500 mb-3">{desc}</div>
               <div className="flex  justify-start gap-4">
                 {(options || ["YES", "NO"]).map((value) => (

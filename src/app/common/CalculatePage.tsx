@@ -315,7 +315,7 @@ export default function CalculatePage({ serviceType, totalSteps }: ICalculatePag
           router.replace("/");
         }}
       />
-      <h2 className="text-2xl font-semibold text-gray-900 font-heading">
+      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 font-heading">
         {title} {QueryParams.pmn}
       </h2>
       {renderBreadcrumb()}

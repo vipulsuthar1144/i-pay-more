@@ -165,12 +165,12 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
         </div>
 
         {/* Product Details */}
-        <div className=" flex flex-2 flex-col items-start">
-          <h2 className="text-xl font-semibold mb-4 ">{productDetails?.product_name}</h2>
-          <p className="text-gray-500 mb-2 text-base">Choose a variant</p>
+        <div className=" flex flex-2 flex-col items-start space-y-2 md:space-y-4">
+          <h2 className="text-lg md:text-xl font-semibold">{productDetails?.product_name}</h2>
+          <p className="text-gray-500  text-sm md:text-base">Choose a variant</p>
 
           {/* Storage Options */}
-          <div className="flex flex-wrap gap-4 justify-start mb-4">
+          <div className="flex flex-wrap gap-4 justify-start">
             {productDetails?.Variants?.map((variant) => (
               <button
                 key={variant?.variant_id}
@@ -183,7 +183,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
                       price: variant.price?.toString() ?? null,
                     }));
                 }}
-                className={`px-4 py-2 border-[1px] rounded-md text-sm font-medium transition-all duration-200 ease-in-out ${
+                className={`px-4 py-2 border-[1px] rounded-md text-xs md:text-sm font-medium transition-all duration-200 ease-in-out ${
                   selectedData.varientID === variant?.variant_id
                     ? "border-primary text-black scale-110"
                     : "border-gray-400 text-gray-500"
@@ -198,7 +198,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
           </div>
 
           {/* Color Options */}
-          <div className="flex space-x-4 justify-center md:justify-start mb-4">
+          <div className="flex space-x-4 justify-center md:justify-start">
             {productDetails?.Variants?.map(
               (item, index: number) =>
                 item.color && (
@@ -222,7 +222,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
           </div>
 
           {selectedData.price && serviceType == "BUY" && (
-            <p className="text-lg font-semibold text-green-600 mb-4">{formatPrice(+selectedData.price as number)}</p>
+            <p className="text-lg font-semibold text-green-600">{formatPrice(+selectedData.price as number)}</p>
           )}
           {/* Action Button */}
           <Button
@@ -238,12 +238,12 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
 
   return (
     <div className={` ${root_container}   pt-10 space-y-5 `}>
-      <h2 className="text-2xl font-semibold text-gray-900 font-heading">
+      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 font-heading">
         {title} {productDetails?.product_name}
       </h2>
       <Breadcrumb />
 
-      <div className="bg-white rounded-md border-[1px] border-gray-400 p-6 md:p-16 w-full flex flex-col md:flex-row md:items-center space-x-10 space-y-0 sm:space-y-5 ">
+      <div className="bg-white rounded-md border-[1px] border-gray-400 p-6 md:p-16 w-full flex flex-col md:flex-row md:items-center  space-y-0 sm:space-y-5 ">
         {renderContent()}
       </div>
     </div>

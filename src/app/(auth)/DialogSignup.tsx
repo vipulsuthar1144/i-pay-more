@@ -135,7 +135,7 @@ const DialogSignup = () => {
             </div>
 
             {/* Content */}
-            <div className="p-4 space-y-2">
+            <div className="py-4 space-y-3">
               {/* Full Name */}
               <InputField
                 label="Full Name"
@@ -177,23 +177,25 @@ const DialogSignup = () => {
               />
 
               {/* State Dropdown */}
-              <label className="block  mb-2 text-gray-700">State</label>
-              <select
-                name="state"
-                className="w-full px-3 py-2 border rounded-md bg-white cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary transition-all duration-300 ease-in-out"
-                value={form.state}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  --Select your state--
-                </option>
-                {dataStateList.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
+              <div>
+                <label className="block text-xs md:text-sm font-medium  mb-1 text-gray-700">State</label>
+                <select
+                  name="state"
+                  className="text-xs md:text-sm w-full px-3 py-2 border rounded-md bg-white cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary transition-all duration-300 ease-in-out"
+                  value={form.state}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    --Select your state--
                   </option>
-                ))}
-              </select>
-              {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
+                  {dataStateList.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+                {errors.state && <p className="text-red-500 text-xs md:text-sm">{errors.state}</p>}
+              </div>
 
               {/* Password */}
               {/* <InputField
@@ -212,7 +214,7 @@ const DialogSignup = () => {
                   checked={form.agree}
                   onChange={(e) => setForm({ ...form, agree: e.target.checked })}
                 />
-                <label className="ml-2 text-sm text-gray-600">
+                <label className="ml-2 text-xs md:text-sm text-gray-600">
                   I agree to the{" "}
                   <Link href="/terms-conditions" className="text-primary underline">
                     Terms and Conditions
@@ -245,7 +247,7 @@ const DialogSignup = () => {
                 className="w-full min-w-full max-w-full mt-4"
               />
               <div className="flex items-center justify-center mt-4">
-                <label className="text-sm text-gray-600">
+                <label className="text-xs md:text-sm text-gray-600">
                   Already have an account?
                   <span onClick={onLoginClick} className="text-primary ml-2 underline cursor-pointer">
                     Login

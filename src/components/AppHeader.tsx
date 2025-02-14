@@ -39,20 +39,22 @@ const Header = () => {
           </Link>
         </div>
 
-        <AppNavBar />
-        <AppSidebar accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />
-        {accessToken && <Profile accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />}
+        <div className="flex items-center">
+          <AppNavBar />
+          <AppSidebar accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />
+          {accessToken && <Profile accessToken={accessToken} onLoginLogoutClick={handleLoginLogout} />}
 
-        {!accessToken && (
-          <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={handleLoginLogout}
-              className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
-            >
-              Login
-            </button>
-          </div>
-        )}
+          {!accessToken && (
+            <div className="hidden md:flex items-center space-x-4">
+              <button
+                onClick={handleLoginLogout}
+                className="bg-primary/70 text-white py-2 px-6 rounded-lg flex items-center justify-center shadow-md hover:bg-primary transition duration-300"
+              >
+                Login
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

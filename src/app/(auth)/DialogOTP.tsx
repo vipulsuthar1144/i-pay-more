@@ -150,6 +150,8 @@ const DialogOTP = ({ requestKey, isOpen, setIsOpen, authCredential, handleClose 
                 inputRefs.current[index] = el;
               }}
               type="text"
+              inputMode="numeric"
+              pattern="\d{1}"
               maxLength={1}
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}

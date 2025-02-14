@@ -5,15 +5,20 @@ import { SaleLeadsAPI } from "@/services/order.service";
 import FallbackError from "@components/FallbackError";
 import Breadcrumb from "@components/static/BreadCrumb";
 import ItemImage from "@components/ui/ItemImage";
-import { OrderStatus } from "@lib/constants";
+import { LocalStorageKeys, OrderStatus } from "@lib/constants";
 import { formatDate, formatPrice } from "@lib/utils";
 import { isValidUrl } from "@lib/validation";
 import { ISaleLeadSchema } from "@schemas/order.schema";
 import React, { useEffect, useState } from "react";
 import FilterButton from "./sections/FilterButton";
 import { TService } from "@schemas/product-category.schema";
+import { useRouter } from "next/navigation";
+import useLocalStorage from "@/config/hooks/useLocalStorage.hooks";
 
 const Page = () => {
+  const router = useRouter();
+  const [accessToken] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
+
   const [orderData, setOrderData] = useState<{
     loading: boolean;
     error: string | null;
@@ -27,7 +32,11 @@ const Page = () => {
   const [selectedType, setSelectedType] = useState<TService>("SELL");
 
   useEffect(() => {
-    handleGetOrdersAPICall();
+    if (accessToken) {
+      handleGetOrdersAPICall();
+    } else {
+      router.replace("/");
+    }
   }, [selectedType]);
 
   const handleGetOrdersAPICall = async () => {
@@ -97,12 +106,19 @@ const Page = () => {
                     <p className="text-xs text-gray-500">Order ID: {item.id}</p>
                     <p className="font-semibold text-sm">{item.product?.product_name}</p>
                     <p className="text-xs text-gray-500">
-                      {item?.variant?.storage} / {item?.color?.color_name}
+                      {item?.variant?.memory && <span>{`${item?.variant?.memory} / `}</span>}
+                      {item?.variant?.storage && <span>{item?.variant?.storage}</span>}
+                      {item?.variant?.processor?.processor_name && (
+                        <span>{` (${item?.variant.processor?.processor_name}) `}</span>
+                      )}
+                      {item?.color?.color_name && <span>{`/ ${item?.color?.color_name}`}</span>}
                     </p>
                   </div>
-                  <p className="font-semibold text-sm text-green-500">
-                    {formatPrice(Number(item?.variant?.price ?? 0))}
-                  </p>
+                  {selectedType !== "SELL" && (
+                    <p className="font-semibold text-sm text-green-500">
+                      {formatPrice(Number(item?.variant?.price ?? 0))}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
