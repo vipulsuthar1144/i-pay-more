@@ -8,7 +8,7 @@ Built with **Next.js, TypeScript, and Redux Toolkit**, the application ensures a
 
 ## 📌 Live Peview
 
-👉 **[View Live Website](https://www.ipaymore.in/)**
+👉 **[View Live Website](https://www.ipaymore.in/)**(comming soon)
 
 ## **🌟 Features**
 
