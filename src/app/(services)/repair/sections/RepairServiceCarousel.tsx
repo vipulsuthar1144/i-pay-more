@@ -1,9 +1,9 @@
+"use client";
+
 import { root_container } from "@/app/Providers";
 import { RepairAPI } from "@/services/repair.service";
 import FallbackError from "@components/FallbackError";
 import ProductCard from "@components/sections/ProductCard";
-import ItemImage from "@components/ui/ItemImage";
-import { isValidUrl } from "@lib/validation";
 import { IRepairServiceSchema } from "@schemas/repair-services.schema";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";

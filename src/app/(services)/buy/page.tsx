@@ -1,12 +1,11 @@
 "use client";
 
+import { banner5 } from "@assets/images/banners";
 import Breadcrumb from "@components/static/BreadCrumb";
-import { dataFaqsList } from "@data/faqsData";
 import BannerCarousel from "../../common/BannerCarousel";
 import FAQs from "../../common/FAQs";
 import HowItWorksSection from "../../common/HowItWorksSection";
 import ProductCategories from "../../common/ProductCategories";
-import { banner4, banner5, banner6 } from "@assets/images/banners";
 
 export default function BuyPage() {
   return (

@@ -1,3 +1,5 @@
+"use client";
+
 import ProductDetailPage from "@/app/common/ProductDetailPage";
 import React from "react";
 
