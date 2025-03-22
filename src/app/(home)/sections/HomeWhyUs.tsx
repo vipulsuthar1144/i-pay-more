@@ -1,3 +1,5 @@
+"use client";
+
 import { root_container } from "@/app/Providers";
 import { Tag, Banknote, Truck, Database, FileText, Hand, IndianRupeeIcon } from "lucide-react";
 

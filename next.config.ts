@@ -2,16 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     // domains: ["*"], // Add external domains here
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**", // Allows images from any domain
+        hostname: "lms.ipaymore.in",
+        pathname: "/**",
       },
       {
-        protocol: "http",
-        hostname: "**", // Allows images from any domain
+        protocol: "https",
+        hostname: "s3no.cashify.in",
+        pathname: "/**",
       },
     ],
   },

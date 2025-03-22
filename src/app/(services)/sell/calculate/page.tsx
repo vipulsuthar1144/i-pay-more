@@ -1,8 +1,14 @@
+"use client";
+
 import CalculatePage from "@/app/common/CalculatePage";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
-  return <CalculatePage serviceType="SELL" totalSteps={5} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CalculatePage serviceType="SELL" totalSteps={5} />
+    </Suspense>
+  );
 };
 
 export default page;

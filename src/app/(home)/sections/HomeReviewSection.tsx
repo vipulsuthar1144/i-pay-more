@@ -1,3 +1,5 @@
+"use client";
+
 import { root_container } from "@/app/Providers";
 import { InfiniteMovingCards } from "@components/static/Infinite-moving-cards";
 import { dataReviewList } from "@data/reviewData";
