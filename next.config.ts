@@ -5,18 +5,21 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     // domains: ["*"], // Add external domains here
     remotePatterns: [
       {
         protocol: "https",
         hostname: "lms.ipaymore.in",
-        pathname: "/**",
+        // pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "s3no.cashify.in",
-        pathname: "/**",
+        // pathname: "/**",
       },
     ],
   },
