@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     // domains: ["*"], // Add external domains here
     remotePatterns: [
