@@ -7,8 +7,8 @@
 Built with **Next.js, TypeScript, and Redux Toolkit**, the application ensures a modern UI and smooth user interactions.
 
 ## 📌 Live Peview
-
-👉 **[View Live Website](https://www.ipaymore.in/)**(comming soon)
+👉 **[Preview Site](https://ipaymore-1144.netlify.app/)**
+👉 **[Officail Site](https://www.ipaymore.in/)**(coming soon)
 
 ## **🌟 Features**
 
