@@ -45,6 +45,7 @@ const ItemImage: React.FC<IItemImage> = React.memo(
           onError={() => setImageSrc(errorImg)} // Fallback to placeholder image
           onLoadingComplete={() => setLoading(false)} // Hide loader when loaded
           {...props}
+          unoptimized
         />
       </div>
     );

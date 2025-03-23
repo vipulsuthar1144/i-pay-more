@@ -243,7 +243,7 @@ const ProductDetailPage = ({ serviceType }: IProductDetailPage) => {
       </h2>
       <Breadcrumb />
 
-      <div className="bg-white rounded-md border-[1px] border-gray-400 p-6 md:p-16 w-full flex flex-col md:flex-row md:items-center  space-y-0 sm:space-y-5 ">
+      <div className="bg-white rounded-md border-[1px] border-gray-400 p-6 md:p-16 w-full flex flex-col md:flex-row md:items-center space-x-0 md:space-x-5  space-y-0 sm:space-y-5 ">
         {renderContent()}
       </div>
     </div>

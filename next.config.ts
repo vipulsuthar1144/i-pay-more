@@ -11,12 +11,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "lms.ipaymore.in",
-        pathname: "/**",
+        // pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "s3no.cashify.in",
-        pathname: "/**",
+        // pathname: "/**",
       },
     ],
   },
