@@ -58,7 +58,7 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
         </div>
 
         {/* {categoryData?.loading && <AppLoader />} */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-7">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-7">
           {categoryData.loading && !categoryData.error ? (
             <>
               {Array.from({ length: 9 })?.map((_, index) => (
@@ -85,8 +85,8 @@ const ProductCategories = forwardRef<HTMLDivElement, { serviceFilter?: TService 
                 <div className="min-h-24">
                   <ItemImage
                     // className="min-h-24"
-                    addBaseUrl
-                    src={isValidUrl(item?.image_path) && item?.image_path ? item?.image_path : ""}
+                    addBaseUrl={false}
+                    src={item?.image_path ? item?.image_path : ""}
                     alt={item?.category_name || "Category Image"}
                   />
                 </div>
